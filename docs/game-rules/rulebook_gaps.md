@@ -51,20 +51,41 @@ Can all drones access VLOW, or is it restricted to certain classes/types?
 ### B1. Endurance Hours Per Drone
 Please provide the endurance (in hours) for each drone. This becomes their starting fuel value.
 
-| Drone | Endurance (hours) |
-|-------|-------------------|
-| BAYRAKTAR TB2 | |
-| BAYRAKTAR AKINCI | |
-| AKSUNGUR | |
-| ANKA-S | |
-| WING LOONG II | |
-| WING LOONG-3 | |
-| CH-4B | |
-| CH-5 | |
-| TB-001 SCORPION | |
-| MQ-9 REAPER | |
-
 **Your answer:**
+
+| Drone | Endurance (Hours) | In DB? |
+|-------|:-----------------:|:------:|
+| Bayraktar TB2 | 27 | ✅ |
+| Bayraktar Akıncı | 24 | ✅ |
+| Aksungur | 50 | ✅ |
+| Anka-S | 30 | ✅ |
+| Wing Loong II | 20 | ✅ |
+| Wing Loong-3 | 40 | ✅ |
+| CH-4B | 40 | ✅ |
+| CH-5 | 60 | ✅ |
+| TB-001 Scorpion | 35 | ✅ |
+| MQ-9 Reaper | 27 | ✅ |
+| MQ-9B Protector | 40 | ❌ NEW |
+| Avenger (Predator C) | 20 | ❌ NEW |
+| MQ-1C Gray Eagle | 40 | ❌ NEW |
+| Heron TP | 40 | ❌ NEW |
+| Hermes 450 | 20 | ❌ NEW |
+| Hermes 900 | 36 | ❌ NEW |
+| Orion (Inokhodets) | 24 | ❌ NEW |
+| S-70 Okhotnik-B | 20 | ❌ NEW |
+| Altius-RU | 48 | ❌ NEW |
+| Mohajer-6 | 12 | ❌ NEW |
+| Mohajer-10 | 24 | ❌ NEW |
+| Shahed-129 | 24 | ❌ NEW |
+| Burraq | 10 | ❌ NEW |
+| nEUROn | 3 | ❌ NEW |
+| Taranis | 5 | ❌ NEW |
+| Ghatak | 12 | ❌ NEW |
+| Eurodrone | 40 | ❌ NEW |
+| Falco Xplorer | 24 | ❌ NEW |
+
+> [!WARNING]
+> **18 new drones** not yet in the database. These need full records (country, class, altitude, loadouts, SI, abilities) to be added.
 
 
 ### B2. Fuel Consumption Rate
