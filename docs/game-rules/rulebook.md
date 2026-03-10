@@ -549,8 +549,10 @@ In the **Counterfire & Evasive Action Table**, the LOW altitude row shows:
 
 Is this correct? Stand-off and Close-in at LOW altitude have **zero risk** from counterfire?
 
-**Your answer:**
+**Your answer:** This is wrong — same issue as Q2. Needs to be corrected.
 
+> [!CAUTION]
+> **DILEK CLEARANCE ITEM #1**: Counterfire table LOW row (Stand-Off & Close-In) appears incorrect. Must be verified and corrected before final delivery.
 
 ---
 
@@ -558,8 +560,10 @@ Is this correct? Stand-off and Close-in at LOW altitude have **zero risk** from 
 
 Similarly, the **SAM Target Unit Special Counterfire Table** shows the entire LOW row as empty (dashes) across all three attack modes. Is this intentional — SAMs can't counterfire at LOW altitude?
 
-**Your answer:**
+**Your answer:** Some SAMs can hit at LOW altitude — this is probably wrong.
 
+> [!CAUTION]
+> **DILEK CLEARANCE ITEM #2**: SAM Counterfire table LOW row appears incorrect. Some SAMs should be able to hit at LOW altitude. Must be verified and corrected before final delivery.
 
 ---
 
@@ -567,8 +571,7 @@ Similarly, the **SAM Target Unit Special Counterfire Table** shows the entire LO
 
 The LOW / Stand-Off results are all `1F` with **no HIT** anywhere (DRM 1–6). This means Stand-Off at LOW altitude can **never** hit a target. Is that correct by design?
 
-**Your answer:**
-
+**Your answer:** Yes, correct by design. The drone needs to carry an additional kit to make a hit at LOW/Stand-Off. Keep as-is.
 
 ---
 
@@ -578,8 +581,7 @@ The rulebook describes Campaign Mode (zone-based territory, strategic movement, 
 - **A)** Full v1.0 scope (develop it now)
 - **B)** Defer to v1.1 (build the engine first, add campaigns later)
 
-**Your answer:**
-
+**Your answer:** **B) v1.1** — defer campaigns to later.
 
 ---
 
@@ -589,8 +591,7 @@ Similarly, competitive 2+ Player mode — should this be:
 - **A)** v1.0 scope
 - **B)** Defer to v1.1
 
-**Your answer:**
-
+**Your answer:** No 2P version. Maybe later.
 
 ---
 
@@ -598,8 +599,10 @@ Similarly, competitive 2+ Player mode — should this be:
 
 Section 8 describes designing custom scenarios. Is this what you mean by the "scenario editor" in your v1.0 requirements? Or do you envision something more sophisticated (e.g., a visual editor with drag-and-drop zone creation)?
 
-**Your answer:**
+**Your answer:** Yes, but we need to recreate this from the start. The BA (OB3-ProjectManager) should prep a form to take inputs as a multiple choice survey.
 
+> [!IMPORTANT]
+> **BA ACTION ITEM**: OB3-ProjectManager must create a scenario editor input survey form for the user.
 
 ---
 
@@ -607,8 +610,13 @@ Section 8 describes designing custom scenarios. Is this what you mean by the "sc
 
 The rulebook says fuel starts at the drone's "fuel rating value" but doesn't specify what those values are per drone. Are these in the database? I see the `drones` table doesn't have a `fuel` column. Where do starting fuel values come from?
 
-**Your answer:**
+**Your answer:** Fuel value is given by the endurance in hours for each drone. Use this value per drone.
 
+> [!NOTE]
+> The `drones` table currently has `range` (distance in km) but NO endurance/fuel column. An `endurance_hours` column needs to be added to the database for each drone.
+
+> [!IMPORTANT]
+> **UI DESIGN NOTE**: Fuel will NOT be shown as liters/numbers but as a **color bar that changes color as it declines** (green → yellow → red).
 
 ---
 
@@ -616,8 +624,7 @@ The rulebook says fuel starts at the drone's "fuel rating value" but doesn't spe
 
 The rulebook says VIS/RCS starts at 0. Is this the same for all drones, or do some drones have inherent VIS values from the database?
 
-**Your answer:**
-
+**Your answer:** Each drone has different values but for the moment they all start at the same level.
 
 ---
 
@@ -625,8 +632,10 @@ The rulebook says VIS/RCS starts at 0. Is this the same for all drones, or do so
 
 The rulebook mentions LOW, MEDIUM, HIGH altitudes. The drone table has an `altitude` column. Are there exactly 3 altitude levels, or can some drones access additional altitudes (e.g., VERY HIGH)?
 
-**Your answer:**
+**Your answer:** There are 4 altitude levels: **VLOW — LOW — MEDIUM — HIGH**
 
+> [!NOTE]
+> This is different from the rulebook which only describes 3 levels. The CRT tables and game mechanics will need to account for the additional VLOW altitude level.
 
 ---
 
@@ -634,7 +643,20 @@ The rulebook mentions LOW, MEDIUM, HIGH altitudes. The drone table has an `altit
 
 Is there a maximum number of turns, or does the game always end via fuel/ammo/destruction/target exhaustion?
 
-**Your answer:**
+**Your answer:** *(Not yet answered — pending)*
 
+---
+
+## 🚨 DILEK Pre-Delivery Clearance List
+
+> [!CAUTION]
+> These items MUST be resolved by DILEK (Orchestrator) before final delivery. This is CRITICAL.
+
+| # | Issue | Source | Status |
+|---|-------|--------|--------|
+| 1 | **Counterfire table LOW row (Stand-Off & Close-In)** — all cells empty, likely incorrect | Q1 | ⬜ OPEN |
+| 2 | **SAM Counterfire table LOW row** — all cells empty, some SAMs should hit at LOW | Q2 | ⬜ OPEN |
+| 3 | **VLOW altitude row** — needs to be added to ALL CRT tables (Attack, Counterfire, SAM) | Q9 | ⬜ OPEN |
+| 4 | **Endurance/fuel data** — `endurance_hours` column needs to be added to `drones` table | Q7 | ⬜ OPEN |
 
 ---
