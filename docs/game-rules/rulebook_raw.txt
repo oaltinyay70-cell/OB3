@@ -1,0 +1,1494 @@
+
+============================================================
+PAGE 1
+============================================================
+
+OBSCURE BATTLES 3: 
+DRONE COMMANDER 
+ 
+ 
+Drone Warfare in the 
+20th and 21st Centuries 
+
+============================================================
+PAGE 2
+============================================================
+
+Game Design: © Freman Goldbo, Graphics: © Idilix Graphics and Design Studio. Permission is granted to print for personal, private use only. It is not legal to reproduce, duplicate, or transmit any part of this document in either electronic means or printed format 
+for commercial use. Recording of this publication is strictly prohibited. 
+2 
+ 
+ 
+ 
+1. 
+Introduction ........................................................................................................................................................................................................................4 
+2. 
+How the Game is Played .....................................................................................................................................................................................................4 
+2.1. 
+The Game Play ..........................................................................................................................................................................................................4 
+2.2. 
+Game Components ...................................................................................................................................................................................................4 
+2.3. 
+Rule book ..................................................................................................................................................................................................................4 
+2.4. 
+Game Board ..............................................................................................................................................................................................................4 
+2.4.1. 
+Campaign Map board ..........................................................................................................................................................................................4 
+2.5. 
+Target Cards ..............................................................................................................................................................................................................5 
+2.6. 
+Threat Cards ..............................................................................................................................................................................................................5 
+2.7. 
+Loadout Markers .......................................................................................................................................................................................................5 
+2.8. 
+Drone Marker ...........................................................................................................................................................................................................6 
+2.9. 
+Drone Info Cards .......................................................................................................................................................................................................6 
+2.9.1. 
+Drone Altitude Box ..............................................................................................................................................................................................7 
+2.9.2. 
+Drone Class ..........................................................................................................................................................................................................7 
+2.9.3. 
+Drone System Health box ....................................................................................................................................................................................7 
+2.10. 
+Combat Cards............................................................................................................................................................................................................8 
+3. 
+Game Terms & Abbreviations & Format .............................................................................................................................................................................8 
+4. 
+GAME SETUP SETTINGS ......................................................................................................................................................................................................8 
+4.1. 
+Setting Up the Game .................................................................................................................................................................................................8 
+4.2. 
+First Turn Rules .........................................................................................................................................................................................................8 
+5. 
+THE GAME PLAY ..................................................................................................................................................................................................................8 
+5.1. 
+Solitaire Quick Game.................................................................................................................................................................................................9 
+5.2. 
+2+ Player Mode .........................................................................................................................................................................................................9 
+5.3. 
+Campaign Game ........................................................................................................................................................................................................9 
+6. 
+PLAYING THE GAME ............................................................................................................................................................................................................9 
+6.1. 
+The Play Sequence ....................................................................................................................................................................................................9 
+6.2. 
+Basic Rules ..............................................................................................................................................................................................................10 
+6.3. 
+Movement Rules .....................................................................................................................................................................................................10 
+6.3.1. 
+Step 0 ......................................................................................................................................................................................................................10 
+6.3.2. 
+Step 1 ......................................................................................................................................................................................................................10 
+6.3.3. 
+Step 2 ......................................................................................................................................................................................................................11 
+6.3.4. 
+Step 3 ......................................................................................................................................................................................................................12 
+6.3.5. 
+Step 4 ......................................................................................................................................................................................................................12 
+6.3.6. 
+Step 5 ......................................................................................................................................................................................................................13 
+6.4. 
+Combat Rules ..........................................................................................................................................................................................................14 
+6.4.1. 
+Loadout Selection ...................................................................................................................................................................................................14 
+6.4.2. 
+TARGET ACQUISITION AND THREAT DETERMINATION rules ..................................................................................................................................15 
+6.4.2.1. 
+Target Acquisition ...................................................................................................................................................................................................15 
+6.4.2.2. 
+Threat Determination .............................................................................................................................................................................................16 
+6.4.3. 
+DRONE ATTACK Rules .............................................................................................................................................................................................17 
+
+============================================================
+PAGE 3
+============================================================
+
+Game Design: © Freman Goldbo, Graphics: © Idilix Graphics and Design Studio. Permission is granted to print for personal, private use only. It is not legal to reproduce, duplicate, or transmit any part of this document in either electronic means or printed format 
+for commercial use. Recording of this publication is strictly prohibited. 
+3 
+6.4.3.1. 
+[OPTIONAL] Special Targets ...............................................................................................................................................................................18 
+6.4.3.1.1. 
+[OPTIONAL] Attacking SAM Type targets .....................................................................................................................................................18 
+6.4.4. 
+COUNTERFIRE & EVASIVE ACTION Rules .................................................................................................................................................................19 
+6.4.5. 
+Taking Damage........................................................................................................................................................................................................20 
+6.4.5.1. 
+Taking Structural Integrity Damage ...................................................................................................................................................................20 
+6.4.5.2. 
+Taking Sensors Damage .....................................................................................................................................................................................20 
+6.4.5.3. 
+Taking COMMs Damage ....................................................................................................................................................................................20 
+6.4.5.4. 
+VIS/RCS Increase as a result of Damages ...........................................................................................................................................................20 
+7. 
+Scoring ..............................................................................................................................................................................................................................21 
+8. 
+Design your own game .....................................................................................................................................................................................................21 
+9. 
+Special Rules .....................................................................................................................................................................................................................21 
+9.1. 
+Deciding who gets to play first in the 2P game .......................................................................................................................................................21 
+9.2. 
+Campaign and Scenario Rules .................................................................................................................................................................................21 
+APPENDIX-2 Some Tips and Tricks for Preparing the Components ...............................................................................................................................................22 
+SUPPLIES ...................................................................................................................................................................................................................................23 
+PROCEDURE FOR THE MAP .......................................................................................................................................................................................................24 
+If you are going to use a Printing Office like Staples... ..........................................................................................................................................................24 
+PROCEDURE FOR COUNTERS ....................................................................................................................................................................................................24 
+Cutting the counters .............................................................................................................................................................................................................25 
+Final words ...........................................................................................................................................................................................................................26 
+ 
+ 
+ 
+ 
+
+============================================================
+PAGE 4
+============================================================
+
+Game Design: © Freman Goldbo, Graphics: © Idilix Graphics and Design Studio. Permission is granted to print for personal, private use only. It is not legal to reproduce, duplicate, or transmit any part of this document in either electronic means or printed format 
+for commercial use. Recording of this publication is strictly prohibited. 
+4 
+1. Introduction 
+In Obscure Battles Volume 3 – Drone Commander, the player takes the role of a Drone Commander trying to locate and destroy enemy 
+assets using one of the Drone Types. 
+Drone strikes have played a key role in recent conflicts the recent examples such as bolstering the Addis Ababa government's position in 
+the face of attacks from TPLF rebels (The Ethiopian Government has purchased armed drones from Turkey). The UAE similarly supplied 
+Chinese-built drones to its ally General Khalifa Haftar in Libya's brutal civil war. In many cases armed drones have had a decisive impact, 
+contributing to the survival of Libya's internationally recognized government in Tripoli and, in last year's Nagorno-Karabakh conflict, TB2s 
+were a potent factor enabling Azerbaijan's forces to wrest control of the disputed enclave from Armenia. 
+While researching for the game, the game designers also came to realize that the "unmanned" aspect of armed UAVs has raised moral 
+concerns about their use in combat and law enforcement contexts. Attacking humans with remote-controlled machines is even more 
+abstract than the use of other "stand-off" weaponry, such as missiles, artillery, and aerial bombardment, depersonalizing the decision to 
+attack. By contrast, UAVs and other stand-off systems reduce casualties among the attackers. 
+In this perspective, this game may feature scenarios that parallel the reality in the world, but they may look “evil” and/or “politically 
+incorrect” to some however it should be understood that such missions actually already happened. Please keep this in the back of your 
+mind. 
+2. How the Game is Played 
+This game is a board game that is a simulation of a Drone Operation that takes on the enemy based on its own sensory input and in some 
+scenarios on scripted conditional engagements. As part of the game, there are different Drone types operated by you taking on the enemy 
+that is decided by the scenario settings. 
+Unlike the other Obscure Battle Series this game is solitaire: you do not need any other player to play the game. All you have to have are a 
+piece paper on which the game is printed , and one 1 x 6 and one 1 X 10 -sided dice to play the game. 
+There is however a 2+ -player mode where players run the same scenario and compete against each other to complete the requirements 
+of the scenario faster than the competing scenario. 
+The game will make use of several rules, charts, and associated tables to execute the battlefield simulation as its play system mechanics. 
+2.1. The Game Play 
+The game consists of turns. 
+One turn consists of your drone starting from Box 0, traversing all Boxes up to and including B6 and leaving B6 Box safe and sound back to 
+B0 – to start the next turn.  
+The Drone Manager ™ procedure in the game will help you to simulate the “find, fix, finish” process of a drone commander. 
+There are 2 modes of play – solitaire and 2 player+ version where players compete against each other. 
+2.2. Game Components 
+2.3. Rule book 
+This is the file that you are reading now, Rule Book is comprised of the rules need to play the game. 
+Rules in this book are the basic rules of the game.  
+In some scenarios, Combat, Drone info, Threat, or Target Cards there may be special rules that reflect “once only” special rules, some of 
+them may take precedence over the basic rules for “only once” to reflect out-of-the-ordinary events that “always” happen at the worst 
+time. 
+2.4. Game Board 
+The main game board is  page that that the gameplay steps on it and the tracking tables. 
+ 
+2.4.1. Campaign Map board 
+Drone Commander features Campaigns that are linked missions/Flights that are done on maps of the area the campaign is executed in. 
+These are A4 size pages. Campaign maps are divided in to zones where you have conduct missions. 
+ 
+
+============================================================
+PAGE 5
+============================================================
+
+Game Design: © Freman Goldbo, Graphics: © Idilix Graphics and Design Studio. Permission is granted to print for personal, private use only. It is not legal to reproduce, duplicate, or transmit any part of this document in either electronic means or printed format 
+for commercial use. Recording of this publication is strictly prohibited. 
+5 
+2.5. Target Cards 
+Target Cards feature the information for your targets – what you will trying to hunt in the game as a Drone Operator. 
+Threat Cards may display additions to the final DRM, and these should be added last to find the result of the Combat Attack procedure. 
+ 
+Each Target Card has a VP Value printed on it. If the target is destroyed, then this value is added to your score. 
+2.6. Threat Cards 
+Threat Cards feature the information that will try to shoot you down as you try to accomplish your mission. 
+ 
+Threat Cards may display additions to the final DRM, and these should be added last to find the result of the Counter Fire and Evasion 
+procedure. 
+2.7. Loadout Markers 
+These are the markers that you use to record the loadout carried on your drone. 
+ 
+Once you have decided on a specific loadout for your drone, place the corresponding markers on the Loadout section of the Drone Info 
+Card. Remove them from the section as they are used. 
+
+============================================================
+PAGE 6
+============================================================
+
+Game Design: © Freman Goldbo, Graphics: © Idilix Graphics and Design Studio. Permission is granted to print for personal, private use only. It is not legal to reproduce, duplicate, or transmit any part of this document in either electronic means or printed format 
+for commercial use. Recording of this publication is strictly prohibited. 
+6 
+Please note that some types of loadouts may be used against more than one type of target however some are only good for one specific 
+group. 
+Loadout markers show  
+a. 
+If the weapon has modifications to DRM when used against certain targets 
+b. 
+Which types of targets this loadout can or can’t be used. 
+Some loadouts have a sign in parenthesis after their name, The explanation of each one is as follows: 
+(*A) This weapon can only be used as a loadout on A class Drone. 
+(*B) This weapon can only be used as a loadout on B class Drone or bigger. 
+(*C) This weapon can only be used as a loadout on C class Drone or bigger. 
+(*D) This weapon can only be used as a loadout on D class Drone or bigger. 
+(%) if one of this loads out is carried no other weapon OR KIT loadout can be carried.  
+(+) if 1 of this loads out is carried add +2 Fuel extra to the normal amount of fuel expanded when drone uses fuel in the game 
+cycle.  
+2.8. Drone Marker 
+This is a marker that is used to record the position of the drone using on the game board. 
+2.9. Drone Info Cards 
+Drone Info Cards contain documentation on the various drone types that can be used in the game. Game comes with two but there will be 
+more provided as extensions. 
+ 
+Figure 1 Drone Info Cards show the status of the vital parts of a drone and its specific characteristics as well its height and 
+Class Rating (this one is a B class). 
+
+============================================================
+PAGE 7
+============================================================
+
+Game Design: © Freman Goldbo, Graphics: © Idilix Graphics and Design Studio. Permission is granted to print for personal, private use only. It is not legal to reproduce, duplicate, or transmit any part of this document in either electronic means or printed format 
+for commercial use. Recording of this publication is strictly prohibited. 
+7 
+2.9.1. Drone Altitude Box 
+Shows the current height of the drone. 
+ 
+Some drones cannot operate above certain altitudes. For example, if your drone does not have a Medium or High Altitude setting then it 
+means it cannot operate in these altitudes.  
+2.9.2. Drone Class 
+Drones vary in size and power. This box shows the class of the Drone you are using 
+A – Heavy/Large Sized drone like MQ Reaper, Ochotnik or Euro Drone  
+B - Medium class drones such as TB2 or Wing Loong Series. 
+C – Small size drones generally but not always used for FO/Lazing missions. 
+D – Micro sized drone with limited range and horsepower 
+2.9.3. Drone System Health box 
+This is where the fundamentals of the drone you are using is recorded. 
+It has tracking table for Damage (Structural Integrity, Comms and Sensors), fuel situation, Altitude Marker, Weapon stations load out. 
+All Indicators other than FUEL start at 0. FUEL ONBOARD starts at the fuel rating value of the drone used. 
+ 
+INTEGRITY DAMAGE is the damage to the structural integrity of the drone you are flying. Your drone may take some damage and keep 
+flying but losing integrity will also give way to additional damages to other components and may increase your visibility VIS to the enemy 
+sensors making an easier target. 
+SENSORS DAMAGE monitors the damage to the sensors of the Drone. Increased damage to Sensors will lead to a mission kill of your drone 
+since your drone will not be able to effectively locate and attacks the targets. 
+VISIBILITY VIS/RCS is the visibility of your drone in Radar/IR and plain eyeball MK1 sensory equipment. More visible a drone becomes , it 
+will be an easier target since its IR signature and RCS ( Radar Cross Section) will be larger. 
+ONBOARD FUEL is what your drone carries as fuel in its belly. 
+COMMS is the ability of your drone getting commands from the ground station. If you lose the COMMS link, you won’t be able to 
+command your drone it will be lost. COMMs damages have a limiting value of 5. 
+
+============================================================
+PAGE 8
+============================================================
+
+Game Design: © Freman Goldbo, Graphics: © Idilix Graphics and Design Studio. Permission is granted to print for personal, private use only. It is not legal to reproduce, duplicate, or transmit any part of this document in either electronic means or printed format 
+for commercial use. Recording of this publication is strictly prohibited. 
+8 
+2.10. 
+Combat Cards 
+Combat Cards are used widely in other Obscure Battles games and designed to give extra randomness of the battlefield to the gameplay. 
+Additional scenarios may carry additional cards. 
+Some cards have events or conditions that need to be fulfilled or applied to your Drone. These take precedence over the normal rules. 
+They reflect unexpected developments that happen in the real life and add to the variability of the gameplay. 
+Some Combat Cards are “No Event” Cards – when the player draws one of these, s/he does not need to do anything but simply discard the 
+card into the discard pile. 
+If Combat cards are all used up during a game, then re-shuffle the cards and put them back onto the board face-up. 
+Before the start of the game, the cards are shuffled into one stack and placed on the table and used when the players visit a box. 
+3. Game Terms & Abbreviations & Format 
+Some of the abbreviations used in the game are as follows: 
+CRT: Combat Resolution Table 
+DISCARDED THREAT AND COMBAT CARDS PILE: Any card that is revealed and then used is kept here until the end of the game, only 
+destroyed “Target Cards” are not here. 
+DESTROYED TARGET CARD PILE: Any Target that is destroyed must have its “Target Card” moved here after the attack has taken place. 
+DR: Dice Roll, in this game it is a 1D6 meaning 1 roll of a six-sided dice. DR cannot be more than six or less than 1. 
+DRM: Dice Roll Modified, the final roll number with any increase or decrease to the initial rolled number because of the game factors. 
+There are two types of Dice used in the game and max DRM can be higher than 10 or lower than 1 thanks to the modifiers. 
+4. GAME SETUP SETTINGS 
+ 
+Cards and the Game board need to be printed out. It is advised that you print these on a slightly thicker paper. Once printed all you must 
+do it to cut out the components and start playing.  
+IN addition to the contents of the game you will need to provide a six-sided dice. 
+4.1. Setting Up the Game 
+• 
+Lay the gameboard on the table  
+• 
+Place the Drone Icon on the B0 Box. 
+• 
+Place the Fuel, Sensor, Visibility, and Integrity Markets to values as described on the Drone Info card that belongs to the Drone 
+you will using 
+• 
+Select your loadout using the Drone Info Card and place the markers on the card. Some types of ammo cannot be used for all 
+kinds of attacks, similarly some types of weapons cannot be used to attack certain target types. Consult the weapon counter to 
+determine your options for each load out. 
+• 
+Place the exact cards described in the Scenario detail for Threat and Target Cards in separate decks according to your types. 
+Shuffle the decks and place them into their own box on the game board. 
+• 
+If you are playing an [OPTIONAL] Campaign game, place your Base counter on your first base territory zone. 
+• 
+You are now ready to take off. 
+4.2. First Turn Rules  
+Place your drone Marker on the B0 Box 
+There may be different starting location and/or rules in some of the scenarios so Scenario content must be consultant. 
+5. THE GAME PLAY 
+Obscure Battles - Drone Pilot is a mainly a solitaire game, and it is all about trying to beat your previous best score in a scenario, so you 
+are playing to best your score. 
+There is only one way to lose a game: If your drone takes a damage that is more than allowable for it (each drone has a specific damage 
+points), then it is destroyed, and the game is over. 
+
+============================================================
+PAGE 9
+============================================================
+
+Game Design: © Freman Goldbo, Graphics: © Idilix Graphics and Design Studio. Permission is granted to print for personal, private use only. It is not legal to reproduce, duplicate, or transmit any part of this document in either electronic means or printed format 
+for commercial use. Recording of this publication is strictly prohibited. 
+9 
+5.1. Solitaire Quick Game 
+The following are the basic rules of the game: 
+• 
+If you do not have enough fuel to make a move, your drone will fall out of the sky, and you will lose.  
+• 
+If you have run out of munition loadouts, then you cannot make "Standoff" or "Close in" attacks but may still execute a 
+FO/Lazing Mission. 
+• 
+If you do not have a Lazing/Camera kit, then you cann ot execute FO/Lazing missions. 
+• 
+If you run out of fuel when looking for a target or determining a threat, you w i l l be  c on s id er ed  a s ha vi ng  returned 
+to base thus ending your mission. 
+• 
+If you have expanded all the target cards then the game ends, your drone will be considered as having returned to the base. 
+Your Drone always moves in a counterclockwise direction on the gameboard, remaining on the situation boxes. 
+Your drone always takes one step in this direction and can never step back nor skip a situation box. 
+You play through the deck of Target Cards in a scenario once this represents a complete mission. At the end of the deck, you return to 
+base. 
+Once the game ends in one of the conditions above, sum up the VP values on each target card then subtract the VP value of your drone to 
+find your score. 
+5.2. 2+ Player Mode 
+It is possible that the game  can be played in a 2+ player mode , with players competing against each other on the gameboard suing the 
+same solitaire quick game rules, playing against the same deck of threats , target and combat cards ( both sides select from the same 
+decks for all ). 
+In such games the winner is decided as follows: 
+1. 
+First player to reach mission objectives wins. 
+2. 
+If both players lose their drones before reaching the goals of the scenario, the player who has amassed the higher number of 
+VPs wins. 
+5.3. Scenario Games 
+Scenario games are 1 player games where the player is given strict orders to be followed to reach the scenario mission goal(s). Some 
+scenario may use their own Target and Threat probability distribution ranges but unless otherwise stated you must follow the base range 
+set used in this rule book. 
+5.4. Campaign Game 
+Campaign games introduce the Strategic vision where you have to decide how and where to conduct your next mission. 
+In a campaign game you start at Square 1. This is where your current base is. You can only conduct missions in the zones that are adjacent 
+to this zone. 
+Each zone in the map has a list of specific threats and targets. Once you eliminate all the targets in a zone, it becomes your territory and 
+you can start conducting missions from that zone. 
+Your campaign objectives are stated in the campaign document file and generally about either taking all enemy territory or eliminating a 
+certain target for which you have to take at least some of the territory boxes. 
+When you start a Campaign, you may have a limited number and type of Drones but it is possible in some scenarios to receive 
+reinforcement in forms of newer and better equipped drones. These are documented in the campaign documents. 
+Campaigns may also have different probability ranges for Target and Threat types, these take precedence over the base ranges since theyu 
+reflect “the reality” of the campaign conditions. 
+6. PLAYING THE GAME 
+6.1. The Play Sequence 
+The game is based on your drone going thru all the boxes BO to B5 until one of the following happens 
+a) 
+you expand all the target cards 
+
+============================================================
+PAGE 10
+============================================================
+
+Game Design: © Freman Goldbo, Graphics: © Idilix Graphics and Design Studio. Permission is granted to print for personal, private use only. It is not legal to reproduce, duplicate, or transmit any part of this document in either electronic means or printed format 
+for commercial use. Recording of this publication is strictly prohibited. 
+10 
+b) 
+you run out of fuel and return to the base 
+c) 
+you are shot down 
+6.2. Basic Rules 
+The game is governed by the movement of your drone from one box to another. The Movement Rules define these. 
+Depending on the situation, your drone will be required to determine targets and threats, attack the targets, and evade the counterfire 
+from threats. Please consult the Combat Rules for this. 
+6.3. Movement Rules 
+The movement is always in 1 box-steps. You can never skip a box nor go back unless you are instructed to do so precisely. 
+When your drone is on a box, you must do the actions in that box. 
+6.3.1. Step 0 
+1. 
+If this is your first step when you are first starting the game. 
+ 
+Place your Drone Market on the B0 BOX “in transit” 
+Set your Height to HIGH or whichever is the highest altitude allowed for your drone. 
+Select your load out and place your loadout/weapons markers on the Drone Info Card. 
+Place all the combat cards, threat and target cards based on their types on the game board, face down. 
+2. 
+If you moved to this box from BOX B5 then  
+a. 
+If your COMMS Damage is more than > 2 take a DR check to your Drone Controllability. Consult Taking Damage 
+section of the rulebook how to do this. 
+ 
+6.3.2. Step 1 
+Move your drone to Box 1 – “SEARCH” 
+
+============================================================
+PAGE 11
+============================================================
+
+Game Design: © Freman Goldbo, Graphics: © Idilix Graphics and Design Studio. Permission is granted to print for personal, private use only. It is not legal to reproduce, duplicate, or transmit any part of this document in either electronic means or printed format 
+for commercial use. Recording of this publication is strictly prohibited. 
+11 
+ 
+When you place drone on BOX 1, The following are the actions that available to you 
+ 
+REQUIRED ACTIONS 
+OPTIONAL 
+FUEL USAGE 
+ 
+You can change your altitude – paying 1 unit of fuel (1F) 
+for decreasing or increasing your altitude. 
+OPERATIONAL 
+Draw a combat card and execute the instructions on this card. 
+ 
+ 
+ 
+If Combat cards are all used up during a game, then re-shuffle the cards and put them back onto the board face-up. 
+Once you have completed all the necessary actions move to next box 
+6.3.3. Step 2  
+Move your drone to Box 2 – “TARGET ACQUISITION - THREAT DETERMINATION” 
+ 
+There are 2 sub-phases in this box – first one is the “Target Detection” and the second one is the “Threat Determination”  
+When you place drone on BOX 2,  
+
+============================================================
+PAGE 12
+============================================================
+
+Game Design: © Freman Goldbo, Graphics: © Idilix Graphics and Design Studio. Permission is granted to print for personal, private use only. It is not legal to reproduce, duplicate, or transmit any part of this document in either electronic means or printed format 
+for commercial use. Recording of this publication is strictly prohibited. 
+12 
+ 
+REQUIRED ACTIONS 
+Fuel Usage 
+You must spend 1 Fuel when you land on this box. So, when you on this box use the FUEL ONBOARD counter on the Drone info 
+card to reduce your fuel by 1. 
+Target Detection 
+Roll 2D10 and add all related DRM modifier as explained the combat rules section for Target Detection. 
+ 
+Draw a card from the Target Card Deck as indicated by the dice roll and place it in the "Target Located" space on the board.  
+Threat 
+Determination 
+Roll 2D10 and add all related DRM modifier as explained the combat rules section for Threat Determination Table. 
+ 
+Draw a card from the “Threat Card Deck” and place it in the "Target Located" space on the board.  
+ 
+ 
+DRONE COMMANDER’S DECISION! 
+In Step 2 you must decide if target is worth the risk of taking on the threat. If you do not think it is worth the risk, discard both cards on the 
+DISCARDED CARDS PILE and go back to BOX B1.  
+If you want to continue to attack, go to Step 3. 
+ 
+Once you have completed all the necessary actions move to next box. 
+6.3.4. Step 3 
+Move your drone to Box 3 – “POSITIONING” 
+ 
+When you place drone on BOX 3, The following are the actions that available to you 
+ 
+REQUIRED ACTIONS 
+OPTIONAL 
+FUEL USAGE 
+ 
+You can change your altitude – paying 1 unit of fuel (1F) 
+for decreasing or increasing your altitude. 
+OPERATIONAL 
+Draw a combat card and execute the instructions on this card. 
+ 
+ 
+If Combat cards are all used up during a game, then re-shuffle the cards and put them back onto the board face-up. 
+Once you have completed all the necessary actions move to next box. 
+6.3.5. Step 4  
+Move your drone to Box 4 – “DRONE ATTACK” 
+
+============================================================
+PAGE 13
+============================================================
+
+Game Design: © Freman Goldbo, Graphics: © Idilix Graphics and Design Studio. Permission is granted to print for personal, private use only. It is not legal to reproduce, duplicate, or transmit any part of this document in either electronic means or printed format 
+for commercial use. Recording of this publication is strictly prohibited. 
+13 
+ 
+When you place drone on BOX 4,  
+ 
+REQUIRED ACTIONS 
+DRONE ATTACK PROCEDURE 
+Roll 1D6, add all DRM modifiers as described in the Combat rules section 
+Consult the ATTACK CRT TABLE to determine if your attack is successful. 
+Apply the results from the ATTACK CRT TABLE 
+ 
+Once you have completed all the necessary actions move to next box 
+6.3.6. Step 5 
+Move your drone to Box 5 – “EVASIVE ACTION” 
+ 
+When you place drone on BOX 5,  
+ 
+REQUIRED ACTIONS 
+COUNTERFIRE PROCEDURE 
+Roll 1D6, add all DRM modifiers as described in the Combat rules section  
+Consult the EVASION CRT TABLE to determine if your attack is successful. 
+Apply the results from the ATTACK CRT TABLE 
+ 
+If the results of the evasive action result in the loss of your drone, then the game ends. 
+ 
+ 
+ 
+ 
+ 
+ 
+
+============================================================
+PAGE 14
+============================================================
+
+Game Design: © Freman Goldbo, Graphics: © Idilix Graphics and Design Studio. Permission is granted to print for personal, private use only. It is not legal to reproduce, duplicate, or transmit any part of this document in either electronic means or printed format 
+for commercial use. Recording of this publication is strictly prohibited. 
+14 
+DRONE COMMANDER’S DECISION! 
+If your drone survives the evasive action, then the turn ends, and you have two alternatives for next destination  
+a) To continue your current game, if you have fuel and ammo remaining, you can move to B0 Box, increase the turn counter by 1 
+b) you can go to the Box 6 “BASE” 
+ and end the game if you believe further continuation of the mission is not 
+worthwhile. 
+c) you can also goto the Base at this point if you are playing a [OPTIONAL] Campaign game and wish to make a “pitstop” to make repairs 
+before you continue your campaign. 
+Once you have completed all the necessary actions move to next box and one game turn will be completed. 
+6.4. Combat Rules 
+Combat rules define the combat related activities in the game. 
+6.4.1. Loadout Selection 
+Each Drone Card Info card comes with options about what can be placed as weapons and kit on your drone. Before your mission, you can 
+choose whatever type is available for your drone and load them to your drone. 
+You can only select from the loadouts available to you in the scenario. 
+The loadout is based on the availability of types for a scenario. 
+Some loadout/kits can be used only in close-in attacks, some only in stand-off mode and the rest can be fire both modes. 
+• 
+Any Loadout that has a 
+ icon in its counter is an “Close-in” only weapon and can be used only in such mode. 
+• 
+Any Loadout that has a 
+icon in its counter is an “Stand-off” only weapon and can be used only in such mode. 
+• 
+Any Loadout that has a 
+ icon in its counter is an “Anti-Aircraft” only weapon and can be used only in such mode versus Air 
+Targets. 
+Game features many different types of loadouts with its own use rules. Look at the loadout counter to decide how to use it effectively. 
+Some types can only be used against specific target types while the others can be used generally but with some penalty or extra 
+effectiveness against different types of targets. 
+Following are some of the basic loadout/weapon types. Depending on the mission profile, player is required to choose from these. Each 
+Loadout Counter is color coded according to its type. 
+ 
+LOADOUT TYPES TABLE 
+ 
+Type 
+Used for 
+Example 
+Armor 
+Piercing/ATGW 
+Armored Vehicles of all sorts like AFV, Tanks and general 
+wheeled or tracked vehicles such as trucks, technical etc. 
+Thermobaric 
+Warheads 
+ 
+Personnel, Trucks, AFV, soft skinned vehicles such as 
+trucks.May have penalties vs heavier armored targets. 
+AA Warfare 
+Solely used against air targets 
+ 
+
+============================================================
+PAGE 15
+============================================================
+
+Game Design: © Freman Goldbo, Graphics: © Idilix Graphics and Design Studio. Permission is granted to print for personal, private use only. It is not legal to reproduce, duplicate, or transmit any part of this document in either electronic means or printed format 
+for commercial use. Recording of this publication is strictly prohibited. 
+15 
+Anti-Personnel 
+Can only be used against Personnel type targets 
+Bunker Buster  
+Against HQ/Bunkers 
+Multi-Purpose 
+These can be used against all sorts of targets 
+Anti-shipping  
+Used only against Naval Type targets. 
+KIT 
+Special missions such as sonobuoy deployment etc. See 
+the scenario instruction how to use the kits. 
+ 
+ 
+ 
+If you are playing a [OPTIONAL] Campaign game or a scenario  
+• 
+new types of loadout types maybe introduced 
+• 
+once you land on a base, you can re-arm your Drone 
+ 
+6.4.2. TARGET ACQUISITION AND THREAT DETERMINATION rules 
+When the player is in BOX B2, he needs to do Targe Acquisition AND Threat Determination. It does not matter which one comes first but 
+both must be done before the Drone can leave the B2 box. 
+6.4.2.1. 
+Target Acquisition 
+Target Acquisition is done by matching the Target Acquisition Dice roll final DRM to the Target Acquisition Table. 
+Player finds the final DRM and finds the corresponding Target Type. 
+TARGET ACQUISITION TABLE ( MAY CHANGE PER SCENARIO/CAMPAIGN  SETTINGS ) 
+Range 
+Draw the Target Card from the following deck and place on its 
+Target  
+<=18 
+TRUCK 
+19-35 
+PERSONNEL 
+35-45 
+AFV 
+46-55 
+SAM 
+56-70 
+TANK 
+71-79 
+ARTILLERY 
+80-91 
+HQ/BUNKER 
+91-99 
+VIP 
+=>100 
+AERIAL TARGET 
+(*) Add +10 for Drone AEASA Radar 
+
+============================================================
+PAGE 16
+============================================================
+
+Game Design: © Freman Goldbo, Graphics: © Idilix Graphics and Design Studio. Permission is granted to print for personal, private use only. It is not legal to reproduce, duplicate, or transmit any part of this document in either electronic means or printed format 
+for commercial use. Recording of this publication is strictly prohibited. 
+16 
+Add +10 for "0" Damage to Comms 
+Subtract 10 from DRM for every 1 points of damage to COMMS 
+ 
+These numbers are used for the Base game and when you are doing a solitaire game. Some scenarios may have different Ranges for 
+Targets ie for Naval engagements and different theaters.  
+ 
+Target Acquisition is done when drone is in BOX B2. D10 is used in the Target Acquisition Procedure.   
+The procedure is as follows: 
+ 
+1. 
+Roll 2D10, the first D10 is the “ones”  digit and second D10 is the “Tens” digit.  
+ 
+For example, you roll 2 D10s in the order of  
+ 
+2 and 0 then this means you rolled 2D10 “02” 
+ 
+2 and 5 then this means you rolled 2D10 “25” 
+ 
+0 and 9 then this means you rolled 2D10 “90” 
+ 
+ 
+2. 
+Select the first card on the top of the deck from the TARGET TYPE CARD that your final DRM number is in its range. 
+ 
+For example, if you had rolled “35” then you must select from the PERSONNEL TARGET TYPE deck. 
+ 
+3. 
+If there is no corresponding TARGET type in the deck to the final DRM you rolled, select the next LOWER NUMBERED RANGE of 
+TARGET.  
+ 
+If it happens that there are no TARGET Cards available in lower RANGES, then select the next higher ordered TARGET type Card. 
+Example:  
+There are no TANK Type Target Cards in the play. As it happens there are no PERSONNEL, AFV , SAM AFV or TRUCK 
+TARGET cards left. There are 4 ARTILLERY TARGET TYPE Cards and 4 AERIAL TARGET TYPE cards. 
+Final DRM is 57. 
+The player will first look if a lower ordered range less than TANK TYPE) TARGET TYPE Card in play and seeing that 
+there is none, s/he will pick up the next higher ordered one – in this case The ARTILLERY TARGET TYPE Card. 
+In short, “look for a lower ordered range type if none, goto the higher ordered one” ; if there is no TARGET card that 
+equals the DRM, then select the next lower ordered one ( lower in the table ), if this one also doesn’t exist then select 
+the next higher ordered TARGET type. 
+4. 
+Place the Target Card to the “Current Target Box” on the game board. 
+6.4.2.2. 
+Threat Determination 
+Threat Determination is done by matching the Threat Determination Dice roll final DRM to the Theat Determination Table. 
+ Player finds the final DRM and finds the corresponding Threat Type 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+THREAT DETERMINATION TABLE ( MAY CHANGE PER SCENARIO/CAMPAIGN  SETTINGS ) 
+RANGE 
+Draw the Threat Card from the following deck and place on its Target  
+=<19 
+Small Arms 
+20-65 
+AAA 
+66-85 
+SAM 
+86-95 
+CAP 
+96>= 
+Anti-Drone Weapon 
+(*) Add +10 to DRM  if Each 2 Points of VIS 
+
+============================================================
+PAGE 17
+============================================================
+
+Game Design: © Freman Goldbo, Graphics: © Idilix Graphics and Design Studio. Permission is granted to print for personal, private use only. It is not legal to reproduce, duplicate, or transmit any part of this document in either electronic means or printed format 
+for commercial use. Recording of this publication is strictly prohibited. 
+17 
+These numbers are used for the Base game and when you are doing a solitaire game. Some scenarios may have different Ranges for 
+Targets ie for Naval engagements and different theaters.  
+Threat Determination is done when drone is in BOX B2. 
+ D10 is used in the Threat Determination Procedure.   
+. 
+1. 
+Roll 2 D10 and add all modifiers to find the final DRM 
+ 
+1. 
+ Select the first card on the top of the deck for the THREAT TYPE CARD that has the order number as the DRM 
+ 
+2. 
+If there is no corresponding threat type in the deck to the final DRM you rolled, select the next lower numbered Threat Type. If 
+there are no lower numbered Threat Card also, then select the next higher ordered THREAT type Card. 
+Example:  
+There are no Small Arms and AAA Threat Cards in the game at the moment. There are 2 SAM Cards and 1 CAP and 1 
+Drone Gun Cards. 
+Player’s final DRM is a 55. 
+The player will first look if a lower ordered (less than that of AA ) THREAT Card in play and seeing that there is none, 
+s/he will pick up the next higher ordered one – in this case The SAM Threat Card. 
+In short, “look for a lower ordered type if none, goto the higher ordered one” ; if there is no Threat Type card that 
+equals the DRM, then select the next lower ordered one ( lower in the table ), if this one also doesn’t exist then select 
+the next higher ordered Threat type. 
+3. 
+Place the Threat Card to the “Current Threat Box” on the game board. 
+If it happens that there are no more Threat Cards left in the game ( all being used ) but there are more Target Cards and Primary 
+mission is not accomplished. Return all of the used Threat Cards from the discarded cards pile, shuffle them and put them back into 
+the play. 
+6.4.3. DRONE ATTACK Rules 
+Player executes his/her attack when the Drone marker is in BOX B4. The procedure is as follows: 
+1. 
+Select Attacking Mode for your Drone 
+ 
+Please note that some of your loadouts can only be used in certain modes. These will be stated on their counters but some of 
+them are as follows: 
+ 
+• 
+AA missiles can only be fired in Stand-off mode. 
+• 
+Torpedoes and Sonobuoys can only be fired in Close-in Mode 
+• 
+Anti-Shipping missiles can only be fire in Stand-off Mode. 
+ 
+You have three choices. 
+ 
+a. 
+The Stand Off Attack: You can stand away from the target and execute a Standoff attack if you have capable 
+weapons such as this. A standoff attack generally \has the least chance of success but does give you the best chance 
+of getting away in evasion.  
+ 
+b. 
+The Close in Attack: Alternatively, you can close in on the target to close range and fire an appropriate weapon. This 
+has a far better chance of hitting the target but takes you closer to the Threat zone and making it difficult to get 
+away. 
+ 
+c. 
+The FO/Lazing:  This is not really an attack by your drone directly but your Drone acts as a Forward Observer to a 
+heavy fire group such as a high-Flying bomber firing bombs or an entire artillery battery and acts as their “eye on the 
+target.”  . 
+ 
+Please note the selection of the attacking mode affects your chances of a successful attack and fuel used your chances as well 
+of evading the counter fire. 
+ 
+
+============================================================
+PAGE 18
+============================================================
+
+Game Design: © Freman Goldbo, Graphics: © Idilix Graphics and Design Studio. Permission is granted to print for personal, private use only. It is not legal to reproduce, duplicate, or transmit any part of this document in either electronic means or printed format 
+for commercial use. Recording of this publication is strictly prohibited. 
+18 
+2. 
+Select the type of Weapon you will use in this attack. Some types of ammo cannot be used for all kinds of attacks, similarly 
+some types of weapons cannot be used to attack certain target types. Consult the weapon counter to determine your options 
+for each load out. 
+ 
+3. 
+Select the Attacking Altitude for your Drone, this can be either High, Medium, or Low.  
+ 
+AA missiles can only used in Medium or High Altitudes. 
+ 
+Mark your selected altitude on the Drone Info Card. 
+ 
+Please note the selection of the attacking altitude affects your chances of a successful attack and fuel used your chances as well 
+of evading the counter fire. 
+ 
+4. 
+Roll 1D6 Dice. Add any DRM from factors such as Loadout counter, Combat Cards, Drone Info Card, Target info card and any 
+other content such as the scenario details.  
+ 
+Find the final DRM. 
+ 
+5. 
+Select the Final DRM Column Under the Attack Mode section in the DRONE ATTACK TABLE and then find the resulting cell as an 
+intersection of the Selected Altitude. 
+ 
+Adjust the Column shifts that may result from other factors as indicated in the table i.e., like “Shift 1 RIGHT for each 2 Pts of 
+Sensor Damage” from both Loadout counter, Combat Cards, Drone Info Card, Target info card and any other content such as 
+the scenario details to find the final result. 
+ 
+6. 
+Some cells have a value of HIT in addition to the fuel cost of attack, this means that your attack has successfully been executed 
+and target is destroyed. In this case remove the Target Card from “Current Target Box” to the Destroyed Target Card Pile other 
+remove it to the Discard Card Pile to be used in the next game. 
+ 
+7. 
+Drone will use the fuel indicated in the final crossed cell and the load used in the attack. Reduce the appropriate counters for 
+Fuel and weapons as appropriate. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+DRONE ATTACK TABLE 
+  
+  
+STAND-OFF 
+CLOSE-IN 
+FO/LAZE 
+ALT 
+DRM 
+1 
+2 
+3 
+4 
+5 
+6 
+1 
+2 
+3 
+4 
+5 
+6 
+1 
+2 
+3 
+4 
+5 
+6 
+LOW 
+  
+1F 
+1F 
+1F 
+1F 
+1F 
+1F 
+2F 
+2F 
+2F 
+2F 
+2F 
+2F+HIT 
+3F 
+3F 
+3F 
+3F 
+3F 
+3F+HIT 
+MEDIUM 
+1F 
+1F 
+1F 
+1F 
+1F 
+1F+HIT 
+2F 
+2F 
+2F 
+2F 
+2F+HIT 
+2F+HIT 
+3F 
+3F 
+3F+HIT 
+3F+HIT 
+3F+HIT 
+3F+HIT 
+HIGH 
+1F 
+1F 
+1F 
+1F 
+1F+HIT 
+1F+HIT 
+2F 
+2F 
+2F 
+2F+HIT 
+2F+HIT 
+2F+HIT 
+3F 
+3F 
+3F 
+3F+HIT 
+3F+HIT 
+3F+HIT 
+(1) Shift 1 RIGHT for each 2 Pts of Sensor Damage 
+(2) Drone will use the fuel indicated in the crossed cell 
+ 
+6.4.3.1. [OPTIONAL] Special Targets 
+Some targets such as SAM types react differently when attacked. Please refer to the following rules when attacking one of such targets 
+6.4.3.1.1. [OPTIONAL] Attacking SAM Type targets 
+These target types include all kinds of SAM type targets but NOT AAA or MANPAD type targets. 
+If and when you attack a SAM type target, if your attack doesn’t succeed and the target is not destroyed. The target has a chance to 
+counter detect you and immediately fire a reaction shot. This means, your target can now attack you.  
+This attack does NOT replace the Threat originally determined but becomes the Second Counter fire check you have to pass through 
+immediately after you manage to pass the original Threat’s Counter Fire. 
+To sum it up, if you fire at a SAM and fail to destroy it, it will fire back at you as the “second” threat, and you will have to survive 2 Counter 
+Fire Checks (fire from your Target and The Threat). 
+The procedure is as follows: 
+
+============================================================
+PAGE 19
+============================================================
+
+Game Design: © Freman Goldbo, Graphics: © Idilix Graphics and Design Studio. Permission is granted to print for personal, private use only. It is not legal to reproduce, duplicate, or transmit any part of this document in either electronic means or printed format 
+for commercial use. Recording of this publication is strictly prohibited. 
+19 
+1. 
+Fire at the Target – A SAM unit. 
+2. 
+If you destroy the Target, proceed to the next phase as usual 
+3. 
+If the target is not destroyed, then 
+a. 
+Roll 1 D6 
+b. 
+Add VIS Value as DRM 
+c. 
+If Final DRM is >= 6 then SAM Unit gets to fire at your drone as a reaction shot. 
+d. 
+Use The Following Table where Height is determined by your current height, and your attack profile and Range is 
+your current attack posture Stand-off, Close-in or FO/Laze. 
+[OPTIONAL] SAM TARGET UNIT SPECIAL COUNTERFIRE TABLE 
+  
+ALT 
+YOUR ATK 
+PROFILE 
+STAND-OFF 
+CLOSE-IN 
+FO/LAZE 
+DRM 
+1 
+2 
+3 
+4 
+5 
+6 
+1 
+2 
+3 
+4 
+5 
+6 
+1 
+2 
+3 
+4 
+5 
+6 
+LOW 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+ 
+  
+  
+  
+  
+  
+ 
+MEDIUM 
+  
+  
+  
+  
+  
+ 
+  
+  
+  
+ 
+ 
+1D+1F 
+  
+  
+ 
+ 
+1D+1F 
+1D+1F 
+HIGH 
+  
+  
+  
+  
+ 
+1D+2F 
+  
+  
+  
+ 
+1D+1F 
+1D+1F 
+  
+  
+  
+ 
+1D+1F 
+1D+1F 
+(1) Shift 1 LEFT for each 2 Pts of VISIBILITY 
+(2) Drone will sustain the amount of damage indicated and use the fuel 
+ 
+6.4.4. COUNTERFIRE & EVASIVE ACTION Rules 
+Player executes his/her attack when the drone market is in BOX B5. The procedure is as follows: 
+ 
+1. 
+Roll 1D6 Dice  
+ 
+If you were using the “[Optional] Attacking SAM Type targets”, then you use the D6 roll from that step. 
+ 
+2. 
+Then add any DRM results if applicable for finding the final DRM. 
+ 
+Add any DRM from factors such as Loadout counter, Combat Cards, Drone Info Card, Threat info card and any other content 
+such as the scenario details.  
+ 
+Find the final DRM. 
+ 
+8. 
+Select the Final DRM Column Under the Attack Mode section in the table and then find the resulting cell as an intersection of 
+the Selected Altitude in the Counterfire and Evasion Table. 
+ 
+Adjust the Column shifts that may result from other factors as indicated like Loadout counter, Combat Cards, Drone Info Card, 
+Target info card and any other content such as the scenario details to find the result. 
+ 
+3. 
+Some cells have a value of Damage, (D) in addition to the fuel cost of attack, this means that enemy has inflicted damage on 
+your drone. In such a case register the Damage in the amount stated in the cell to your Drone on the Drone Info Card. 
+ 
+If your Drone has received more Damage points then its total DP value, then it is considered to have been shot down. 
+ 
+4. 
+Drone will use the fuel indicated in the crossed cell and the load used in the attack. Reduce the appropriate counters for Fuel, 
+Torpedoes and Gun as appropriate. 
+ 
+5. 
+Once the Counterfire and Evasive Action table is resolved then remove the Threat Card from the “Current Threat Box” to the 
+Discard Card Pile to be used in the next game. 
+ 
+COUNTERFIRE & EVASIVE ACTION TABLE 
+  
+ALT 
+YOUR ATK 
+PROFILE 
+STAND-OFF 
+CLOSE-IN 
+FO/LAZE 
+DRM 
+1 
+2 
+3 
+4 
+5 
+6 
+1 
+2 
+3 
+4 
+5 
+6 
+1 
+2 
+3 
+4 
+5 
+6 
+LOW 
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+2D+F 
+  
+  
+  
+  
+  
+1D+1F 
+MEDIUM 
+  
+  
+  
+  
+  
+1D+1F 
+  
+  
+  
+  
+1D+1F 
+2D+F 
+  
+  
+1D+1F 
+1D+1F 
+1D+1F 
+1D+1F 
+HIGH 
+  
+  
+  
+  
+1D+2F 
+1D+2F 
+  
+  
+  
+1D+1F 
+1D+1F 
+1D+1F 
+  
+  
+  
+1D+1F 
+1D+1F 
+1D+1F 
+(1) Shift 1 LEFT for each 2 Pts of VIS/RCS 
+(2) Drone will sustain the amount of damage indicated and use the fuel 
+
+============================================================
+PAGE 20
+============================================================
+
+Game Design: © Freman Goldbo, Graphics: © Idilix Graphics and Design Studio. Permission is granted to print for personal, private use only. It is not legal to reproduce, duplicate, or transmit any part of this document in either electronic means or printed format 
+for commercial use. Recording of this publication is strictly prohibited. 
+20 
+ 
+6.4.5. Taking Damage 
+Your drone is likely to receive damage in the form of (D) points int the counter fire from the threat after it has attacked a target.  
+This damage realistically affects all the subcomponents of the Drone you are using. This means that when you receive damage to the 
+Drone Body it will affect your other subcomponents such as “COMMS” (Communications) and “SENSORS” (Sensors). Additionally, while 
+not a damage, damage will also increase your Visibility level (VIS/RCS), making your drone an easier target for the enemy. 
+While most threat that you will encounter will inflict mostly damage to your drone’s Structural Integrity, some of them may deliver 
+different types of damages. 
+The damage received during the mission is distributed according to the following procedure: 
+6.4.5.1. Taking Structural Integrity Damage 
+Every 1D damage result received during the combat is registered directly to the “Structural Integrity” Damage Column on the 
+Drone Info Card. 
+ Each type of drone has a specific Structural Integrity strength, if your drone receives damage that is equal to this number, then 
+it is assumed destroyed. 
+6.4.5.2. Taking Sensors Damage 
+ 
+For Every 2 points of damage registered on the “Structural Integrity” Damage Column, raise the Damage Level on the 
+“SENSORS” Damage column by 1. 
+ 
+Maximum Sensor Damage is 9 regardless of the structural Integrity Damage to your Drone. 
+For every 4 points of Sensor Damage to your drone add -1 to your Drone Attack Combat Roll. 
+Optional Sensor Kits do not take damage as they are not part of the body of the Drone but external kits.. 
+6.4.5.3. Taking COMMs Damage 
+ 
+For Every 3 points of  damage registered on the “Structural Integrity” Damage Column, raise the Damage Level on the 
+“COMMS” Damage column by 1 
+ 
+This check is done for each turn and effects are only for 1 turn unless Drone becomes uncontrollable in which case the game 
+ends. 
+ 
+After your Drone receives more than 2 points of COMMS damage, every turn it is placed on the B0 box it has to take a COMMS 
+check roll to see if it is still can be controlled. If it fails the check, it is assumed that the contact has been lost to your drone and 
+it is subsequently destroyed and game ends. 
+ 
+ 
+ 
+COMMS CHECK TABLE 
+DRM (*)/ORDER 
+NUMBER 
+Result 
+=<2 
+All OK continue mission 
+3,4,5 
+Drone is still controllable but with difficulty. Continue the mission but 
+suffer degradation to your targeting 
+ 
+-1 to Drone Attack Dice Roll 
+6>= 
+Drone uncontrollable and assumed destroyed. Game Ends. 
+(*) Add  -1 to DR if Drone has SATCOM 
+-1 to DR if Drone has Comms Sys Redundancy 
+-1 to DR if Drone has “Autonomous DM AI” 
+(all DRM are cumulative) 
+ 
+6.4.5.4. VIS/RCS Increase as a result of Damages 
+
+============================================================
+PAGE 21
+============================================================
+
+Game Design: © Freman Goldbo, Graphics: © Idilix Graphics and Design Studio. Permission is granted to print for personal, private use only. It is not legal to reproduce, duplicate, or transmit any part of this document in either electronic means or printed format 
+for commercial use. Recording of this publication is strictly prohibited. 
+21 
+ 
+For every 1 damage on COMMS or 1 Damage on SENSORS, raise the visibility of your drone (VIS) by 1. 
+ 
+7. Scoring 
+There are a few scoring conventions for the Drone Commander game. 
+Maximum Kill Method 
+Once the game has ends once the Target card deck has been totally expanded, take all the cards from the “Destroyed Target Card” pile 
+and sum up the VP points printed on the upper right corner. This is your final score for the “Maximum Kill” scoring mode. 
+Quick Kill 
+The game ends immediately when you finish your main objective regardless of the survival of your drone. 
+Take all the cards from the “Destroyed Target Card” pile and sum up the VP points printed on the upper right corner. This is your final 
+score for the “Quick Kill” scoring mode. 
+ 
+8. Design your own game 
+This game comes with scenarios but it can also be played with your own scenarios.  
+All you need to do is to model the mission you want to create. We hope that the following guide may help you  
+1. 
+Create the setting  
+a. 
+Where does your scenario pass?  
+b. 
+What are the environmental parameters? 
+c. 
+Are there any other potential vectors that might affect the mission? 
+2. 
+What is the mission? 
+a. 
+What needs to be done? 
+i. 
+What type of Target that needs to be taken out 
+ii. 
+In what kind of “attack mode” does it need to be taken out 
+iii. 
+What are other possible potential targets 
+iv. 
+What are the available threats? 
+3. 
+Based on the items 1 and 2 above, fill the Target and Threat Card decks with the right amount and type of cards. 
+4. 
+Choose the type of Drone you want to play and select your loadouts. 
+5. 
+You are ready to play! 
+9. Special Rules 
+9.1. Deciding who gets to play first in the 2P game 
+Players who have less hair get to play first, if there is a tie, then the players who has a beard gets to play last. If there is still a Tie, then 
+players roll 1D6 and higher roll gets to play LAST. 
+9.2. Campaign and Scenario Rules 
+There may be special rules as part of the scenarios that will be released in the future for the game. These rules take precedence over the 
+base rules in a conditional way. 
+ 
+ 
+ 
+ 
+
+============================================================
+PAGE 22
+============================================================
+
+Game Design: © Freman Goldbo, Graphics: © Idilix Graphics and Design Studio. Permission is granted to print for personal, private use only. It is not legal to reproduce, duplicate, or transmit any part of this document in either electronic means or printed format 
+for commercial use. Recording of this publication is strictly prohibited. 
+22 
+OBSCURE BATTLES: 
+DRONE COMMANDER 
+ 
+Tips & Tricks for Preparing the Components 
+ 
+APPENDIX-2 Some Tips and Tricks for Preparing the Components 
+The game comes with ready to print counters and maps. All you must do is to print the map and then the counters and that is it! You are 
+now ready to play. 
+
+============================================================
+PAGE 23
+============================================================
+
+Game Design: © Freman Goldbo, Graphics: © Idilix Graphics and Design Studio. Permission is granted to print for personal, private use only. It is not legal to reproduce, duplicate, or transmit any part of this document in either electronic means or printed format 
+for commercial use. Recording of this publication is strictly prohibited. 
+23 
+While this is straight forward, we believe it might be a good thing to consider the following tips and tricks. 
+ 
+SUPPLIES 
+Here is a list of materials that we recommend using: 
+● 
+A Can of 3M or Uhu spray adhesive, we are not going to use it a lot so you can borrow it! Another excellent choice to print the 
+counters is a self-adhesive A4 or letter size paper stock. Using such stock, we get rid of the gluing process which is never a 
+glorious task and mostly ends in waste of a beautifully printed counter sheet. You can print on the non-sticky side, then play 
+with it on the mounting cardboard to get the exact location, strip the back part, and apply it to get your result. 
+● 
+Some cardboard, preferably no less than 1 mm or thicker than 2mm for the counters and to mount the map if you so wish. 
+● 
+ In the course of our work, we will need to cut the sheet we print into the counters that will be used in the game. Preferably our 
+counters will be attached to a thicker backing material. To cut such a material sheet we will need to advance with caution and 
+with cutting tools that can operate with precision and make no mass of the material with which we are working. A modeler’s 
+knife with a kit of different blades. This one has a very sharp edge that is useful if you have cut away the bits that dangle from a 
+not steady cut. You can also put it into effective use when cutting normal paper thickness as it is a very nimble tool. The one 
+pictured here is one from the internet.
+Probably the most recommended cutting tool needed in our guest is a desktop rotary cutter. Mine is a 12inch Fiskars - they also 
+produce my gardening tools - I got from Amazon and I used more than one to know that Fiskars is a good brand rather than the 
+cheaper options. This is my got device to cut my finished counters especially if I am producing a test batch  Another piece of 
+advice is to buy it second hand - newer ones come in plastic and lightweight whereas you want your cutting base heavy and 
+metal for accuracy, you can get old metal ones and just replace the blades. It will cut through cardboard, foam boards and 
+thinner plc. with ease. Always make sure your cutter is sharp and change blades often.  
+
+============================================================
+PAGE 24
+============================================================
+
+Game Design: © Freman Goldbo, Graphics: © Idilix Graphics and Design Studio. Permission is granted to print for personal, private use only. It is not legal to reproduce, duplicate, or transmit any part of this document in either electronic means or printed format 
+for commercial use. Recording of this publication is strictly prohibited. 
+24 
+● 
+ 
+● 
+Having said all of these, keep in mind that with this option and the plain paper one, the cardboard mount we plan to use must 
+be of reasonable thickness (not too thin and not too thick). As mentioned before, it should not compete with the board 
+thickness or the material but complement each other. PS. Some specialized stationery providers will keep heavy paper stocks. 
+These are much thicker than ordinary paper but conveniently thinner than a mounting board (at least 2 mm). With such papers, 
+you can get astonishingly good print results though you must check that your printer can process such stuff.  
+● 
+A metal ruler or similar straight edge if you do not have a Paper cutter is highly recommended. It is important that the material 
+we are trying to cut does not wriggle as we cut it. Therefore, we need a heavy metal ruler. Those come in handy when we are 
+cutting the counters with a knife or similar hand cutter. Avoid the ones that are shiny or star profiled - as they are not stable 
+enough. your rule should not easily slip once you hold the cutter. 
+PROCEDURE FOR THE MAP 
+The Map comes in easy A4 or Letter Printing - all you have to do is to print the attached PDF files, cut the frames and then tape them 
+together. The Adobe Acrobat will nicely print multiple pages for you with a cut out guidelines. 
+If you are going to use a Printing Office like Staples... 
+Before you do anything -talk with them about showing you some samples. Our advice is to discuss the options for type and weight in 
+accordance with the counters you will make (or have already made). Best practise is to go for something that is at least 4mm thicker than 
+the counters and with a matte finish.  
+Finally, remember to have it coated with anti-smear and anti-uv coating from your printer. Some printers offer that as a coating add on, 
+but some may offer you a product to do it for yourself. 
+PROCEDURE FOR COUNTERS 
+All the counters designed are compatible with a home grade Ink-jet printer. However, remember that the stock that you're going to use 
+with your unit counters should get along with the map that you're going to use, i.e., using thick counters on a thinner map mount is not 
+going to result in a pleasant user experience. 
+Once the counters are printed - it is extra, but it is highly advised to use color and UV fixatives on your counters before you go to the 
+cutting stage. There are several such fixatives over there that you can use. Use neutral color fixatives -those are the cheapest.  
+Using the color fixative is straight forward but do not overdo it. I generally spray my sheets five or six times at most, and they do fine. 
+Remember to insert a few minutes time for the coating to get soaked up by the paper. Final coatings may take more time. Ink type also 
+matters and if you have a counter that is crowded with symbols and text add an extra layer or two for good measure. 
+
+============================================================
+PAGE 25
+============================================================
+
+Game Design: © Freman Goldbo, Graphics: © Idilix Graphics and Design Studio. Permission is granted to print for personal, private use only. It is not legal to reproduce, duplicate, or transmit any part of this document in either electronic means or printed format 
+for commercial use. Recording of this publication is strictly prohibited. 
+25 
+ 
+ 
+ 
+ 
+Cutting the counters 
+We now come to the most critical part in finishing the unit counters. This is where our 
+effort for the day can go to waste if we are too eager to finish - please take your time 
+and never move faster than a crawl pace in this section. Danger of losing our work lurks 
+in every corner here. Even after reading my guide, make sure that you plan it in your 
+head what you will do in your next step when you are working. 
+On top of that, the tools we use here are dangerous and I cannot warn you enough 
+about being careful. It may be a clever idea to ask for help from a professional if you do 
+
+============================================================
+PAGE 26
+============================================================
+
+Game Design: © Freman Goldbo, Graphics: © Idilix Graphics and Design Studio. Permission is granted to print for personal, private use only. It is not legal to reproduce, duplicate, or transmit any part of this document in either electronic means or printed format 
+for commercial use. Recording of this publication is strictly prohibited. 
+26 
+not feel comfortable. Using your ruler with a hand guard for the cutting edge is a must in all cases. 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+Step 1 - Our first step is 
+the same as we did for 
+harder backings - do the 
+first pass over the glued 
+unit counter sheet frame 
+by just marking the corners of the units one by one. Use a blade and make cuts of 2 to 3mm for each corner both horizontally and 
+vertically - it should look like the “+”.  
+Remember to make use the frames printed on the counters as a guide, use the rule graduations to cut at the right dimensions. Once you 
+are finished your sheet will now have cuts at each corner of each counter.  
+Step 2 - If the step 1 is finished successfully now you have cut marks for each counter in a straight line. Now put your sheet in the 
+baseplate of the rotary cutter. Place it so that the cutter line rests on the first frame guide of the first unit strip. 
+Step 3 - Start cutting the counters into strips one at a time. If necessary, make a pass over the cutting line with the cutter more than once. 
+Do this in a number of steps if possible. 
+ 
+Step 4 - You will now have unit counters as strips in your hand. Get your metal ruler and using the marks we made before in Step 1 cut the 
+strips into the unit counters. Again, take it very slow and make sure that you use a sharp blade in single strokes. 
+Final words 
+
+============================================================
+PAGE 27
+============================================================
+
+Game Design: © Freman Goldbo, Graphics: © Idilix Graphics and Design Studio. Permission is granted to print for personal, private use only. It is not legal to reproduce, duplicate, or transmit any part of this document in either electronic means or printed format 
+for commercial use. Recording of this publication is strictly prohibited. 
+27 
+Cutting the counters into the final pieces is the most critical step as I mentioned above. One wrong stroke may damage some counters if 
+not the entire sheet. Move in small careful steps. Always take calculated cuts to the sheet you are operating on and never rush ahead. 
+
+============================================================
+PAGE 28
+============================================================
+
+Game Design: © Freman Goldbo, Graphics: © Idilix Graphics and Design Studio. Permission is granted to print for personal, private use only. It is not legal to reproduce, duplicate, or transmit any part of this document in either electronic means or printed format 
+for commercial use. Recording of this publication is strictly prohibited. 
+28 
+ 
+ 
+ 
+ 
+ 
