@@ -48,44 +48,44 @@ Can all drones access VLOW, or is it restricted to certain classes/types?
 
 ## B. Fuel / Endurance
 
-### B1. Endurance Hours Per Drone
-Please provide the endurance (in hours) for each drone. This becomes their starting fuel value.
+### B1. Endurance & Structural Integrity Per Drone
 
 **Your answer:**
 
-| Drone | Endurance (Hours) | In DB? |
-|-------|:-----------------:|:------:|
-| Bayraktar TB2 | 27 | ✅ |
-| Bayraktar Akıncı | 24 | ✅ |
-| Aksungur | 50 | ✅ |
-| Anka-S | 30 | ✅ |
-| Wing Loong II | 20 | ✅ |
-| Wing Loong-3 | 40 | ✅ |
-| CH-4B | 40 | ✅ |
-| CH-5 | 60 | ✅ |
-| TB-001 Scorpion | 35 | ✅ |
-| MQ-9 Reaper | 27 | ✅ |
-| MQ-9B Protector | 40 | ❌ NEW |
-| Avenger (Predator C) | 20 | ❌ NEW |
-| MQ-1C Gray Eagle | 40 | ❌ NEW |
-| Heron TP | 40 | ❌ NEW |
-| Hermes 450 | 20 | ❌ NEW |
-| Hermes 900 | 36 | ❌ NEW |
-| Orion (Inokhodets) | 24 | ❌ NEW |
-| S-70 Okhotnik-B | 20 | ❌ NEW |
-| Altius-RU | 48 | ❌ NEW |
-| Mohajer-6 | 12 | ❌ NEW |
-| Mohajer-10 | 24 | ❌ NEW |
-| Shahed-129 | 24 | ❌ NEW |
-| Burraq | 10 | ❌ NEW |
-| nEUROn | 3 | ❌ NEW |
-| Taranis | 5 | ❌ NEW |
-| Ghatak | 12 | ❌ NEW |
-| Eurodrone | 40 | ❌ NEW |
-| Falco Xplorer | 24 | ❌ NEW |
+| Drone | Endurance (Hours) | Structural Integrity | In DB? |
+|-------|:-----------------:|:--------------------:|:------:|
+| Bayraktar TB2 | 27 | 80 | ✅ |
+| Bayraktar Akıncı | 24 | 225 | ✅ |
+| Aksungur | 50 | 175 | ✅ |
+| Anka-S | 30 | 125 | ✅ |
+| Wing Loong II | 20 | 195 | ✅ |
+| Wing Loong-3 | 40 | 240 | ✅ |
+| CH-4B | 40 | 110 | ✅ |
+| CH-5 | 60 | 175 | ✅ |
+| TB-001 Scorpion | 35 | 160 | ✅ |
+| MQ-9 Reaper | 27 | 210 | ✅ |
+| MQ-9B Protector | 40 | 225 | ❌ NEW |
+| Avenger (Predator C) | 20 | 275 | ❌ NEW |
+| MQ-1C Gray Eagle | 40 | 120 | ❌ NEW |
+| Heron TP | 40 | 220 | ❌ NEW |
+| Hermes 450 | 20 | 70 | ❌ NEW |
+| Hermes 900 | 36 | 105 | ❌ NEW |
+| Orion (Inokhodets) | 24 | 95 | ❌ NEW |
+| S-70 Okhotnik-B | 20 | 425 | ❌ NEW |
+| Altius-RU | 48 | 235 | ❌ NEW |
+| Mohajer-6 | 12 | 75 | ❌ NEW |
+| Mohajer-10 | 24 | 140 | ❌ NEW |
+| Shahed-129 | 24 | 100 | ❌ NEW |
+| Burraq | 10 | 65 | ❌ NEW |
+| nEUROn | 3 | 250 | ❌ NEW |
+| Taranis | 5 | 270 | ❌ NEW |
+| Ghatak | 12 | 370 | ❌ NEW |
+| Eurodrone | 40 | 315 | ❌ NEW |
+| Falco Xplorer | 24 | 110 | ❌ NEW |
 
 > [!WARNING]
-> **18 new drones** not yet in the database. These need full records (country, class, altitude, loadouts, SI, abilities) to be added.
+> **18 new drones** not yet in the database. These need full records added.
+> **10 existing drones**: SI values updated in DB (was placeholder 1000 for all).
 
 
 ### B2. Fuel Consumption Rate

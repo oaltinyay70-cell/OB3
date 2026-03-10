@@ -140,7 +140,7 @@ Campaign (v1.1)
 
 | # | Action | Type | Details |
 |---|--------|------|---------|
-| 1 | Change altitude | OPTIONAL | ±1 level costs 1F per level changed |
+| 1 | Change altitude | OPTIONAL | Multiple levels allowed: **2F per level UP**, **1F per level DOWN** |
 | 2 | Draw combat card | REQUIRED | Execute card instructions immediately |
 
 - If combat card deck empty → reshuffle discard pile, place face-up
@@ -166,14 +166,17 @@ Campaign (v1.1)
 | Roll Range | Target Type |
 |------------|-------------|
 | ≤18 | TRUCK |
-| 19–35 | PERSONNEL |
+| 19–34 | PERSONNEL |
 | 35–45 | AFV |
 | 46–55 | SAM |
 | 56–70 | TANK |
 | 71–79 | ARTILLERY |
-| 80–91 | HQ/BUNKER |
+| 80–90 | HQ/BUNKER |
 | 91–99 | VIP |
 | ≥100 | AERIAL TARGET |
+
+> [!NOTE]
+> Boundaries are **exclusive** (each value belongs to exactly one range). Confirmed by designer: 35 → AFV (not PERSONNEL); 91 → VIP (not HQ/BUNKER).
 
 **Fallback rule**: If no card of the rolled type exists → look for next **lower** range type first, then **higher**.
 
@@ -207,7 +210,7 @@ After both cards are revealed:
 
 | # | Action | Type | Details |
 |---|--------|------|---------|
-| 1 | Change altitude | OPTIONAL | ±1 level costs 1F per level changed |
+| 1 | Change altitude | OPTIONAL | Multiple levels allowed: **2F per level UP**, **1F per level DOWN** |
 | 2 | Draw combat card | REQUIRED | Execute card instructions immediately |
 
 - If combat card deck empty → reshuffle, place face-up
@@ -410,10 +413,10 @@ Game ends when primary objective is completed (regardless of remaining targets o
 ### 7.3. Scoring Formula
 
 ```
-Final Score = Sum(destroyed target VP) − Drone VP value (Solitaire only)
+Final Score = Sum(destroyed target VP) − Drone VP cost (Solitaire only)
 ```
 
-> The drone VP subtraction applies only to Solitaire Quick Game (§5.1).
+> **Drone VP cost = 5 VP for all drones (confirmed by designer).** The `drones` table does NOT need a VP column — the value is a constant. This subtraction applies only to Solitaire Quick Game (§5.1).
 
 ---
 
@@ -458,21 +461,21 @@ Drawn at B1 and B3. Each has instructions that must be executed immediately.
 | TRUCK | 6 | — |
 | VIP | 6 | — |
 
-> [!WARNING]
-> **ENGINEER** sub-category exists in the DB (6 cards) but is NOT mentioned in the rulebook's Target Acquisition Table. Need designer ruling: does ENGINEER map to an existing range, or is it a scenario-only type?
+> [!NOTE]
+> **ENGINEER** sub-category (6 cards) = **PERSONNEL class**. Confirmed by designer: Engineers are treated identically to PERSONNEL for all game mechanics (Target Acquisition range, weapon compatibility, VP calculation). The different name is purely flavour (e.g., like "Infantry SQD" vs "Sappers").
 
 ### 8.3. Threat Cards (36 total, 5 sub-categories)
 
-| Sub-Category | Count |
-|-------------|-------|
-| AAA | 6 |
-| CAP | 12 |
-| DRONE GUN | 6 |
-| SAM | 6 |
-| SMALL ARMS | 6 |
+| Sub-Category | Count | Maps to Rulebook Name |
+|-------------|-------|----------------------|
+| AAA | 6 | AAA |
+| CAP | 12 | CAP |
+| DRONE GUN | 6 | Anti-Drone Weapon (≥96 range) |
+| SAM | 6 | SAM |
+| SMALL ARMS | 6 | Small Arms |
 
-> [!WARNING]
-> **DRONE GUN** sub-category exists in the DB (6 cards) but maps to "Anti-Drone Weapon" in the rulebook's Threat Determination Table. Implementation should map `DRONE GUN` → `Anti-Drone Weapon` range (≥96).
+> [!NOTE]
+> **DRONE GUN** in the database = **Anti-Drone Weapon** in the rulebook. Confirmed by designer. Implementation must map `sub_category = 'DRONE GUN'` to the ≥96 range in the Threat Determination Table.
 
 **Special threat card rules** from scenario data:
 - Small Arms: +3 LEFT column shift, ONLY LOW altitudes
@@ -619,12 +622,12 @@ The scenario editor will present a step-by-step form:
 
 | # | Issue | Details |
 |---|-------|---------|
-| 5 | All 28 drones are class B | Rulebook defines A/B/C/D classes but DB only has B. Are other classes planned? |
+| 5 | All 28 drones are class B | ✅ Confirmed: keep all drones as class B for v1.0. No A/C/D class drones needed. |
 | 6 | `max_structural_integrity` = 1000 for all drones | This is likely a placeholder. Each drone should have a distinct value. |
 | 7 | 6 drones have empty `altitude` field | AVENGER, S-70 OKHOTNIK-B, HERMES 450, NEURON, TARANIS, GHATAK — what are their altitude ranges? |
-| 8 | ENGINEER target sub-category (6 cards) not in Target Acquisition Table | Where does ENGINEER map in the roll ranges? |
-| 9 | DRONE GUN threat sub-category name vs "Anti-Drone Weapon" | Confirm mapping: `DRONE GUN` DB name = `Anti-Drone Weapon` rulebook name? |
-| 10 | Target Acquisition Table has overlapping range at 35 (AFV) and 91 (VIP) | 35 appears in both PERSONNEL (19–35) and AFV (35–45); 91 appears in both HQ/BUNKER (80–91) and VIP (91–99). Need exclusive boundaries. |
+| 8 | ENGINEER target sub-category (6 cards) not in Target Acquisition Table | ✅ Confirmed: ENGINEER = PERSONNEL class. Treated identically for all mechanics. |
+| 9 | DRONE GUN threat sub-category name vs "Anti-Drone Weapon" | ✅ Confirmed: `DRONE GUN` = `Anti-Drone Weapon` (≥96 range) |
+| 10 | Target Acquisition Table overlapping boundaries at 35 and 91 | ✅ Confirmed exclusive: 35 → AFV, 91 → VIP. Corrected ranges: PERSONNEL 19–34, HQ/BUNKER 80–90. |
 
 ---
 
@@ -635,8 +638,8 @@ The scenario editor will present a step-by-step form:
 | A1 | Solitaire Quick Game uses the full card pool (all 111 targets, all 36 threats, all 18 combat) | §5.1 implies this but doesn't state explicitly |
 | A2 | In Solitaire mode, the default Target/Threat Acquisition Tables are used (not scenario overrides) | §5.1 vs §5.3 |
 | A3 | Fuel consumption from the `(+)` loadout marker is per cycle, not per box | §2.5: "+2 Fuel extra to normal fuel usage in game cycle" |
-| A4 | "Drone VP value" for the Solitaire scoring formula is a fixed value per drone | §5.1 says "subtract VP value of your drone" but drones table has no VP column |
-| A5 | Altitude change at B1/B3 can be multiple levels (each costing 1F) | Rulebook says "costs 1F per altitude change" — unclear if one step or multiple |
+| A4 | ~~Drone VP value needs a column~~ | ✅ Confirmed: all drones cost **5 VP**. No DB column needed — hardcoded constant. |
+| A5 | ~~Altitude cost unclear~~ | ✅ Confirmed: multiple levels allowed. **Going UP = 2F per level. Going DOWN = 1F per level.** |
 | A6 | DRM cannot exceed 6 or be less than 1 for D6 rolls, but 2D10 DRM has no such cap | §3 states DR rules for D6 only |
 
 ---

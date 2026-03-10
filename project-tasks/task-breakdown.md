@@ -86,13 +86,13 @@
 
 ### [ ] Task 0.5: Resolve Data Mapping Questions
 
-**Description**: Get designer answers for:
-1. Where does ENGINEER target sub-category map in Target Acquisition Table?
-2. Confirm DRONE GUN → Anti-Drone Weapon mapping
-3. Fix overlapping ranges in Target Acquisition Table (35 and 91 boundaries)
-4. Are A/C/D class drones planned?
-5. Confirm drone VP values for Solitaire scoring
-6. Can altitude change be multiple levels at once?
+**Description**: Get designer answers for remaining open items:
+- ✅ Where does ENGINEER map: PERSONNEL class (same mechanics, flavour name only)
+- ✅ DRONE GUN = Anti-Drone Weapon (≥96 range)
+- ✅ Overlapping boundaries fixed: PERSONNEL 19–34, HQ/BUNKER 80–90
+- ✅ Are A/C/D class drones planned? **No — all 28 drones stay class B for v1.0**
+- ✅ Drone VP cost = **5 VP constant**
+- ✅ Altitude: multiple levels allowed, **2F per level UP, 1F per level DOWN**
 
 **Acceptance Criteria**:
 - Each question answered and documented
@@ -209,10 +209,11 @@
 **Acceptance Criteria**:
 - Roll 2D10, apply DRM (+10 AEASA, +10 if COMMS=0, −10 per COMMS damage)
 - Look up target type in acquisition table (default or scenario-specific ranges)
+- **ENGINEER sub-category = PERSONNEL** — use PERSONNEL range and weapon rules
 - Fallback logic: if no cards of that type → next lower range, then higher
 - Draw matching card from target deck
 - Return drawn card or null if deck empty
-- Unit tests for DRM calculation, range matching, and fallback
+- Unit tests for DRM calculation, range matching, fallback, and ENGINEER→PERSONNEL mapping
 
 **Files to Create**:
 - `lib/services/target_acquisition_service.dart`
@@ -388,7 +389,7 @@
 - Track destroyed target pile with VP values
 - Maximum Kill: sum VP from all destroyed targets
 - Quick Kill: sum VP, end immediately when primary objective accomplished
-- Solitaire: subtract drone VP value from total (requires drone VP data)
+- Solitaire: subtract **5 VP** (fixed constant for all drones — confirmed by designer)
 - Post-scenario score summary (targets destroyed, damage taken, cycles completed)
 - Unit tests for both scoring modes
 
