@@ -51,17 +51,27 @@ The player takes the role of a Drone Commander trying to locate and destroy enem
 ### 1.1. Game Hierarchy
 
 > [!IMPORTANT]
-> This hierarchy is not explicitly stated in the original rulebook but clarified by the game designer for the mobile adaptation.
+> Official three-level hierarchy defined by game designer.
+
+The game is structured as a **strict three-level hierarchy**:
+
+| Level | Entity | Description |
+|-------|--------|-------------|
+| 1 | **Campaign** | Container for an ordered sequence of Scenarios. Tracks **cumulative VP** and campaign progression gate. |
+| 2 | **Scenario** | A single mission with its own card decks, objectives, VP targets, and termination conditions. |
+| 3 | **Cycle** | The atomic unit of gameplay: a repeating **three-step loop** of Combat / Target / Threat card resolution. |
 
 ```
-Campaign
-  └── Scenario (a mission with objectives, card decks, and rules)
-        └── Cycle (one complete loop through B0 → B5)
+Campaign  (cumulative VP, progression gate)
+  └── Scenario  (own card decks, objectives, VP targets, termination conditions)
+        └── Cycle  (Combat Card → Target Card → Threat Card)
 ```
 
-- A **Campaign** is made up of **Scenarios**
-- A **Scenario** is made up of **Cycles**
-- A **Cycle** = one complete traversal from B0 (In Transit) through B5 (Evasive Action) and back
+> [!NOTE]
+> **Reconciliation with B0–B5**: The original boardgame rulebook describes movement boxes B0–B5 within each cycle. The three-card sequence (Combat/Target/Threat) maps to specific B boxes. Designer clarification needed on exact mapping:
+> - **Combat Card** drawn at → B1 (Search)?
+> - **Target Card** drawn at → B3 (Positioning)?
+> - **Threat Card** resolved at → B4/B5 (Attack/Evasion)?
 
 ### 1.2. Scenario End Conditions & RTB
 
