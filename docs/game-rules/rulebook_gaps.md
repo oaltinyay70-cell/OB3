@@ -1,0 +1,215 @@
+# Rulebook — Missing Content & Open Questions
+
+> [!IMPORTANT]
+> Please answer each question directly below the **Your answer:** line.
+> When done, save the file and tell me. I'll record everything into the rulebook.
+
+---
+
+## A. VLOW Altitude (New Level Not in Original Rulebook)
+
+### A1. VLOW — Drone Attack Table Row
+What are the CRT values for VLOW altitude across all three attack modes?
+
+| ALT / DRM | Stand-Off 1-6 | Close-In 1-6 | FO/Laze 1-6 |
+|-----------|---------------|--------------|--------------|
+| **VLOW**  |               |              |              |
+
+**Your answer:**
+
+
+### A2. VLOW — Counterfire & Evasive Action Table Row
+What are the counterfire values for VLOW?
+
+| ALT / DRM | Stand-Off 1-6 | Close-In 1-6 | FO/Laze 1-6 |
+|-----------|---------------|--------------|--------------|
+| **VLOW**  |               |              |              |
+
+**Your answer:**
+
+
+### A3. VLOW — SAM Counterfire Table Row
+What are the SAM counterfire values for VLOW?
+
+| ALT / DRM | Stand-Off 1-6 | Close-In 1-6 | FO/Laze 1-6 |
+|-----------|---------------|--------------|--------------|
+| **VLOW**  |               |              |              |
+
+**Your answer:**
+
+
+### A4. Which drones can fly at VLOW?
+Can all drones access VLOW, or is it restricted to certain classes/types?
+
+**Your answer:**
+
+
+---
+
+## B. Fuel / Endurance
+
+### B1. Endurance Hours Per Drone
+Please provide the endurance (in hours) for each drone. This becomes their starting fuel value.
+
+| Drone | Endurance (hours) |
+|-------|-------------------|
+| BAYRAKTAR TB2 | |
+| BAYRAKTAR AKINCI | |
+| AKSUNGUR | |
+| ANKA-S | |
+| WING LOONG II | |
+| WING LOONG-3 | |
+| CH-4B | |
+| CH-5 | |
+| TB-001 SCORPION | |
+| MQ-9 REAPER | |
+
+**Your answer:**
+
+
+### B2. Fuel Consumption Rate
+1F in the CRT tables = how many hours of endurance? Is 1F = 1 hour? Or something else?
+
+**Your answer:**
+
+
+---
+
+## C. Combat Cards
+
+### C1. How many combat cards are in the deck?
+
+**Your answer:**
+
+
+### C2. List the combat card effects
+What events/conditions do the combat cards have? Examples: weather, comms failure, bonus DRM, altitude change, etc. Please list as many as you can.
+
+**Your answer:**
+
+
+### C3. "No Event" ratio
+Roughly what percentage of combat cards are "No Event" (discard without action)?
+
+**Your answer:**
+
+
+---
+
+## D. Scenarios for V1.0
+
+### D1. How many scenarios ship in v1.0?
+
+**Your answer:**
+
+
+### D2. Scenario definitions
+For each v1.0 scenario, what are:
+- Name/setting
+- Primary objective
+- Available drone(s)
+- Available loadouts
+- Target deck composition (how many of each type?)
+- Threat deck composition
+- Special rules (if any)
+
+**Your answer:**
+
+
+---
+
+## E. Scoring & Post-Scenario
+
+### E1. VP Values
+Are VP values defined on individual target cards, or is there a standard VP chart by target type?
+
+**Your answer:**
+
+
+### E2. Rank / Rating System
+After a scenario, does the player get a rank/grade (e.g., A/B/C or "Ace"/"Veteran") based on score? Or just a raw VP number?
+
+**Your answer:**
+
+
+### E3. Post-Scenario Briefing Content
+What information shows on the post-scenario briefing screen? (Check all that apply or describe)
+- [ ] Total VP
+- [ ] Targets destroyed list
+- [ ] Fuel remaining
+- [ ] Damage taken
+- [ ] Cycles completed
+- [ ] Time played
+- [ ] Rank/grade
+- [ ] Other: ___
+
+**Your answer:**
+
+
+---
+
+## F. FO/Lazing Missions
+
+### F1. What happens during an FO/Laze attack?
+The drone calls in external fire support (bombers, artillery). Does the drone need a specific KIT loaded? Which kit?
+
+**Your answer:**
+
+
+### F2. FO/Laze fuel cost
+FO/Laze costs 3F per the Attack CRT — is this correct? That's 3× the cost of Stand-Off.
+
+**Your answer:**
+
+
+---
+
+## G. Drone Special Abilities
+
+### G1. AEASA Radar
+Beyond the +10 DRM on Target Acquisition, does AEASA Radar have any other gameplay effect?
+
+**Your answer:**
+
+
+### G2. SATCOM
+Beyond -1 to COMMS check DRM, does SATCOM have any other benefit?
+
+**Your answer:**
+
+
+### G3. Autonomous DM AI
+Beyond -1 to COMMS check DRM, does Autonomous AI affect anything else? (e.g., can the drone still operate with higher COMMS damage?)
+
+**Your answer:**
+
+
+### G4. Built-in FO/Laze
+Some drones have `has_builtin_fo_laze = 1`. Does this mean they can FO/Laze without loading a special kit?
+
+**Your answer:**
+
+
+---
+
+## H. General Gameplay
+
+### H1. Can drones re-arm mid-scenario?
+In a Quick Game (non-campaign), if you run out of weapons but still have fuel, can you RTB and re-arm? Or is weapons-out = forced RTB?
+
+**Your answer:**
+
+
+### H2. Multiple altitude changes per turn
+Can a drone change altitude more than one level in a single turn step (e.g., from HIGH to LOW = 2 changes = 2F cost)?
+
+**Your answer:**
+
+
+### H3. Structural Integrity values
+The DB has `max_structural_integrity = 1000` for all drones. Is this a placeholder? What are the actual SI/DP values per drone?
+
+**Your answer:**
+
+
+---

@@ -8,8 +8,9 @@
 - [x] Parse rulebook (V3.1-D10.pdf) into structured markdown
 - [x] Decide tech stack details (Flutter confirmed, architecture patterns TBD by UX Architect)
 - [x] Create persistent agent chatroom for inter-agent communication
+- [x] DILEK: Pipeline activation — all agent prompts created, chatroom notified
 
-## Phase 1: Analysis & Design
+## Phase 1: Analysis & Design (🟢 ACTIVE)
 - [ ] BA Agent: Create functional specification from parsed rulebook
 - [ ] BA Agent: Map board game mechanics → mobile game equivalents
 - [ ] BA Agent: Create scenario editor input survey (multiple choice form)

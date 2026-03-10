@@ -500,6 +500,7 @@ Damage affects drone subcomponents cascadingly:
 - **Maximum:** 9 (regardless of structural damage)
 - For every **4 points** of Sensor Damage → -1 to Drone Attack Combat Roll
 - Optional Sensor Kits do NOT take damage (external, not part of body)
+- **Optional Sensor Kits are loaded as loadout items** — they occupy loadout slots on the drone, just like weapons
 
 ##### 6.4.5.3. COMMS Damage
 
