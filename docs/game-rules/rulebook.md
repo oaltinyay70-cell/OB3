@@ -285,21 +285,25 @@ Movement is always **1 box-step**. Cannot skip or go back unless specifically in
 **If returning from B5:**
 1. If COMMS Damage > 2: take a DR check for Drone Controllability (see Taking Damage section)
 
-#### 6.3.2. B1 — "Search"
+#### 6.3.2. B1 — "Search / In Transit to Target Area"
 
 | Action Type | Description |
 |------------|-------------|
 | **OPTIONAL** | Change altitude — costs 1F (fuel) per altitude change |
-| **REQUIRED** | Draw a combat card and execute its instructions |
 
-- If combat cards depleted → reshuffle and place back face-up
-- After completing actions → move to next box
+- No card draws at B1
+- After completing actions → move to B2
 
 #### 6.3.3. B2 — "Target Acquisition / Threat Determination"
+
+> [!IMPORTANT]
+> Designer clarification: **Both Target Card AND Threat Card are drawn at B2** together.
 
 | Action Type | Description |
 |------------|-------------|
 | **REQUIRED** | Spend 1F (fuel) |
+| **REQUIRED** | Draw a **Target Card** — the enemy asset to engage |
+| **REQUIRED** | Draw a **Threat Card** — the danger the drone faces |
 | **REQUIRED** | Target Detection: Roll 2D10, apply DRM, consult Target Acquisition Table |
 | **REQUIRED** | Threat Determination: Roll 2D10, apply DRM, consult Threat Determination Table |
 
@@ -312,39 +316,50 @@ Movement is always **1 box-step**. Cannot skip or go back unless specifically in
 
 #### 6.3.4. B3 — "Positioning"
 
+> [!IMPORTANT]
+> Designer clarification: Combat Card is drawn at B3 (optional), not B1. Altitude change also optional here.
+
 | Action Type | Description |
 |------------|-------------|
 | **OPTIONAL** | Change altitude — costs 1F per change |
-| **REQUIRED** | Draw a combat card and execute its instructions |
+| **OPTIONAL** | Draw a **Combat Card** and execute its instructions for this cycle only |
 
 - If combat cards depleted → reshuffle and place back face-up
-- After completing actions → move to next box
+- After completing actions → move to B4
 
 #### 6.3.5. B4 — "Drone Attack"
 
+> [!IMPORTANT]
+> Designer clarification: Player selects **altitude, attack mode, and weapon** at B4 before rolling.
+
 | Action Type | Description |
 |------------|-------------|
+| **REQUIRED** | Select attack altitude (VLOW/LOW/MEDIUM/HIGH) |
+| **REQUIRED** | Select attack mode (Stand-Off / Close-In / FO/Laze) |
+| **REQUIRED** | Select weapon from loadout |
 | **REQUIRED** | Roll 1D6, add all DRM modifiers |
-| **REQUIRED** | Consult ATTACK CRT TABLE for result |
-| **REQUIRED** | Apply results |
+| **REQUIRED** | Consult ATTACK CRT TABLE for result — determine if target is hit |
+| **REQUIRED** | Apply results (VP banked immediately if hit) |
 
-After completing actions → move to next box.
+After completing actions → move to B5.
 
 #### 6.3.6. B5 — "Evasive Action"
+
+> [!IMPORTANT]
+> Designer clarification: Player attempts to evade the Threat Card drawn at B2. Result determines whether damage is inflicted.
 
 | Action Type | Description |
 |------------|-------------|
 | **REQUIRED** | Roll 1D6, add all DRM modifiers |
 | **REQUIRED** | Consult EVASION CRT TABLE for result |
-| **REQUIRED** | Apply results |
+| **REQUIRED** | Apply results — damage inflicted if evasion fails |
 
-If drone is lost → game ends.
+If drone is destroyed (SI = 0) → scenario ends immediately.
 
 > **🎯 DRONE COMMANDER'S DECISION:**
 > If drone survives:
-> - a) Continue mission → move to **B0**, increment turn counter (requires fuel & ammo)
-> - b) Go to **B6 "BASE"** → end game if mission no longer worthwhile
-> - c) [OPTIONAL Campaign] Go to Base for "pitstop" repairs
+> - a) Continue mission → move to **B0** (requires fuel)
+> - b) **RTB** → end scenario, trigger Post-Scenario Briefing
 
 ---
 
