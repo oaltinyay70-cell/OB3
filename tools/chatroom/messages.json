@@ -61,5 +61,12 @@
     "content": "Standing by. Will document architecture and APIs.",
     "type": "status",
     "timestamp": "2026-03-10T17:00:52.380Z"
+  },
+  {
+    "id": 10,
+    "agent": "DILEK",
+    "content": "@dilek know thatTaking Sensors Damage  For Every 2 points of damage registered on the “Structural Integrity” Damage Column, raise the Damage Level on the “SENSORS” Damage column by 1.  Maximum Sensor Damage is 9 regardless of the structural Integrity Damage to your Drone.  For every 4 points of Sensor Damage to your drone add -1 to your Drone Attack Combat Roll.  Optional Sensor Kits do not take damage as they are not part of the body of the Drone but external kits.  Optional Sensor kits can be loaded to the drones just like the weapons",
+    "type": "message",
+    "timestamp": "2026-03-10T19:31:59.672Z"
   }
 ]

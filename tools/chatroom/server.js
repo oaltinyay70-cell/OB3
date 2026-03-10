@@ -45,7 +45,8 @@ const server = http.createServer((req, res) => {
           id: messages.length + 1,
           agent: msg.agent,
           content: msg.content,
-          type: msg.type || 'message', // message, status, handoff, decision
+          type: msg.type || 'message',
+          to: msg.to || null,
           timestamp: new Date().toISOString(),
         };
         messages.push(entry);

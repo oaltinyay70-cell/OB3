@@ -1,13 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>OB3 — Agent Chatroom</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500;600;700&display=swap"
+    rel="stylesheet">
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
   <div class="app">
     <header class="header">
@@ -34,9 +38,14 @@
       </aside>
 
       <main class="chat-area">
+        <div class="channel-header">
+          <span class="channel-name" id="channelName"># GENERAL</span>
+          <span class="channel-desc" id="channelDesc">All agent activity</span>
+        </div>
         <div class="messages" id="messages"></div>
         <div class="input-area">
           <select id="agentSelect" class="agent-select">
+            <option value="COMMANDER">👤 COMMANDER</option>
             <option value="DILEK">🎯 DILEK</option>
             <option value="OB3-ProjectManager">📋 OB3-ProjectManager</option>
             <option value="OB3-UXArchitect">🏗️ OB3-UXArchitect</option>
@@ -62,4 +71,5 @@
 
   <script src="app.js"></script>
 </body>
+
 </html>
