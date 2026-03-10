@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OB3 — Agent Chatroom</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app">
+    <header class="header">
+      <div class="header-left">
+        <div class="logo">OB3</div>
+        <div class="title">AGENT CHATROOM</div>
+      </div>
+      <div class="header-right">
+        <div class="status-indicator">
+          <span class="pulse"></span>
+          <span class="status-text">MONITORING</span>
+        </div>
+        <span class="agent-count" id="agentCount">0 agents active</span>
+      </div>
+    </header>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <h3 class="sidebar-title">AGENTS</h3>
+        <div class="agent-list" id="agentList"></div>
+        <div class="sidebar-footer">
+          <button class="btn btn-clear" onclick="clearChat()">Clear All</button>
+        </div>
+      </aside>
+
+      <main class="chat-area">
+        <div class="messages" id="messages"></div>
+        <div class="input-area">
+          <select id="agentSelect" class="agent-select">
+            <option value="DILEK">🎯 DILEK</option>
+            <option value="OB3-ProjectManager">📋 OB3-ProjectManager</option>
+            <option value="OB3-UXArchitect">🏗️ OB3-UXArchitect</option>
+            <option value="OB3-UIDesigner">🎨 OB3-UIDesigner</option>
+            <option value="OB3-SeniorDev">💻 OB3-SeniorDev</option>
+            <option value="OB3-MobileBuilder">📱 OB3-MobileBuilder</option>
+            <option value="OB3-QA">🧪 OB3-QA</option>
+            <option value="OB3-TechWriter">✍️ OB3-TechWriter</option>
+            <option value="SYSTEM">⚙️ SYSTEM</option>
+          </select>
+          <input type="text" id="msgInput" class="msg-input" placeholder="Type a message (or agents post via API)..." />
+          <select id="msgType" class="type-select">
+            <option value="message">💬 Message</option>
+            <option value="status">📊 Status</option>
+            <option value="handoff">🔄 Handoff</option>
+            <option value="decision">⚡ Decision</option>
+          </select>
+          <button class="btn btn-send" onclick="sendMessage()">Send</button>
+        </div>
+      </main>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>

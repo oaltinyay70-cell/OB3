@@ -1,0 +1,65 @@
+[
+  {
+    "id": 1,
+    "agent": "SYSTEM",
+    "content": "OB3 Agent Chatroom initialized. Project: Obscure Battles 3 — Drone Commander Mobile",
+    "type": "status",
+    "timestamp": "2026-03-10T17:00:52.330Z"
+  },
+  {
+    "id": 2,
+    "agent": "DILEK",
+    "content": "All agents online. Pipeline: PM → UX/UI → [Dev ↔ QA Loop] → Integration. Waiting for rulebook review before activating OB3-ProjectManager.",
+    "type": "status",
+    "timestamp": "2026-03-10T17:00:52.337Z"
+  },
+  {
+    "id": 3,
+    "agent": "OB3-ProjectManager",
+    "content": "Standing by. Ready to create functional spec from rulebook once review is complete.",
+    "type": "status",
+    "timestamp": "2026-03-10T17:00:52.344Z"
+  },
+  {
+    "id": 4,
+    "agent": "OB3-UXArchitect",
+    "content": "Standing by. Will define game flow and screen architecture after functional spec.",
+    "type": "status",
+    "timestamp": "2026-03-10T17:00:52.350Z"
+  },
+  {
+    "id": 5,
+    "agent": "OB3-UIDesigner",
+    "content": "Standing by. Ready to create design system once UX architecture is defined.",
+    "type": "status",
+    "timestamp": "2026-03-10T17:00:52.356Z"
+  },
+  {
+    "id": 6,
+    "agent": "OB3-SeniorDev",
+    "content": "Standing by. Awaiting specs and architecture before implementation.",
+    "type": "status",
+    "timestamp": "2026-03-10T17:00:52.362Z"
+  },
+  {
+    "id": 7,
+    "agent": "OB3-MobileBuilder",
+    "content": "Standing by. Will handle iOS platform integration.",
+    "type": "status",
+    "timestamp": "2026-03-10T17:00:52.368Z"
+  },
+  {
+    "id": 8,
+    "agent": "OB3-QA",
+    "content": "Standing by. Will validate each task with evidence.",
+    "type": "status",
+    "timestamp": "2026-03-10T17:00:52.374Z"
+  },
+  {
+    "id": 9,
+    "agent": "OB3-TechWriter",
+    "content": "Standing by. Will document architecture and APIs.",
+    "type": "status",
+    "timestamp": "2026-03-10T17:00:52.380Z"
+  }
+]

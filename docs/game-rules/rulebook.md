@@ -531,3 +531,110 @@ Special rules in scenarios take precedence over base rules conditionally.
 
 *Parsed from: Obscure Battles - V3 - DRONE COMMANDER V3.1-D10.pdf*
 *Document version: V3.1-D10*
+
+---
+
+## ❓ Questions & Clarifications (Please Answer Below Each)
+
+> [!IMPORTANT]
+> These questions are blocking the functional spec. Please answer directly below each one.
+> Following the "never assume" rule — I need your input before proceeding.
+
+### Q1. Counterfire & Evasive Action Table — LOW / Stand-Off & Close-In
+
+In the **Counterfire & Evasive Action Table**, the LOW altitude row shows:
+- **Stand-Off**: All 6 DRM columns are empty (no damage)
+- **Close-In**: All 6 DRM columns are empty (no damage)
+- **FO/Laze**: `2D+F` at DRM=1, then empty DRM 2–5, then `1D+1F` at DRM=6
+
+Is this correct? Stand-off and Close-in at LOW altitude have **zero risk** from counterfire?
+
+**Your answer:**
+
+
+---
+
+### Q2. SAM Counterfire Table — LOW Row
+
+Similarly, the **SAM Target Unit Special Counterfire Table** shows the entire LOW row as empty (dashes) across all three attack modes. Is this intentional — SAMs can't counterfire at LOW altitude?
+
+**Your answer:**
+
+
+---
+
+### Q3. Drone Attack Table — LOW / Stand-Off
+
+The LOW / Stand-Off results are all `1F` with **no HIT** anywhere (DRM 1–6). This means Stand-Off at LOW altitude can **never** hit a target. Is that correct by design?
+
+**Your answer:**
+
+
+---
+
+### Q4. Campaign Mode — V1.0 or V1.1?
+
+The rulebook describes Campaign Mode (zone-based territory, strategic movement, reinforcements). Should this be:
+- **A)** Full v1.0 scope (develop it now)
+- **B)** Defer to v1.1 (build the engine first, add campaigns later)
+
+**Your answer:**
+
+
+---
+
+### Q5. 2+ Player Mode — V1.0 or V1.1?
+
+Similarly, competitive 2+ Player mode — should this be:
+- **A)** v1.0 scope
+- **B)** Defer to v1.1
+
+**Your answer:**
+
+
+---
+
+### Q6. "Design Your Own Scenario" — Is this the Scenario Editor?
+
+Section 8 describes designing custom scenarios. Is this what you mean by the "scenario editor" in your v1.0 requirements? Or do you envision something more sophisticated (e.g., a visual editor with drag-and-drop zone creation)?
+
+**Your answer:**
+
+
+---
+
+### Q7. Fuel — Starting Values & Consumption
+
+The rulebook says fuel starts at the drone's "fuel rating value" but doesn't specify what those values are per drone. Are these in the database? I see the `drones` table doesn't have a `fuel` column. Where do starting fuel values come from?
+
+**Your answer:**
+
+
+---
+
+### Q8. VIS/RCS Starting Value
+
+The rulebook says VIS/RCS starts at 0. Is this the same for all drones, or do some drones have inherent VIS values from the database?
+
+**Your answer:**
+
+
+---
+
+### Q9. Altitude Levels
+
+The rulebook mentions LOW, MEDIUM, HIGH altitudes. The drone table has an `altitude` column. Are there exactly 3 altitude levels, or can some drones access additional altitudes (e.g., VERY HIGH)?
+
+**Your answer:**
+
+
+---
+
+### Q10. Turn Counter & Game Length
+
+Is there a maximum number of turns, or does the game always end via fuel/ammo/destruction/target exhaustion?
+
+**Your answer:**
+
+
+---

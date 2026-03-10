@@ -8,7 +8,7 @@ Each agent is a specialist operating under its skill instructions. The orchestra
 
 ### 1. 🎯 Orchestrator
 - **Skill**: `agency-agents-orchestrator`
-- **Name**: OB3-Orchestrator
+- **Name**: DILEK
 - **Role**: Pipeline coordination, quality gates, agent handoffs
 - **Inputs**: Project spec, task list
 - **Outputs**: Status reports, completion summaries
