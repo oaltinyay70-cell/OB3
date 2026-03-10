@@ -5,7 +5,46 @@
 
 ---
 
+## 0. Official Game Glossary
+
+> [!IMPORTANT]
+> Definitions provided directly by the game designer. These are canonical.
+
+| Term | Definition |
+|------|-----------|
+| **Campaign** | A structured sequence of one or more Scenarios that the player progresses through in order. |
+| **Scenario** | A single mission within a Campaign or as a standalone engagement. Defined by the scenario designer. |
+| **Combat Card** | A card drawn at the start of each cycle whose effects modify gameplay mechanics for **that cycle only**. |
+| **Target Card** | A card drawn representing an enemy target that the drone attempts to engage. |
+| **Threat Card** | A card drawn representing a danger that may damage or destroy the drone. |
+| **VP** | Victory Points. Scored when a target is killed. **Banked immediately — retained even if drone is destroyed later in the same cycle.** |
+| **Kill List** | Running record of target card names confirmed killed during the scenario. |
+| **RTB** | Return to Base. Player-initiated action to end the scenario and trigger post-scenario briefing. Remaining fuel has no score value. |
+| **Primary Objective** | Required kill targets. Must be achieved to advance to the next scenario in a Campaign. |
+| **Secondary Objective** | Optional targets. VP awarded **only if primary objective is also achieved**. |
+| **Drone Height** | Current altitude: Very Low / Low / Medium / High. Affects **hit probability, evasion probability, damage multiplier, and fuel consumption rate**. |
+| **Loadout** | Munitions configuration selected by the player before the scenario begins. |
+
+### 0.1 New Mechanical Rules Extracted from Glossary
+
+> [!NOTE]
+> These rules are embedded in the glossary definitions above and must be implemented in the game engine.
+
+1. **VP Banking**: VP is scored the moment a target is killed and permanently banked. A drone being destroyed in the same cycle does NOT forfeit already-banked VP.
+2. **Kill List**: The game must maintain a running list of killed target card names (displayed in post-scenario briefing).
+3. **Secondary Objectives**: VP from secondary objectives is only awarded if primary objectives are also achieved. Secondary VP is conditional, not automatic.
+4. **Altitude affects 4 factors**:
+   - Hit probability (attack success chance)
+   - Evasion probability (surviving counterfire)
+   - Damage multiplier (how much damage hits deal)
+   - Fuel consumption rate (higher altitude = different burn rate?)
+5. **Fuel at RTB**: Remaining fuel when RTB is triggered has **no score value**.
+6. **Combat Card scope**: Effects apply for **that cycle only** — reset at B0 of the next cycle.
+
+---
+
 ## 1. Introduction
+
 
 The player takes the role of a Drone Commander trying to locate and destroy enemy assets using one of the available Drone Types. The game simulates modern drone warfare operations involving UCAVs from multiple nations.
 

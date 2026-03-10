@@ -41,7 +41,7 @@ What are the SAM counterfire values for VLOW?
 ### A4. Which drones can fly at VLOW?
 Can all drones access VLOW, or is it restricted to certain classes/types?
 
-**Your answer:**
+**Your answer:** **None of the current 28 drones fly at VLOW.** VLOW is reserved for future drone additions. The VLOW row in CRT tables should be built into the system but will only be accessible when a VLOW-capable drone is added.
 
 
 ---
