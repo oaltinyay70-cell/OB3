@@ -80,6 +80,17 @@ const server = http.createServer((req, res) => {
     return;
   }
 
+  // Serve agent DM pages: /agent/AGENT_NAME
+  if (req.method === 'GET' && req.url.startsWith('/agent/')) {
+    const agentPage = path.join(__dirname, 'agent.html');
+    fs.readFile(agentPage, (err, data) => {
+      if (err) { res.writeHead(404); res.end('Not found'); return; }
+      res.writeHead(200, { 'Content-Type': 'text/html' });
+      res.end(data);
+    });
+    return;
+  }
+
   // Serve static files
   let filePath = req.url === '/' ? '/index.html' : req.url;
   filePath = path.join(__dirname, filePath);
