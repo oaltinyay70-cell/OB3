@@ -9,6 +9,21 @@
 
 The player takes the role of a Drone Commander trying to locate and destroy enemy assets using one of the available Drone Types. The game simulates modern drone warfare operations involving UCAVs from multiple nations.
 
+### 1.1. Game Hierarchy
+
+> [!IMPORTANT]
+> This hierarchy is not explicitly stated in the original rulebook but clarified by the game designer for the mobile adaptation.
+
+```
+Campaign
+  └── Scenario (a mission with objectives, card decks, and rules)
+        └── Cycle (one complete loop through B0 → B5)
+```
+
+- A **Campaign** is made up of **Scenarios**
+- A **Scenario** is made up of **Cycles**
+- A **Cycle** = one complete traversal from B0 (In Transit) through B5 (Evasive Action) and back
+
 ---
 
 ## 2. How the Game is Played
