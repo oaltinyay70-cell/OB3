@@ -24,6 +24,23 @@ Campaign
 - A **Scenario** is made up of **Cycles**
 - A **Cycle** = one complete traversal from B0 (In Transit) through B5 (Evasive Action) and back
 
+### 1.2. Scenario End Conditions & RTB
+
+> [!IMPORTANT]
+> Designer clarifications for mobile adaptation — extends rulebook section 5.
+
+**RTB (Return To Base)** = the end of the current scenario.
+
+**A scenario ends when ANY of these occur:**
+1. **Drone destroyed** — structural integrity exceeded
+2. **Primary objectives completed** — game prompts player: "RTB?"
+3. **Player voluntarily RTBs** — at B5 decision point, player chooses to end
+4. **Fuel exhausted** — forced RTB
+
+**After a scenario ends:**
+- A **Post-Scenario Briefing** screen is displayed (results, score, damage summary)
+- If scenario is part of a campaign: **player must complete scenarios in order — no skipping ahead**
+
 ---
 
 ## 2. How the Game is Played
@@ -658,7 +675,7 @@ The rulebook mentions LOW, MEDIUM, HIGH altitudes. The drone table has an `altit
 
 Is there a maximum number of turns, or does the game always end via fuel/ammo/destruction/target exhaustion?
 
-**Your answer:** *(Not yet answered — pending)*
+**Your answer:** No maximum turn limit. The game always ends via scenario end conditions: drone destroyed, objectives completed, voluntary RTB, or fuel exhausted.
 
 ---
 
