@@ -201,7 +201,16 @@ SQLite: `loadouts` table, linked to `drones` by drone_id
 
 ## 7. Post-Scenario Briefing Screen
 
-Displays after every scenario end. Content TBD (awaiting rulebook_gaps.md E3 answer).
+Mandatory — displayed after every scenario end (no code path skips it).
+
+| Section | Content |
+|---------|---------|
+| Termination Reason | `Drone Destroyed` / `Fuel Exhausted` / `RTB` |
+| Objectives Checklist | Primary + secondary objectives: ACHIEVED or FAILED |
+| Kill List | Ordered list of confirmed kills |
+| VP Breakdown | VP per kill. Secondary VP flagged, shown as 0 if primary not met |
+| Total Scenario VP | Sum of eligible VP (secondary excluded if primary failed) |
+| Campaign Advancement | ADVANCE or LOCKED (hidden for standalone scenarios) |
 
 ---
 

@@ -73,22 +73,32 @@ Campaign  (cumulative VP, progression gate)
 > - **Target Card** drawn at → B3 (Positioning)?
 > - **Threat Card** resolved at → B4/B5 (Attack/Evasion)?
 
-### 1.2. Scenario End Conditions & RTB
+### 1.2. Scenario Termination Conditions
 
 > [!IMPORTANT]
-> Designer clarifications for mobile adaptation — extends rulebook section 5.
+> The scenario ends **immediately** upon any of the following conditions.
 
 **RTB (Return To Base)** = the end of the current scenario.
 
-**A scenario ends when ANY of these occur:**
-1. **Drone destroyed** — structural integrity exceeded
-2. **Primary objectives completed** — game prompts player: "RTB?"
-3. **Player voluntarily RTBs** — at B5 decision point, player chooses to end
-4. **Fuel exhausted** — forced RTB
+| # | Condition | Post-Scenario Path |
+|---|-----------|-------------------|
+| 1 | **Drone destroyed** (HP = 0) | Post-scenario briefing displayed. All banked VP retained. If primary not met, **campaign does not advance**. |
+| 2 | **Fuel exhausted** | Post-scenario briefing displayed. Campaign advancement depends on whether primary was achieved before fuel ran out. |
+| 3 | **Player chooses RTB** (voluntary, available at any time) | Post-scenario briefing displayed. Campaign advancement depends on primary objective status. |
 
-**After a scenario ends:**
-- A **Post-Scenario Briefing** screen is displayed (results, score, damage summary)
+**After every scenario end:**
+- A **Post-Scenario Briefing** screen is always displayed (same code path for all 3 conditions)
 - If scenario is part of a campaign: **player must complete scenarios in order — no skipping ahead**
+- Campaign advances **only if primary objective was achieved**
+
+### 1.3. Campaign Progression Rules
+
+| Rule | Specification |
+|------|--------------|
+| **Advance Condition** | Player may proceed to the next scenario **ONLY IF** the primary objective of the current scenario was achieved |
+| **Fail / Retry State** | If primary objective not achieved, the next scenario remains **locked**. Player must retry the current scenario |
+| **Secondary VP Rule** | Secondary objective VP is added to the campaign score **ONLY** if primary was also achieved in that scenario |
+| **Standalone Scenarios** | Scenarios not part of a campaign have no progression gate. Post-scenario briefing shows results only |
 
 ---
 
@@ -734,6 +744,27 @@ The fuel gauge is a **color-coded bar** (no numeric value shown to player):
 | 40% – 75% | 🔵 **Blue** | `#3B82F6` |
 | 10% – 40% | 🟠 **Orange** | `#F97316` |
 | 0% – 10% | 🔴 **Red** | `#EF4444` |
+
+---
+
+### 6.6. Post-Scenario Briefing Screen
+
+> [!IMPORTANT]
+> **Mandatory** — must be displayed every time the scenario ends, regardless of the termination reason. No code path should skip it.
+
+| Section | Content |
+|---------|---------|
+| **Termination Reason** | Why the scenario ended: `Drone Destroyed` / `Fuel Exhausted` / `RTB` |
+| **Objectives Checklist** | All primary and secondary objectives listed with **ACHIEVED** or **FAILED** status for each |
+| **Kill List** | Full ordered list of target card names confirmed killed during the scenario |
+| **VP Breakdown** | VP awarded per kill. Secondary objective VP is flagged separately and shown as **zero campaign value** if primary was not achieved |
+| **Total Scenario VP** | Sum of all eligible VP. **Secondary VP excluded from total if primary objective was not met** |
+| **Campaign Advancement** | If part of a campaign: **ADVANCE** (primary achieved) or **LOCKED** (primary not achieved). Not shown for standalone scenarios |
+
+> [!WARNING]
+> **OB3-SeniorDev must verify:**
+> - The briefing screen always appears after **every** termination condition — no code path should skip it
+> - Secondary VP is displayed but **correctly excluded from score totals** when primary is not met
 
 ---
 
