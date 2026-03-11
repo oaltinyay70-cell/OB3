@@ -116,7 +116,7 @@ SQLite: `loadouts` table, linked to `drones` by drone_id
 ## 6. Game Screen
 
 ### 6.1 Starting State
-- Drone starts at **HIGH altitude**
+- Drone starts at **MEDIUM altitude**
 - Fuel = starting endurance hours value (e.g., TB2 = 27)
 - SI = drone's max SI value (e.g., TB2 = 80)
 - Sensor damage = 0, COMMS damage = 0, VIS/RCS = starting value per drone
@@ -171,7 +171,7 @@ SQLite: `loadouts` table, linked to `drones` by drone_id
 
 ### 6.4 Altitude Levels
 4 levels: **VLOW / LOW / MEDIUM / HIGH**
-(Starting altitude: HIGH)
+(Starting altitude: MEDIUM)
 
 ### 6.5 Fuel Display
 - **Color bar** (NOT numeric): Green → Yellow → Red as fuel declines

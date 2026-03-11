@@ -88,7 +88,7 @@ KEY DECISIONS MADE:
 - Fuel display: color bar (green→yellow→red), not numeric
 - 4 altitude levels: VLOW, LOW, MEDIUM, HIGH (not 3)
 - Game hierarchy: Campaign → Scenarios → Cycles (B0→B5)
-- Starting altitude: HIGH
+- Starting altitude: MEDIUM
 - Scenario end: destroyed / objectives completed / voluntary RTB / fuel exhausted
 - Post-scenario: briefing screen always shown
 - Campaign progression: sequential, no skipping

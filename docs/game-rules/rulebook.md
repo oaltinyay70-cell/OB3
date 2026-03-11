@@ -301,7 +301,7 @@ Movement is always **1 box-step**. Cannot skip or go back unless specifically in
 
 **If starting the game:**
 1. Place drone on B0
-2. Set height to HIGH (or highest altitude allowed for drone)
+2. Set height to MEDIUM (default starting height for all scenarios)
 3. Select loadout, place weapon markers on Drone Info Card
 4. Place all combat/threat/target cards on game board face down
 
@@ -441,6 +441,44 @@ After threat evasion is resolved and the drone has not been destroyed, the follo
 > **OB3-SeniorDev must verify:**
 > - Fuel exhaustion triggers the **same post-scenario briefing path** as destruction or voluntary RTB
 > - Cycle counter increments correctly and is **persisted in game state**
+
+### 6.3.8. Drone Height Mechanic
+
+#### 6.3.8.1. Height Levels
+
+The drone operates at one of four altitude levels. The **starting height for every scenario is MEDIUM**.
+
+| Level | Notes |
+|-------|-------|
+| **VERY LOW** | Lowest altitude. Highest damage received risk. Modifies fuel consumption and evasion probability. |
+| **LOW** | Below standard operating altitude. |
+| **MEDIUM** | Default starting height for all scenarios. |
+| **HIGH** | Maximum altitude. |
+
+#### 6.3.8.2. What Can Change Height
+
+- **Player voluntary action** — a **free action** executable at any point during the scenario (not locked to a specific step)
+- **Combat Card** — may force a height change as defined in the card's DB entry
+- **Threat Card** — may force a height change as defined in the card's DB entry
+- **Target Card** — may force a height change as defined in the card's DB entry
+
+When a card forces a height change, the new height takes effect **at the moment the card effect is applied** and immediately affects all four height-dependent mechanics.
+
+#### 6.3.8.3. Mechanics Affected by Height
+
+| Mechanic | Effect |
+|----------|--------|
+| **Hit Probability** | Height modifies the probability of the drone's outgoing attack hitting a target |
+| **Evasion Probability** | Height modifies the drone's ability to evade incoming threats |
+| **Damage Multiplier** | Height affects the damage received when a threat hits the drone |
+| **Fuel Consumption Rate** | Height affects the fuel burned per cycle |
+
+Specific modifier values for each height level are to be defined by the game designer and stored in the DB or a configuration table.
+
+> [!WARNING]
+> **OB3-SeniorDev must verify:**
+> - All four height-dependent mechanics update **simultaneously** when height changes
+> - Height modifiers **stack correctly** with active combat card modifiers on the same mechanics
 
 ---
 
