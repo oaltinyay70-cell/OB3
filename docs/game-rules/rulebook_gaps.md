@@ -228,41 +228,36 @@ FO/Laze costs 3F per the Attack CRT — is this correct? That's 3× the cost of 
 Beyond the +10 DRM on Target Acquisition, does AESA Radar have any other gameplay effect?
 
 **Your answer:** No other effect. It just provides the +10 DRM bonus.
-### G2. SATCOM
+### G2. SATCOM ✅ RESOLVED
 Beyond -1 to COMMS check DRM, does SATCOM have any other benefit?
 
-**Your answer:**
+**Your answer:** No. It only provides the -1 COMMS check DRM.
 
-
-### G3. Autonomous DM AI
+### G3. Autonomous DM AI ✅ RESOLVED
 Beyond -1 to COMMS check DRM, does Autonomous AI affect anything else? (e.g., can the drone still operate with higher COMMS damage?)
 
-**Your answer:**
+**Your answer:** No. It only provides the -1 COMMS check DRM.
 
-
-### G4. Built-in FO/Laze
+### G4. Built-in FO/Laze ✅ RESOLVED
 Some drones have `has_builtin_fo_laze = 1`. Does this mean they can FO/Laze without loading a special kit?
 
-**Your answer:**
-
-
+**Your answer:** Yes. (Confirmed via F1: 22 drones don't need the kit).
 ---
 
 ## H. General Gameplay
 
-### H1. Can drones re-arm mid-scenario?
+### H1. Can drones re-arm mid-scenario? ✅ RESOLVED
 In a Quick Game (non-campaign), if you run out of weapons but still have fuel, can you RTB and re-arm? Or is weapons-out = forced RTB?
 
-**Your answer:**
+**Your answer:** No. Drones cannot re-arm mid-scenario. Once weapons are expended, they must RTB (or FO/Laze if equipped).
 
 
-### H2. Multiple altitude changes per turn
+### H2. Multiple altitude changes per turn ✅ RESOLVED
 Can a drone change altitude more than one level in a single turn step (e.g., from HIGH to LOW = 2 changes)?
 
 > Height change is a free action (confirmed). But can the player jump more than 1 level at a time?
 
-**Your answer:**
-
+**Your answer:** Yes, a drone can jump multiple levels at once. However, **raising** altitude costs **+1F per level raised**. Lowering altitude is free.
 
 ### H3. Structural Integrity values ✅ RESOLVED
 The DB has `max_structural_integrity = 1000` for all drones. Is this a placeholder? What are the actual SI/DP values per drone?

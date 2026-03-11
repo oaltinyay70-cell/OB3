@@ -501,7 +501,9 @@ The drone operates at one of four altitude levels. The **starting height for eve
 
 #### 6.3.8.2. What Can Change Height
 
-- **Player voluntary action** — a **free action** executable at any point during the scenario (not locked to a specific step)
+- **Player voluntary action** — a **free action** executable at any point during the scenario (not locked to a specific step). A drone may jump multiple altitude levels at once.
+  - **Descending is free:** Lowering altitude (e.g., HIGH to LOW) costs 0F.
+  - **Ascending costs Fuel:** Raising altitude costs **+1F per level raised** (e.g., LOW to HIGH costs +2F). This fuel is expended immediately.
 - **Combat Card** — may force a height change as defined in the card's DB entry
 - **Threat Card** — may force a height change as defined in the card's DB entry
 - **Target Card** — may force a height change as defined in the card's DB entry
