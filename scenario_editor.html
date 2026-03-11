@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OB3 Advanced Scenario Editor</title>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #1e1e1e; color: #f4f4f4; max-width: 900px; margin: 0 auto; padding: 20px; }
+        h1 { border-bottom: 1px solid #333; padding-bottom: 10px; color: #fff; }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #aaa; }
+        input[type="text"], textarea, select, input[type="number"] { width: 100%; padding: 10px; background-color: #2d2d2d; border: 1px solid #444; color: #fff; border-radius: 4px; box-sizing: border-box; font-family: inherit; }
+        input[type="number"] { width: 80px; text-align: center; margin-left: 10px; }
+        textarea { height: 80px; resize: vertical; }
+        .btn { background-color: #007acc; color: white; padding: 12px 20px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; font-weight: bold; width: 100%; margin-top: 20px;}
+        .btn:hover { background-color: #005999; }
+        .section-title { font-size: 1.2em; color: #007acc; margin-top: 30px; margin-bottom: 15px; border-bottom: 1px solid #333; padding-bottom: 5px; }
+        
+        .grid-container { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; background: #252525; padding: 15px; border-radius: 6px; border: 1px solid #333; }
+        .checkbox-row { display: flex; align-items: center; margin-bottom: 8px; }
+        .checkbox-row input[type="checkbox"] { margin-right: 10px; width: 18px; height: 18px; }
+        .card-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; border-bottom: 1px solid #333; padding-bottom: 5px;}
+        .card-name { flex-grow: 1; }
+        
+        .objective-box { background: #252525; padding: 15px; border-radius: 6px; border: 1px solid #333; margin-bottom: 15px;}
+        
+        #output-container { margin-top: 30px; display: none; margin-bottom: 50px;}
+        pre { background-color: #111; padding: 15px; border-radius: 4px; overflow-x: auto; border: 1px solid #333; white-space: pre-wrap;}
+        .copy-btn { margin-top: 10px; background-color: #2ea043; }
+        .copy-btn:hover { background-color: #238636; }
+        
+        .flex-row { display: flex; gap: 15px; align-items: center;}
+        .flex-grow { flex-grow: 1;}
+    </style>
+</head>
+<body>
+
+    <h1>OB3 Scenario Editor - v2.0</h1>
+    <p>Advanced editor with deck building and component selection.</p>
+
+    <!-- BASIC INFO -->
+    <div class="form-group">
+        <label>Scenario Name</label>
+        <input type="text" id="s_name" value="The Milk run">
+    </div>
+
+    <div class="form-group">
+        <label>Scenario Subtitle</label>
+        <input type="text" id="s_subtitle">
+    </div>
+
+    <div class="form-group">
+        <label>Scenario Visuals (Path/URL/Description)</label>
+        <input type="text" id="s_visuals" placeholder="e.g. assets/scenarios/milk_run_map.png or description of visual">
+    </div>
+
+    <div class="form-group">
+        <label>Scenario Main Text (Briefing)</label>
+        <textarea id="s_briefing"></textarea>
+    </div>
+
+    <!-- DRONES -->
+    <div class="section-title">Allowed Drones</div>
+    <div class="form-group text-right" style="text-align: right;">
+        <button onclick="toggleAllDrones(true)" style="background: none; color: #007acc; border: none; cursor: pointer;">Select All</button> | 
+        <button onclick="toggleAllDrones(false)" style="background: none; color: #007acc; border: none; cursor: pointer;">Deselect All</button>
+    </div>
+    <div class="grid-container" id="drone-container">
+        <!-- Populated via JS -->
+    </div>
+
+    <!-- OBJECTIVES -->
+    <div class="section-title">Objectives</div>
+    
+    <div class="objective-box">
+        <label style="color: #fff">Primary Objective</label>
+        <div class="flex-row" style="margin-bottom: 10px;">
+            <div>
+                <label style="font-size: 0.8em; font-weight: normal;">Target Card Number/Type</label>
+                <input type="text" id="obj_p_card" placeholder="e.g. Card #12 or TANK" style="width: 200px;">
+            </div>
+            <div>
+                <label style="font-size: 0.8em; font-weight: normal;">Quantity to Kill</label>
+                <input type="number" id="obj_p_qty" value="1" min="1" max="99" style="margin-left: 0;">
+            </div>
+        </div>
+        <label style="font-size: 0.8em; font-weight: normal;">Objective Text Explanation</label>
+        <input type="text" id="obj_p_text" placeholder="e.g. Destroy the primary enemy armor column">
+    </div>
+
+    <div class="objective-box">
+        <label style="color: #fff">Secondary Objective</label>
+        <div class="flex-row" style="margin-bottom: 10px;">
+            <div>
+                <label style="font-size: 0.8em; font-weight: normal;">Target Card Number/Type</label>
+                <input type="text" id="obj_s_card" placeholder="e.g. Card #05 or RADAR" style="width: 200px;">
+            </div>
+            <div>
+                <label style="font-size: 0.8em; font-weight: normal;">Quantity to Kill</label>
+                <input type="number" id="obj_s_qty" value="0" min="0" max="99" style="margin-left: 0;">
+            </div>
+        </div>
+        <label style="font-size: 0.8em; font-weight: normal;">Objective Text Explanation</label>
+        <input type="text" id="obj_s_text" placeholder="e.g. Eliminate early warning radar for bonus VP">
+    </div>
+
+    <!-- COMBAT DECK -->
+    <div class="section-title">Combat Deck Composition</div>
+    <p style="font-size: 0.8em; color: #888;">Select cards to include and specify the number of copies.</p>
+    <div class="grid-container" id="combat-container">
+        <!-- Populated via JS -->
+    </div>
+
+    <!-- OTHER DECKS -->
+    <div class="section-title">Target & Threat Decks</div>
+    
+    <div class="form-group">
+        <label>Target Deck Definition</label>
+        <textarea id="s_targetdeck" placeholder="Specify which target cards and how many..."></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Threat Deck Definition</label>
+        <textarea id="s_threatdeck" placeholder="Specify which threat cards and how many..."></textarea>
+    </div>
+
+    <div class="form-group">
+        <label>Special Rules</label>
+        <textarea id="s_special" placeholder="e.g. Fuel consumption is doubled">None</textarea>
+    </div>
+
+    <button class="btn" onclick="generateOutput()">Generate Scenario Data</button>
+
+    <div id="output-container">
+        <h3>Generated Output (Copy this to the agent):</h3>
+        <pre id="output-text"></pre>
+        <button class="btn copy-btn" onclick="copyToClipboard()">Copy to Clipboard</button>
+        <span id="copy-status" style="margin-left: 10px; color: #2ea043; display: none;">Copied!</span>
+    </div>
+
+    <script>
+        const drones = [
+            "Bayraktar TB2", "Bayraktar Akıncı", "Aksungur", "Anka-S", "Wing Loong II", 
+            "Wing Loong-3", "CH-4B", "CH-5", "TB-001 Scorpion", "MQ-9 Reaper", 
+            "MQ-9B Protector", "Avenger (Predator C)", "MQ-1C Gray Eagle", "Heron TP", 
+            "Hermes 450", "Hermes 900", "Orion (Inokhodets)", "S-70 Okhotnik-B", 
+            "Altius-RU", "Mohajer-6", "Mohajer-10", "Shahed-129", "Burraq", "nEUROn", 
+            "Taranis", "Ghatak", "Eurodrone", "Falco Xplorer"
+        ];
+
+        const combatCards = [
+            "AGGRESSIVE STRIKE PROFILE (+2)", "CLEAR SKIES (+2)", "TAILWIND (+1)", 
+            "BURST TRANSMISSION (+1)", "GROUND HUGGING (+1 VLOW/LOW)", "WHITEOUT (-2)", 
+            "LOST SIGNAL (-2)", "FOG OF WAR (-2)", "STATIC (-1)", "UPDRAFT (-1)", 
+            "GHOST SIGNAL (-1 no FO)", "THERMAL SPIKE (Alt +1)", "STRATOSPHERIC (Alt +2)", 
+            "TOP GUN (Force HIGH)", "DIVE DIVE DIVE (Alt -1)", "DEAD DROP (Alt -1)", 
+            "NOSEDIVE (Alt -2)", "DECK LEVEL (Force VLOW)", "NO EVENT (Blank)"
+        ];
+
+        // Init Drones
+        const droneContainer = document.getElementById('drone-container');
+        drones.forEach((drone, idx) => {
+            droneContainer.innerHTML += `
+                <div class="checkbox-row">
+                    <input type="checkbox" id="drone_${idx}" class="drone-cb" checked>
+                    <label for="drone_${idx}" style="margin:0; font-weight:normal; color:#ddd">${drone}</label>
+                </div>
+            `;
+        });
+
+        function toggleAllDrones(state) {
+            document.querySelectorAll('.drone-cb').forEach(cb => cb.checked = state);
+        }
+
+        // Init Combat Cards
+        const combatContainer = document.getElementById('combat-container');
+        combatCards.forEach((card, idx) => {
+            const defaultQty = card === "NO EVENT (Blank)" ? 10 : 0;
+            const checkedState = card === "NO EVENT (Blank)" ? "checked" : "";
+            
+            combatContainer.innerHTML += `
+                <div class="card-row">
+                    <div class="checkbox-row" style="margin:0">
+                        <input type="checkbox" id="cc_cb_${idx}" class="cc-cb" ${checkedState} onchange="toggleNum('cc_num_${idx}', this.checked)">
+                        <label for="cc_cb_${idx}" style="margin:0; font-weight:normal; color:#ddd; font-size:0.9em;">${card}</label>
+                    </div>
+                    <input type="number" id="cc_num_${idx}" value="${defaultQty}" min="1" max="50" ${checkedState ? '' : 'disabled'}>
+                </div>
+            `;
+        });
+
+        function toggleNum(id, isChecked) {
+            const el = document.getElementById(id);
+            el.disabled = !isChecked;
+            if (isChecked && el.value == 0) el.value = 1;
+        }
+
+        function generateOutput() {
+            const getVal = (id) => document.getElementById(id).value.trim() || 'N/A';
+            
+            // Collect Drones
+            const selectedDrones = [];
+            const isAllDrones = document.querySelectorAll('.drone-cb:not(:checked)').length === 0;
+            
+            if (isAllDrones) {
+                selectedDrones.push("ALL DRONES ALLOWED");
+            } else {
+                document.querySelectorAll('.drone-cb:checked').forEach(cb => {
+                    selectedDrones.push(cb.nextElementSibling.innerText);
+                });
+            }
+
+            // Collect Combat Deck
+            const deck = [];
+            document.querySelectorAll('.cc-cb:checked').forEach((cb, idx) => {
+                const name = cb.nextElementSibling.innerText;
+                const qty = document.getElementById(`cc_num_${idx}`).value;
+                deck.push(`- ${qty}x ${name}`);
+            });
+
+            const markdown = `### SCENARIO DEFINITION: ${getVal('s_name')}
+
+**Subtitle:** ${getVal('s_subtitle')}
+**Visuals/Map:** ${getVal('s_visuals')}
+
+**Briefing/Main Text:** 
+${getVal('s_briefing')}
+
+**Allowed Drones:** 
+${selectedDrones.length === 0 ? "NONE SELECTED" : (isAllDrones ? "ALL DRONES ALLOWED" : "- " + selectedDrones.join("\n- "))}
+
+#### OBJECTIVES:
+**Primary:** 
+- Target Required: [Card: ${getVal('obj_p_card')}] x${getVal('obj_p_qty')}
+- Narrative: ${getVal('obj_p_text')}
+
+**Secondary:** 
+- Target Required: [Card: ${getVal('obj_s_card')}] x${getVal('obj_s_qty')}
+- Narrative: ${getVal('obj_s_text')}
+
+#### DECK COMPOSITION:
+**Combat Deck:**
+${deck.length > 0 ? deck.join("\n") : "None"}
+
+**Target Deck:**
+${getVal('s_targetdeck')}
+
+**Threat Deck:**
+${getVal('s_threatdeck')}
+
+**Special Rules:**
+${getVal('s_special')}`;
+
+            document.getElementById('output-text').textContent = markdown;
+            document.getElementById('output-container').style.display = 'block';
+            
+            // scroll to bottom
+            window.scrollTo(0, document.body.scrollHeight);
+        }
+
+        function copyToClipboard() {
+            const text = document.getElementById('output-text').textContent;
+            navigator.clipboard.writeText(text).then(() => {
+                const status = document.getElementById('copy-status');
+                status.style.display = 'inline';
+                setTimeout(() => status.style.display = 'none', 2000);
+            });
+        }
+    </script>
+</body>
+</html>
