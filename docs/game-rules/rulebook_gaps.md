@@ -6,7 +6,7 @@
 
 ---
 
-## A. VLOW Altitude (New Level Not in Original Rulebook)
+## A. VLOW Altitude (New Level Not in Original Rulebook) — ⚠️ DEFERRED (no VLOW drones in v1.0)
 
 ### A1. VLOW — Drone Attack Table Row
 What are the CRT values for VLOW altitude across all three attack modes?
@@ -139,7 +139,7 @@ For each v1.0 scenario, what are:
 
 ---
 
-## E. Scoring & Post-Scenario
+## E. Scoring & Post-Scenario — ✅ E3 RESOLVED
 
 ### E1. VP Values
 Are VP values defined on individual target cards, or is there a standard VP chart by target type?
@@ -153,18 +153,15 @@ After a scenario, does the player get a rank/grade (e.g., A/B/C or "Ace"/"Vetera
 **Your answer:**
 
 
-### E3. Post-Scenario Briefing Content
-What information shows on the post-scenario briefing screen? (Check all that apply or describe)
-- [ ] Total VP
-- [ ] Targets destroyed list
-- [ ] Fuel remaining
-- [ ] Damage taken
-- [ ] Cycles completed
-- [ ] Time played
-- [ ] Rank/grade
-- [ ] Other: ___
+### E3. Post-Scenario Briefing Content ✅ RESOLVED
 
-**Your answer:**
+**Your answer:** Resolved — 6 mandatory sections defined:
+1. Termination Reason (Destroyed/Fuel Exhausted/RTB)
+2. Objectives Checklist (ACHIEVED/FAILED per objective)
+3. Kill List (ordered list of confirmed kills)
+4. VP Breakdown (per kill, secondary flagged)
+5. Total Scenario VP (secondary excluded if primary failed)
+6. Campaign Advancement (ADVANCE/LOCKED, hidden for standalone)
 
 
 ---

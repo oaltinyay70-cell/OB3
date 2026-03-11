@@ -121,34 +121,46 @@ SQLite: `loadouts` table, linked to `drones` by drone_id
 - SI = drone's max SI value (e.g., TB2 = 80)
 - Sensor damage = 0, COMMS damage = 0, VIS/RCS = starting value per drone
 
-### 6.2 Game Cycle (B0 → B5)
+### 6.2 Game Cycle (B0 → B5 → End-of-Loop)
 
 #### B0 — In Transit
-- Display: Flying toward target area
-- No decision yet
+- COMMS check if damage > 2 (uncontrollable = destroyed)
+- No decisions
 
-#### B1 — Search / Target Acquisition
-- Draw 1 combat card
-- Roll for target acquisition
+#### B1 — Search
+- Optional: change height (free action)
+- No card draws at B1
 
-#### B2 — Standoff Decision
-- **Commander decision**: Engage or Retreat?
-- If Retreat → RTB flow
+#### B2 — Target Acquisition / Threat Determination
+- Spend 1F
+- Draw **Target Card** + **Threat Card** together from DB
+- Target kill resolution: dice roll displayed (e.g. `Roll: 14 — Hit!`)
+- On kill: VP banked immediately, kill list appended
+- On miss: continue to threat
+- Objectives checked after every kill
+- **Primary complete prompt**: RTB or Continue (shown once)
+- **Commander decision**: Engage or retreat (discard both → back to B1)
 
 #### B3 — Positioning
-- Altitude selection (VLOW / LOW / MEDIUM / HIGH)
-- Each altitude change costs fuel
+- Optional: change height (free action)
+- Optional: draw **Combat Card** (effects last this cycle only)
 
-#### B4 — Attack
-- Select attack mode (Stand-Off, Close-In, FO/Laze)
-- Roll attack dice → apply DRM → look up CRT result
-- Process hit/miss/fuel cost
-- SAM counterfire reaction
+#### B4 — Drone Attack
+- Select height, attack mode (Stand-Off / Close-In / FO-Laze), weapon
+- Roll 1D6 + DRM → consult Attack CRT → VP banked if hit
+- SAM counterfire check if target was SAM
 
 #### B5 — Evasive Action
-- **Commander decision**: Continue or RTB?
-- If Continue → evasive roll → potential damage
-- Damage cascade: SI → Sensors → COMMS → VIS
+- Resolve Threat Card drawn at B2
+- Evasion roll 1D6 + DRM
+- Damage = **combat card modifier × height modifier**
+- Drone destroyed (SI=0) → scenario ends immediately
+
+#### End-of-Loop Check (strict order)
+1. Drone destroyed? → Post-scenario briefing
+2. Fuel exhausted? → Post-scenario briefing
+3. Player RTB? → Post-scenario briefing
+4. All clear → Deduct fuel, clear combat card modifier, increment cycle, → B0
 
 ### 6.3 Damage System
 
@@ -225,20 +237,25 @@ Mandatory — displayed after every scenario end (no code path skips it).
 
 ---
 
-## 9. Open Items (Blocking)
+## 9. Open Items
 
-| Ref | Item | Blocking |
-|-----|------|---------|
-| A1-A3 | VLOW CRT table values | Game Screen — B4 |
-| B2 | Fuel consumption rate (1F = X hours?) | Fuel bar accuracy |
-| C1-C3 | Combat card deck contents | B1 search phase |
-| D1-D2 | Scenario definitions | Game launch |
-| E1-E3 | Scoring & briefing content | Post-scenario screen |
-| F1 | FO/Laze mechanics (kit required?) | B4 attack |
-| G4 | Built-in FO/Laze behavior | Loadout screen |
-| H1 | Re-arm mid-scenario | RTB flow |
-| H2 | Altitude changes per turn | B3 positioning |
-| H3 | SI confirmed (no longer placeholder ✅) | Resolved |
+| Ref | Item | Status |
+|-----|------|--------|
+| A1-A3 | VLOW CRT table values | ⚠️ Deferred (no VLOW drones in v1.0) |
+| A4 | Which drones fly VLOW | ✅ None. Reserved for future. |
+| B2 | Fuel consumption rate (1F = X hours?) | ❌ Open |
+| C1-C3 | Combat card deck contents | ❌ Open |
+| D1-D2 | Scenario definitions for v1.0 | ❌ Open |
+| E1 | VP values (on target cards or chart?) | ❌ Open |
+| E2 | Rank/rating system | ❌ Open |
+| E3 | Post-Scenario Briefing content | ✅ 6 sections defined |
+| F1-F2 | FO/Laze mechanics | ❌ Open |
+| G1-G4 | Drone special abilities details | ❌ Open |
+| H1 | Re-arm mid-scenario | ❌ Open |
+| H2 | Altitude changes per turn | ❌ Open (height = free action, but limits?) |
+| H3 | SI values per drone | ✅ All 28 updated in DB |
+| NEW | Height modifier values per level | ❌ Open (hit%, evasion%, dmg multiplier, fuel rate) |
+| NEW | Fuel base depletion rate per cycle | ❌ Open (designer-defined in DB) |
 
 ---
 
