@@ -690,18 +690,30 @@ This becomes a **second** counterfire check (in addition to original threat). Pl
 7. Reduce fuel by amount in cell
 8. Remove Threat Card to Discarded pile
 
-**COUNTERFIRE & EVASIVE ACTION TABLE**
+**COUNTERFIRE & EVASIVE ACTION TABLE (Rev 1 — VLOW ADDED)**
+
+Roll 1D6 + DRM modifiers. Damage notation: `XD+YF` = X damage points + Y fuel expended.
 
 |  | Stand-Off |||||| Close-In |||||| FO/Laze ||||||
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | **ALT / DRM** | **1** | **2** | **3** | **4** | **5** | **6** | **1** | **2** | **3** | **4** | **5** | **6** | **1** | **2** | **3** | **4** | **5** | **6** |
-| **LOW** | — | — | — | — | — | — | — | — | — | — | — | — | 2D+F | — | — | — | — | — | 1D+1F |
-| **MEDIUM** | — | — | — | — | — | 1D+1F | — | — | — | — | 1D+1F | 2D+F | — | — | 1D+1F | 1D+1F | 1D+1F | 1D+1F |
+| **VERY LOW** | N/A | N/A | N/A | N/A | N/A | N/A | — | — | — | 3D+2F | 3D+2F | — | — | — | — | — | — | 1D+1F |
+| **LOW** | — | — | — | — | — | — | — | — | — | 2D+F | — | — | — | — | — | — | — | 1D+1F |
+| **MEDIUM** | — | — | — | — | 1D+1F | — | — | — | — | 1D+1F | 1D+1F | 2D+F | 1D+1F | 1D+1F | 1D+1F | 1D+1F | 1D+1F | 1D+1F |
 | **HIGH** | — | — | — | — | 1D+2F | 1D+2F | — | — | — | 1D+1F | 1D+1F | 1D+1F | — | — | — | 1D+1F | 1D+1F | 1D+1F |
 
 > **Notes:**
-> - (1) Shift 1 LEFT for each 2 Pts of VIS/RCS
-> - (2) Drone sustains damage + uses fuel indicated
+> 1. Stand-Off is **NOT available** at Very Low altitude.
+> 2. Shift 1 **LEFT** for each 2 Pts of VIS/RCS.
+> 3. Drone sustains the damage indicated AND expends the fuel shown in the crossed cell.
+
+**COUNTERFIRE PROCEDURE SUMMARY:**
+1. Roll 1D6 (reuse the D6 result from the SAM attack step if applicable).
+2. Add all applicable DRM modifiers: Loadout counter, Combat Cards, Drone Info Card, Threat Info Card, scenario rules.
+3. Find the Final DRM column under the relevant Attack Mode. Apply any column shifts from loadout, cards or scenario rules.
+4. Intersect with the current Altitude row. If the cell shows a damage value, register that damage on the Drone Info Card. If total Damage Points exceed the Drone's DP value, the drone is shot down.
+5. Expend the fuel shown in the crossed cell plus the load used in the attack (Torpedoes, Gun rounds, etc.).
+6. Remove the Threat Card from the Current Threat Box to the Discard Pile.
 
 #### 6.4.5. Taking Damage
 
@@ -838,19 +850,14 @@ Special rules in scenarios take precedence over base rules conditionally.
 > These questions are blocking the functional spec. Please answer directly below each one.
 > Following the "never assume" rule — I need your input before proceeding.
 
-### Q1. Counterfire & Evasive Action Table — LOW / Stand-Off & Close-In
+### Q1. Counterfire & Evasive Action Table — LOW / Stand-Off & Close-In ✅ RESOLVED
 
-In the **Counterfire & Evasive Action Table**, the LOW altitude row shows:
-- **Stand-Off**: All 6 DRM columns are empty (no damage)
-- **Close-In**: All 6 DRM columns are empty (no damage)
-- **FO/Laze**: `2D+F` at DRM=1, then empty DRM 2–5, then `1D+1F` at DRM=6
+In the **Counterfire & Evasive Action Table**, the LOW altitude row was showing all empty cells for Stand-Off and Close-In.
 
-Is this correct? Stand-off and Close-in at LOW altitude have **zero risk** from counterfire?
+**Your answer:** Corrected via Counterfire Table Rev 1. LOW row now has: Close-In DRM 4 = 2D+F. Stand-Off remains all dashes (no counterfire at LOW/Stand-Off). FO/Laze DRM 6 = 1D+1F. VLOW row also added.
 
-**Your answer:** This is wrong — same issue as Q2. Needs to be corrected.
-
-> [!CAUTION]
-> **DILEK CLEARANCE ITEM #1**: Counterfire table LOW row (Stand-Off & Close-In) appears incorrect. Must be verified and corrected before final delivery.
+> [!NOTE]
+> **DILEK CLEARANCE ITEM #1**: ✅ RESOLVED — Counterfire table corrected with Rev 1 data.
 
 ---
 
@@ -952,9 +959,9 @@ Is there a maximum number of turns, or does the game always end via fuel/ammo/de
 
 | # | Issue | Source | Status |
 |---|-------|--------|--------|
-| 1 | **Counterfire table LOW row (Stand-Off & Close-In)** — all cells empty, likely incorrect | Q1 | ⬜ OPEN |
+| 1 | **Counterfire table LOW row** — corrected with Rev 1 data (Close-In DRM 4 = 2D+F) | Q1 | ✅ RESOLVED |
 | 2 | **SAM Counterfire table LOW row** — all cells empty, some SAMs should hit at LOW | Q2 | ⬜ OPEN |
-| 3 | **VLOW altitude row** — needs to be added to ALL CRT tables (Attack, Counterfire, SAM) | Q9 | ⬜ OPEN |
-| 4 | **Endurance/fuel data** — `endurance_hours` column needs to be added to `drones` table | Q7 | ⬜ OPEN |
+| 3 | **VLOW altitude rows** — Attack CRT (Rev 3) + Counterfire (Rev 1) done. SAM table still needs VLOW. | Q9 | ⚠️ PARTIAL |
+| 4 | **Endurance/fuel data** — `endurance_hours` added to `drones` table, all 28 updated | Q7 | ✅ RESOLVED |
 
 ---

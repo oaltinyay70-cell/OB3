@@ -6,26 +6,18 @@
 
 ---
 
-## A. VLOW Altitude (New Level Not in Original Rulebook) — ⚠️ DEFERRED (no VLOW drones in v1.0)
+## A. VLOW Altitude (New Level Not in Original Rulebook) — ⚠️ PARTIALLY RESOLVED
 
-### A1. VLOW — Drone Attack Table Row
+### A1. VLOW — Drone Attack Table Row ✅ RESOLVED
 What are the CRT values for VLOW altitude across all three attack modes?
 
-| ALT / DRM | Stand-Off 1-6 | Close-In 1-6 | FO/Laze 1-6 |
-|-----------|---------------|--------------|--------------|
-| **VLOW**  |               |              |              |
-
-**Your answer:**
+**Your answer:** Provided via CRT Rev 3. Stand-Off = N/A (not available at VLOW). Close-In = HIT on DRM 2–6 (83.3%). FO/Laze = HIT on DRM 3–6 (66.7%). See rulebook section 6.4.3.
 
 
-### A2. VLOW — Counterfire & Evasive Action Table Row
+### A2. VLOW — Counterfire & Evasive Action Table Row ✅ RESOLVED
 What are the counterfire values for VLOW?
 
-| ALT / DRM | Stand-Off 1-6 | Close-In 1-6 | FO/Laze 1-6 |
-|-----------|---------------|--------------|--------------|
-| **VLOW**  |               |              |              |
-
-**Your answer:**
+**Your answer:** Provided via Counterfire Table Rev 1. Stand-Off = N/A. Close-In = 3D+2F at DRM 4–5. FO/Laze = 1D+1F at DRM 6. See rulebook section 6.4.4.
 
 
 ### A3. VLOW — SAM Counterfire Table Row
@@ -174,10 +166,10 @@ The drone calls in external fire support (bombers, artillery). Does the drone ne
 **Your answer:**
 
 
-### F2. FO/Laze fuel cost
+### F2. FO/Laze fuel cost ✅ CONFIRMED
 FO/Laze costs 3F per the Attack CRT — is this correct? That's 3× the cost of Stand-Off.
 
-**Your answer:**
+**Your answer:** Yes, confirmed by CRT Rev 3. FO/Laze base cost = 3F.
 
 
 ---
@@ -219,15 +211,16 @@ In a Quick Game (non-campaign), if you run out of weapons but still have fuel, c
 
 
 ### H2. Multiple altitude changes per turn
-Can a drone change altitude more than one level in a single turn step (e.g., from HIGH to LOW = 2 changes = 2F cost)?
+Can a drone change altitude more than one level in a single turn step (e.g., from HIGH to LOW = 2 changes)?
+
+> Height change is a free action (confirmed). But can the player jump more than 1 level at a time?
 
 **Your answer:**
 
 
-### H3. Structural Integrity values
+### H3. Structural Integrity values ✅ RESOLVED
 The DB has `max_structural_integrity = 1000` for all drones. Is this a placeholder? What are the actual SI/DP values per drone?
 
-**Your answer:**
-
+**Your answer:** All 28 drones updated with correct SI values in the database. See B1 table above for complete values.
 
 ---
