@@ -173,10 +173,13 @@ After a scenario, does the player get a rank/grade based on score? Or just a raw
 
 ## F. FO/Lazing Missions
 
-### F1. What happens during an FO/Laze attack?
+### F1. What happens during an FO/Laze attack? ✅ RESOLVED
 The drone calls in external fire support (bombers, artillery). Does the drone need a specific KIT loaded? Which kit?
 
-**Your answer:**
+**Your answer:** FO/Laze requires an **"FO/Laze Kit"** in the loadout, **EXCEPT** for 22 drones which have it built-in.
+The following 6 drones DO NOT have it built-in and MUST load a kit: _TB-001 Scorpion, Avenger, S-70 Okhotnik-B, Mohajer-6, Mohajer-10, Shahed-129._
+
+
 
 
 ### F2. FO/Laze fuel cost ✅ CONFIRMED

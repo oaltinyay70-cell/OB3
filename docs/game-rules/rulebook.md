@@ -623,12 +623,14 @@ Both done in **B2**. Order doesn't matter but both must complete before leaving 
 |------|-------------|
 | **Stand-Off** | Stay away from target; least chance of hit but best evasion chance |
 | **Close-In** | Move to close range; better hit chance but harder to evade counterfire |
-| **FO/Lazing** | Act as Forward Observer for heavy fire group (bomber, artillery battery) |
+| **FO/Lazing** | Act as Forward Observer for heavy fire group (bomber, artillery battery). **Requires FO/Laze Kit in loadout** unless built-in. |
 
-   **Weapon mode restrictions:**
+   **Weapon/Kit restrictions:**
    - AA missiles → Stand-Off / Medium–High only
    - Torpedoes & Sonobuoys → Close-In only
    - Anti-Shipping missiles → Stand-Off only
+   - FO/Laze Mode → Requires "FO/Laze Kit" equipped, **EXCEPT** for the following 22 drones which have it built-in:
+     _TB2, Akıncı, Aksungur, Anka-S, Wing Loong II, Wing Loong-3, CH-4B, CH-5, Reaper, Protector, Gray Eagle, Heron TP, Hermes 450, Hermes 900, Orion, Altius-RU, Burraq, nEUROn, Taranis, Ghatak, Eurodrone, Falco Xplorer._
 
 2. **Select weapon** — consult weapon counter for compatibility
 
