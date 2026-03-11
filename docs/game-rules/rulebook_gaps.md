@@ -20,18 +20,14 @@ What are the counterfire values for VLOW?
 **Your answer:** Provided via Counterfire Table Rev 1. Stand-Off = N/A. Close-In = 3D+2F at DRM 4–5. FO/Laze = 1D+1F at DRM 6. See rulebook section 6.4.4.
 
 
-### A3. VLOW — SAM Counterfire Table Row
+### A3. VLOW — SAM Counterfire Table Row ✅ RESOLVED
 What are the SAM counterfire values for VLOW?
 
-| ALT / DRM | Stand-Off 1-6 | Close-In 1-6 | FO/Laze 1-6 |
-|-----------|---------------|--------------|--------------|
-| **VLOW**  |               |              |              |
-
-**Your answer:**
-
+**Your answer:** Only certain SAMs can fire at VLOW. For those SAMs, their VLOW row values are the **same as the LOW row**. SAMs that cannot fire at VLOW show all dashes.
 
 ### A4. Which drones can fly at VLOW?
 Can all drones access VLOW, or is it restricted to certain classes/types?
+
 
 **Your answer:** **None of the current 28 drones fly at VLOW.** VLOW is reserved for future drone additions. The VLOW row in CRT tables should be built into the system but will only be accessible when a VLOW-capable drone is added.
 
@@ -69,7 +65,7 @@ Can all drones access VLOW, or is it restricted to certain classes/types?
 | Mohajer-10 | 24 | 140 | ❌ NEW |
 | Shahed-129 | 24 | 100 | ❌ NEW |
 | Burraq | 10 | 65 | ❌ NEW |
-| nEUROn | 3 | 250 | ❌ NEW |
+| nEUROn | 3 | 250 | ❌ NEW |ßß
 | Taranis | 5 | 270 | ❌ NEW |
 | Ghatak | 12 | 370 | ❌ NEW |
 | Eurodrone | 40 | 315 | ❌ NEW |
@@ -80,20 +76,18 @@ Can all drones access VLOW, or is it restricted to certain classes/types?
 > **10 existing drones**: SI values updated in DB (was placeholder 1000 for all).
 
 
-### B2. Fuel Consumption Rate
+### B2. Fuel Consumption Rate ✅ RESOLVED
 1F in the CRT tables = how many hours of endurance? Is 1F = 1 hour? Or something else?
 
-**Your answer:**
-
+**Your answer:** **1F = 1D** (1 fuel unit = 1 damage-point equivalent of endurance).
 
 ---
 
 ## C. Combat Cards
 
-### C1. How many combat cards are in the deck?
+### C1. How many combat cards are in the deck? ✅ RESOLVED
 
-**Your answer:**
-
+**Your answer:** Depends on the scenario. **Minimum 1** combat card per scenario. Deck composition is defined by scenario designer in DB.
 
 ### C2. List the combat card effects
 What events/conditions do the combat cards have? Examples: weather, comms failure, bonus DRM, altitude change, etc. Please list as many as you can.
@@ -101,20 +95,18 @@ What events/conditions do the combat cards have? Examples: weather, comms failur
 **Your answer:**
 
 
-### C3. "No Event" ratio
+### C3. "No Event" ratio ✅ RESOLVED
 Roughly what percentage of combat cards are "No Event" (discard without action)?
 
-**Your answer:**
-
+**Your answer:** Depends on scenario, but default assumption is **~50%** No Event cards.
 
 ---
 
 ## D. Scenarios for V1.0
 
-### D1. How many scenarios ship in v1.0?
+### D1. How many scenarios ship in v1.0? ✅ RESOLVED
 
-**Your answer:**
-
+**Your answer:** **At least 1 scenario.** Content is ready. Scenario data to be provided.
 
 ### D2. Scenario definitions
 For each v1.0 scenario, what are:

@@ -766,6 +766,7 @@ Damage affects drone subcomponents cascadingly:
 | Attribute | Specification |
 |-----------|--------------|
 | **Initial Value** | Full — value defined by scenario designer in DB (endurance_hours column) |
+| **Fuel Unit** | **1F = 1D** (1 fuel unit = 1 damage-point equivalent of endurance) |
 | **Depletion Method** | Base rate per cycle (fixed, designer-defined) **PLUS** modifiers from active height level **AND** active combat card effect |
 | **Depletion Timing** | Applied at the **end of each cycle** (End-of-Cycle Check step 4) — **not mid-step** |
 | **Score Impact** | **None.** Remaining fuel on RTB or scenario end has NO effect on VP or campaign score |
