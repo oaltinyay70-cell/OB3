@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>OB3 Advanced Scenario Editor</title>
+    <title>OB3 Advanced Scenario Editor (v3.0 DB Linked)</title>
     <style>
         body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #1e1e1e; color: #f4f4f4; max-width: 900px; margin: 0 auto; padding: 20px; }
         h1 { border-bottom: 1px solid #333; padding-bottom: 10px; color: #fff; }
@@ -20,7 +20,6 @@
         .checkbox-row { display: flex; align-items: center; margin-bottom: 8px; }
         .checkbox-row input[type="checkbox"] { margin-right: 10px; width: 18px; height: 18px; }
         .card-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 8px; border-bottom: 1px solid #333; padding-bottom: 5px;}
-        .card-name { flex-grow: 1; }
         
         .objective-box { background: #252525; padding: 15px; border-radius: 6px; border: 1px solid #333; margin-bottom: 15px;}
         
@@ -29,31 +28,27 @@
         .copy-btn { margin-top: 10px; background-color: #2ea043; }
         .copy-btn:hover { background-color: #238636; }
         
-        .flex-row { display: flex; gap: 15px; align-items: center;}
-        .flex-grow { flex-grow: 1;}
+        .flex-row { display: flex; gap: 15px; align-items: flex-end;}
     </style>
 </head>
 <body>
 
-    <h1>OB3 Scenario Editor - v2.0</h1>
-    <p>Advanced editor with deck building and component selection.</p>
+    <h1>OB3 Scenario Editor - v3.0 (DB Linked)</h1>
+    <p>Target and Threat decks are now populated directly from the game database.</p>
 
     <!-- BASIC INFO -->
     <div class="form-group">
         <label>Scenario Name</label>
         <input type="text" id="s_name" value="The Milk run">
     </div>
-
     <div class="form-group">
         <label>Scenario Subtitle</label>
         <input type="text" id="s_subtitle">
     </div>
-
     <div class="form-group">
         <label>Scenario Visuals (Path/URL/Description)</label>
-        <input type="text" id="s_visuals" placeholder="e.g. assets/scenarios/milk_run_map.png or description of visual">
+        <input type="text" id="s_visuals" placeholder="e.g. assets/scenarios/milk_run_map.png">
     </div>
-
     <div class="form-group">
         <label>Scenario Main Text (Briefing)</label>
         <textarea id="s_briefing"></textarea>
@@ -61,13 +56,11 @@
 
     <!-- DRONES -->
     <div class="section-title">Allowed Drones</div>
-    <div class="form-group text-right" style="text-align: right;">
-        <button onclick="toggleAllDrones(true)" style="background: none; color: #007acc; border: none; cursor: pointer;">Select All</button> | 
-        <button onclick="toggleAllDrones(false)" style="background: none; color: #007acc; border: none; cursor: pointer;">Deselect All</button>
+    <div style="text-align: right; margin-bottom: 5px;">
+        <button onclick="toggleAll('drone', true)" style="background: none; color: #007acc; border: none; cursor: pointer;">Select All</button> | 
+        <button onclick="toggleAll('drone', false)" style="background: none; color: #007acc; border: none; cursor: pointer;">Deselect All</button>
     </div>
-    <div class="grid-container" id="drone-container">
-        <!-- Populated via JS -->
-    </div>
+    <div class="grid-container" id="drone-container"></div>
 
     <!-- OBJECTIVES -->
     <div class="section-title">Objectives</div>
@@ -75,12 +68,20 @@
     <div class="objective-box">
         <label style="color: #fff">Primary Objective</label>
         <div class="flex-row" style="margin-bottom: 10px;">
-            <div>
-                <label style="font-size: 0.8em; font-weight: normal;">Target Card Number/Type</label>
-                <input type="text" id="obj_p_card" placeholder="e.g. Card #12 or TANK" style="width: 200px;">
+            <div style="flex-grow:1">
+                <label style="font-size: 0.8em; font-weight: normal;">Target required to kill</label>
+                <select id="obj_p_card">
+                    <option value="ANY TANK">Any TANK Type</option>
+                    <option value="ANY RADAR">Any RADAR Type</option>
+                    <option value="ANY SAM">Any SAM Type</option>
+                    <option value="ANY HQ">Any HQ Type</option>
+                    <option value="ANY INFANTRY">Any INFANTRY Type</option>
+                    <option disabled>──────────</option>
+                    <!-- DB targets injected here via JS -->
+                </select>
             </div>
             <div>
-                <label style="font-size: 0.8em; font-weight: normal;">Quantity to Kill</label>
+                <label style="font-size: 0.8em; font-weight: normal;">Quantity</label>
                 <input type="number" id="obj_p_qty" value="1" min="1" max="99" style="margin-left: 0;">
             </div>
         </div>
@@ -91,13 +92,23 @@
     <div class="objective-box">
         <label style="color: #fff">Secondary Objective</label>
         <div class="flex-row" style="margin-bottom: 10px;">
-            <div>
-                <label style="font-size: 0.8em; font-weight: normal;">Target Card Number/Type</label>
-                <input type="text" id="obj_s_card" placeholder="e.g. Card #05 or RADAR" style="width: 200px;">
+            <div style="flex-grow:1">
+                <label style="font-size: 0.8em; font-weight: normal;">Target required to kill</label>
+                <select id="obj_s_card">
+                    <option value="NONE">None</option>
+                    <option value="ANY TANK">Any TANK Type</option>
+                    <option value="ANY RADAR">Any RADAR Type</option>
+                    <option value="ANY SAM">Any SAM Type</option>
+                    <option value="ANY HQ">Any HQ Type</option>
+                    <option value="ANY INFANTRY">Any INFANTRY Type</option>
+                    <option value="ALL TARGETS">Clear the board</option>
+                    <option disabled>──────────</option>
+                    <!-- DB targets injected here via JS -->
+                </select>
             </div>
             <div>
-                <label style="font-size: 0.8em; font-weight: normal;">Quantity to Kill</label>
-                <input type="number" id="obj_s_qty" value="0" min="0" max="99" style="margin-left: 0;">
+                <label style="font-size: 0.8em; font-weight: normal;">Quantity</label>
+                <input type="number" id="obj_s_qty" value="1" min="1" max="99" style="margin-left: 0;">
             </div>
         </div>
         <label style="font-size: 0.8em; font-weight: normal;">Objective Text Explanation</label>
@@ -106,26 +117,27 @@
 
     <!-- COMBAT DECK -->
     <div class="section-title">Combat Deck Composition</div>
-    <p style="font-size: 0.8em; color: #888;">Select cards to include and specify the number of copies.</p>
-    <div class="grid-container" id="combat-container">
-        <!-- Populated via JS -->
-    </div>
+    <div class="grid-container" id="combat-container"></div>
 
-    <!-- OTHER DECKS -->
-    <div class="section-title">Target & Threat Decks</div>
-    
-    <div class="form-group">
-        <label>Target Deck Definition</label>
-        <textarea id="s_targetdeck" placeholder="Specify which target cards and how many..."></textarea>
+    <!-- TARGET DECK -->
+    <div class="section-title">Target Deck Composition</div>
+    <div style="text-align: right; margin-bottom: 5px;">
+        <button onclick="setAll('tc', 0)" style="background: none; color: #007acc; border: none; cursor: pointer;">Zero All</button> | 
+        <button onclick="setAll('tc', 1)" style="background: none; color: #007acc; border: none; cursor: pointer;">1 of Each</button>
     </div>
+    <div class="grid-container" id="target-container"></div>
 
-    <div class="form-group">
-        <label>Threat Deck Definition</label>
-        <textarea id="s_threatdeck" placeholder="Specify which threat cards and how many..."></textarea>
+    <!-- THREAT DECK -->
+    <div class="section-title">Threat Deck Composition</div>
+    <div style="text-align: right; margin-bottom: 5px;">
+        <button onclick="setAll('th', 0)" style="background: none; color: #007acc; border: none; cursor: pointer;">Zero All</button> | 
+        <button onclick="setAll('th', 1)" style="background: none; color: #007acc; border: none; cursor: pointer;">1 of Each</button>
     </div>
+    <div class="grid-container" id="threat-container"></div>
 
+    <!-- SPECIAL RULES -->
+    <div class="section-title">Special Rules</div>
     <div class="form-group">
-        <label>Special Rules</label>
         <textarea id="s_special" placeholder="e.g. Fuel consumption is doubled">None</textarea>
     </div>
 
@@ -139,55 +151,59 @@
     </div>
 
     <script>
-        const drones = [
-            "Bayraktar TB2", "Bayraktar Akıncı", "Aksungur", "Anka-S", "Wing Loong II", 
-            "Wing Loong-3", "CH-4B", "CH-5", "TB-001 Scorpion", "MQ-9 Reaper", 
-            "MQ-9B Protector", "Avenger (Predator C)", "MQ-1C Gray Eagle", "Heron TP", 
-            "Hermes 450", "Hermes 900", "Orion (Inokhodets)", "S-70 Okhotnik-B", 
-            "Altius-RU", "Mohajer-6", "Mohajer-10", "Shahed-129", "Burraq", "nEUROn", 
-            "Taranis", "Ghatak", "Eurodrone", "Falco Xplorer"
-        ];
+        const drones = ["BAYRAKTAR TB2", "BAYRAKTAR AKINCI", "AKSUNGUR", "ANKA-S", "WING LOONG II", "WING LOONG-3", "CH-4B", "CH-5", "TB-001 SCORPION", "MQ-9 REAPER", "MQ-9B PROTECTOR", "AVENGER", "GRAY EAGLE", "HERON TP", "HERMES 450", "HERMES 900", "ORION", "S-70 OKHOTNIK-B", "ALTIUS-RU", "MOHAJER-6", "MOHAJER-10", "SHAHED-129", "BURRAQ", "NEURON", "TARANIS", "GHATAK", "EURODRONE", "FALCO XPLORER"];
+        const combatCards = ["AGGRESSIVE STRIKE PROFILE (+2)", "CLEAR SKIES (+2)", "TAILWIND (+1)", "BURST TRANSMISSION (+1)", "GROUND HUGGING (+1 VLOW/LOW)", "WHITEOUT (-2)", "LOST SIGNAL (-2)", "FOG OF WAR (-2)", "STATIC (-1)", "UPDRAFT (-1)", "GHOST SIGNAL (-1 no FO)", "THERMAL SPIKE (Alt +1)", "STRATOSPHERIC (Alt +2)", "TOP GUN (Force HIGH)", "DIVE DIVE DIVE (Alt -1)", "DEAD DROP (Alt -1)", "NOSEDIVE (Alt -2)", "DECK LEVEL (Force VLOW)", "NO EVENT (Blank)"];
+        const targetCards = ["[TCAF001] BMP-1 (Target Card)", "[TCAF002] BMP-2 (Target Card)", "[TCAF003] MT-LB (Target Card)", "[TCAF004] BTR-82 (Target Card)", "[TCAF005] M113 (Target Card)", "[TCAF006] MRAP (Target Card)", "[TCAF007] BRDM/AT (Target Card)", "[TCAF008] RADIO BTR (Target Card)", "[TCAF009] BMD-1 (Target Card)", "[TCAF010] COBRA (Target Card)", "[TCAF011] FV 438 CO (Target Card)", "[TCAF012] SALADDIN (Target Card)", "[TCAF013] COMMAND CAR (Target Card)", "[TCAF014] OTR64 (Target Card)", "[TCAF015] GAZ-46 (Target Card)", "[TCAF016] M3A1 (Target Card)", "[TCAF017] EEC (Target Card)", "[TCAF018] MARDER (Target Card)", "[TCAI001] RQ-4 GLOBAL (Target Card)", "[TCAI002] MI24 (Target Card)", "[TCAI003] ARMED TRAINER (Target Card)", "[TCAI004] TB2 (Target Card)", "[TCAI005] WING-LOONG 2 (Target Card)", "[TCAI006] MQ-9A (Target Card)", "[TCAR001] M106 (Target Card)", "[TCAR002] ABBOT (Target Card)", "[TCAR003] M107 (Target Card)", "[TCAR004] M109A1 (Target Card)", "[TCAR005] M1 155 (Target Card)", "[TCAR006] M270 MLRS (Target Card)", "[TCAR007] D-30 (Target Card)", "[TCAR008] TOCHKA-U (Target Card)", "[TCAR009] FROG7 (Target Card)", "[TCAR010] GIANTSIN (Target Card)", "[TCAR011] 120 MORTAR (Target Card)", "[TCAR012] BM-14 (Target Card)", "[TCAR013] BSM-3 (Target Card)", "[TCAR014] NONA (Target Card)", "[TCAR015] BM21 (Target Card)", "[TCAR016] BM-31 (Target Card)", "[TCAR017] 2S1 GVOZDIKA (Target Card)", "[TCAR018] BM-14 (Target Card)", "[TCEN001] MTU20 (Target Card)", "[TCEN002] MLG-ML (Target Card)", "[TCEN003] M60 AVLB (Target Card)", "[TCEN004] BRIDGE LAYER (Target Card)", "[TCEN005] M113/ENG (Target Card)", "[TCEN006] ENGINEER SQD (Target Card)", "[TCHB001] HQ BUNKER (Target Card)", "[TCHB002] COMMAND POST (Target Card)", "[TCHB003] CAVE (Target Card)", "[TCHB004] TERRORIST HIDEOUT (Target Card)", "[TCHB005] RADAR INSTALLATION (Target Card)", "[TCHB006] BARRACKS BUILDING (Target Card)", "[TCPE001] SQUAD (Target Card)", "[TCPE002] SNIPER TEAM (Target Card)", "[TCPE003] RADIO TENT (Target Card)", "[TCPE004] SQUAD (Target Card)", "[TCPE005] SNIPER TEAM (Target Card)", "[TCPE006] RADIO TENT (Target Card)", "[TCPE007] MANPAD (Target Card)", "[TCPE008] ENTRENCHED SQD (Target Card)", "[TCPE009] FORTIFIED ATGW NEST (Target Card)", "[TCPE010] MANPAD (Target Card)", "[TCPE011] ENTRENCHED SQD (Target Card)", "[TCPE012] FORTIFIED ATGW NEST (Target Card)", "[TCSA001] TUNGUSKA (Target Card)", "[TCSA002] S-400A (Target Card)", "[TCSA003] BUK (Target Card)", "[TCSA004] SHILKA (Target Card)", "[TCSA005] NIKE (Target Card)", "[TCSA006] TOR (Target Card)", "[TCSA007] S-60 (Target Card)", "[TCSA008] OSA (Target Card)", "[TCSA009] ZU-23 (Target Card)", "[TCSA010] S-300V (Target Card)", "[TCSA011] HQ-9 (Target Card)", "[TCSA012] PATRIOT (Target Card)", "[TCSA013] PANTSIR-1A (Target Card)", "[TCSA014] NIKE (Target Card)", "[TCSA015] HQ-2 (Target Card)", "[TCSA016] SAYYAD3 (Target Card)", "[TCSA017] DOCHKA (Target Card)", "[TCSA018] S-125V3 (Target Card)", "[TCTA001] T-72 (Target Card)", "[TCTA002] T-62 (Target Card)", "[TCTA003] T-55 (Target Card)", "[TCTA004] T-72 (Target Card)", "[TCTA005] T-62 (Target Card)", "[TCTA006] T-55 (Target Card)", "[TCTA007] T-72BV3 (Target Card)", "[TCTA008] T-64 (Target Card)", "[TCTA009] T-34 (Target Card)", "[TCTA010] T-90 (Target Card)", "[TCTA011] T-80U2 (Target Card)", "[TCTA012] PT-76B (Target Card)", "[TCTA013] T-84 (Target Card)", "[TCTA014] M60A3 (Target Card)", "[TCTA015] LEO2A6 (Target Card)", "[TCTK001] TRAILER (Target Card)", "[TCTK002] FLATBED (Target Card)", "[TCTK003] HILUX (Target Card)", "[TCTK004] SUPPLY (Target Card)", "[TCTK005] COMMS TRK (Target Card)", "[TCTK006] GAZ-167 (Target Card)", "[TCVI001] EVIL SECRET ORG LEADER (Target Card)", "[TCVI002] WARLORD (Target Card)", "[TCVI003] EVIL POLITICIAN (Target Card)", "[TCVI004] CULT LEADER (Target Card)", "[TCVI005] TERRORIST ELITE (Target Card)", "[TCVI006] ENEMY GENERAL (Target Card)"];
+        const threatCards = ["[THAAA001] PHALANX (Threat Card)", "[THAAA002] ZU-23 TWIN (Threat Card)", "[THAAA003] 100 AA (Threat Card)", "[THAAA004] 40MM AA (Threat Card)", "[THAAA005] 20MM AA (Threat Card)", "[THAAA006] S-60 AA (Threat Card)", "[THCAP001] F16V (Threat Card)", "[THCAP002] MIG-21 (Threat Card)", "[THCAP003] SU-27/35 (Threat Card)", "[THCAP004] MIG-29 (Threat Card)", "[THCAP005] SU-25 (Threat Card)", "[THCAP006] F16BL30 (Threat Card)", "[THCAP007] MIG-23 (Threat Card)", "[THCAP008] F4E (Threat Card)", "[THCAP009] T-6 TEXAN (Threat Card)", "[THCAP010] MI-24 (Threat Card)", "[THCAP011] AH64 (Threat Card)", "[THCAP012] A-10 (Threat Card)", "[THDG001] NAZAR (Threat Card)", "[THDG002] DRONE GUN (Threat Card)", "[THDG003] US LW (Threat Card)", "[THDG004] ATHENA (Threat Card)", "[THDG005] ORGANIC (Threat Card)", "[THDG006] USN LW (Threat Card)", "[THSAM001] OSA (Threat Card)", "[THSAM002] IGLA-S (Threat Card)", "[THSAM003] TOR (Threat Card)", "[THSAM004] S-125V3 (Threat Card)", "[THSAM005] STINGER (Threat Card)", "[THSAM006] BUK (Threat Card)", "[THSMA001] MG FIRE (Threat Card)", "[THSMA002] MG FIRE (Threat Card)", "[THSMA003] MG FIRE (Threat Card)", "[THSMA004] SMALL ARMS FIRE (Threat Card)", "[THSMA005] SMALL ARMS FIRE (Threat Card)", "[THSMA006] SMALL ARMS FIRE (Threat Card)"];
 
-        const combatCards = [
-            "AGGRESSIVE STRIKE PROFILE (+2)", "CLEAR SKIES (+2)", "TAILWIND (+1)", 
-            "BURST TRANSMISSION (+1)", "GROUND HUGGING (+1 VLOW/LOW)", "WHITEOUT (-2)", 
-            "LOST SIGNAL (-2)", "FOG OF WAR (-2)", "STATIC (-1)", "UPDRAFT (-1)", 
-            "GHOST SIGNAL (-1 no FO)", "THERMAL SPIKE (Alt +1)", "STRATOSPHERIC (Alt +2)", 
-            "TOP GUN (Force HIGH)", "DIVE DIVE DIVE (Alt -1)", "DEAD DROP (Alt -1)", 
-            "NOSEDIVE (Alt -2)", "DECK LEVEL (Force VLOW)", "NO EVENT (Blank)"
-        ];
-
-        // Init Drones
-        const droneContainer = document.getElementById('drone-container');
-        drones.forEach((drone, idx) => {
-            droneContainer.innerHTML += `
+        // Render Drones
+        const droneCont = document.getElementById('drone-container');
+        drones.forEach((d, i) => {
+            droneCont.innerHTML += `
                 <div class="checkbox-row">
-                    <input type="checkbox" id="drone_${idx}" class="drone-cb" checked>
-                    <label for="drone_${idx}" style="margin:0; font-weight:normal; color:#ddd">${drone}</label>
+                    <input type="checkbox" id="drone_${i}" class="drone-cb" checked data-name="${d}">
+                    <label for="drone_${i}" style="margin:0; font-weight:normal; color:#ddd">${d}</label>
                 </div>
             `;
         });
 
-        function toggleAllDrones(state) {
-            document.querySelectorAll('.drone-cb').forEach(cb => cb.checked = state);
+        function toggleAll(type, state) {
+            document.querySelectorAll(`.${type}-cb`).forEach(cb => cb.checked = state);
+        }
+        
+        function setAll(prefix, val) {
+            document.querySelectorAll(`.${prefix}-num`).forEach(inp => {
+                inp.value = val;
+                const cb = document.getElementById(inp.id.replace('num', 'cb'));
+                if (cb) cb.checked = (val > 0);
+                inp.disabled = (val == 0);
+            });
         }
 
-        // Init Combat Cards
-        const combatContainer = document.getElementById('combat-container');
-        combatCards.forEach((card, idx) => {
-            const defaultQty = card === "NO EVENT (Blank)" ? 10 : 0;
-            const checkedState = card === "NO EVENT (Blank)" ? "checked" : "";
-            
-            combatContainer.innerHTML += `
-                <div class="card-row">
-                    <div class="checkbox-row" style="margin:0">
-                        <input type="checkbox" id="cc_cb_${idx}" class="cc-cb" ${checkedState} onchange="toggleNum('cc_num_${idx}', this.checked)">
-                        <label for="cc_cb_${idx}" style="margin:0; font-weight:normal; color:#ddd; font-size:0.9em;">${card}</label>
+        // Render Decks function
+        function renderDeck(containerId, prefix, cards, defaultActiveIdx, defaultQty) {
+            const cont = document.getElementById(containerId);
+            cards.forEach((card, i) => {
+                // for combat deck NO EVENT
+                const isDefault = defaultActiveIdx && card.includes(defaultActiveIdx);
+                const qty = isDefault ? 10 : defaultQty;
+                const chk = qty > 0 ? "checked" : "";
+                const dis = qty > 0 ? "" : "disabled";
+                
+                cont.innerHTML += `
+                    <div class="card-row" style="flex-direction: column; align-items: flex-start;">
+                        <div class="checkbox-row" style="margin:0; width: 100%; margin-bottom: 5px;">
+                            <input type="checkbox" id="${prefix}_cb_${i}" class="${prefix}-cb" ${chk} onchange="toggleNum('${prefix}_num_${i}', this.checked)">
+                            <label for="${prefix}_cb_${i}" style="margin:0; font-weight:normal; color:#aaa; font-size:0.85em; width:100%; white-space: normal;" title="${card.replace(/"/g, '&quot;')}">${card}</label>
+                        </div>
+                        <div style="display: flex; align-items: center; justify-content: space-between; width: 100%;">
+                            <span style="font-size: 0.7em; color: #666;">Copies:</span>
+                            <input type="number" id="${prefix}_num_${i}" class="${prefix}-num" value="${qty}" min="1" max="50" ${dis} data-name="${card.replace(/"/g, '&quot;')}" style="width: 50px; padding: 5px; height: 25px;">
+                        </div>
                     </div>
-                    <input type="number" id="cc_num_${idx}" value="${defaultQty}" min="1" max="50" ${checkedState ? '' : 'disabled'}>
-                </div>
-            `;
-        });
+                `;
+            });
+        }
 
         function toggleNum(id, isChecked) {
             const el = document.getElementById(id);
@@ -195,30 +211,44 @@
             if (isChecked && el.value == 0) el.value = 1;
         }
 
+        // Render Deck lists
+        renderDeck('combat-container', 'cc', combatCards, 'NO EVENT', 0);
+        renderDeck('target-container', 'tc', targetCards, null, 0);
+        renderDeck('threat-container', 'th', threatCards, null, 0);
+
+        // Populate Objective dropdowns with Target cards
+        const pCard = document.getElementById('obj_p_card');
+        const sCard = document.getElementById('obj_s_card');
+        targetCards.forEach(tc => {
+            pCard.innerHTML += `<option value="${tc}">${tc}</option>`;
+            sCard.innerHTML += `<option value="${tc}">${tc}</option>`;
+        });
+
+        function getDeckString(prefix) {
+            const arr = [];
+            document.querySelectorAll(`.${prefix}-cb:checked`).forEach(cb => {
+                const numInput = document.getElementById(cb.id.replace('cb', 'num'));
+                const qty = numInput.value;
+                const name = numInput.getAttribute('data-name');
+                if (qty > 0) arr.push(`- ${qty}x ${name}`);
+            });
+            return arr.length > 0 ? arr.join("\n") : "None";
+        }
+
         function generateOutput() {
             const getVal = (id) => document.getElementById(id).value.trim() || 'N/A';
             
-            // Collect Drones
             const selectedDrones = [];
             const isAllDrones = document.querySelectorAll('.drone-cb:not(:checked)').length === 0;
-            
             if (isAllDrones) {
                 selectedDrones.push("ALL DRONES ALLOWED");
             } else {
                 document.querySelectorAll('.drone-cb:checked').forEach(cb => {
-                    selectedDrones.push(cb.nextElementSibling.innerText);
+                    selectedDrones.push("- " + cb.getAttribute('data-name'));
                 });
             }
 
-            // Collect Combat Deck
-            const deck = [];
-            document.querySelectorAll('.cc-cb:checked').forEach((cb, idx) => {
-                const name = cb.nextElementSibling.innerText;
-                const qty = document.getElementById(`cc_num_${idx}`).value;
-                deck.push(`- ${qty}x ${name}`);
-            });
-
-            const markdown = `### SCENARIO DEFINITION: ${getVal('s_name')}
+            const md = `### SCENARIO DEFINITION: ${getVal('s_name')}
 
 **Subtitle:** ${getVal('s_subtitle')}
 **Visuals/Map:** ${getVal('s_visuals')}
@@ -227,34 +257,32 @@
 ${getVal('s_briefing')}
 
 **Allowed Drones:** 
-${selectedDrones.length === 0 ? "NONE SELECTED" : (isAllDrones ? "ALL DRONES ALLOWED" : "- " + selectedDrones.join("\n- "))}
+${selectedDrones.length === 0 ? "NONE SELECTED" : (isAllDrones ? "ALL DRONES ALLOWED" : selectedDrones.join("\n"))}
 
 #### OBJECTIVES:
 **Primary:** 
-- Target Required: [Card: ${getVal('obj_p_card')}] x${getVal('obj_p_qty')}
+- Target Required: ${getVal('obj_p_card')} x${getVal('obj_p_qty')}
 - Narrative: ${getVal('obj_p_text')}
 
 **Secondary:** 
-- Target Required: [Card: ${getVal('obj_s_card')}] x${getVal('obj_s_qty')}
+- Target Required: ${getVal('obj_s_card')} x${getVal('obj_s_qty')}
 - Narrative: ${getVal('obj_s_text')}
 
 #### DECK COMPOSITION:
 **Combat Deck:**
-${deck.length > 0 ? deck.join("\n") : "None"}
+${getDeckString('cc')}
 
 **Target Deck:**
-${getVal('s_targetdeck')}
+${getDeckString('tc')}
 
 **Threat Deck:**
-${getVal('s_threatdeck')}
+${getDeckString('th')}
 
 **Special Rules:**
 ${getVal('s_special')}`;
 
-            document.getElementById('output-text').textContent = markdown;
+            document.getElementById('output-text').textContent = md;
             document.getElementById('output-container').style.display = 'block';
-            
-            // scroll to bottom
             window.scrollTo(0, document.body.scrollHeight);
         }
 
