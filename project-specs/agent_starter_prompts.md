@@ -85,25 +85,29 @@ Phase 0 (Foundation) is COMPLETE:
 KEY DECISIONS MADE:
 - Campaign Mode: deferred to v1.1
 - 2+ Player Mode: No (maybe later)
-- Fuel display: color bar (green→yellow→red), not numeric
+- Fuel display: color bar (green/blue/orange/red 4-band), not numeric
 - 4 altitude levels: VLOW, LOW, MEDIUM, HIGH (not 3)
 - Game hierarchy: Campaign → Scenarios → Cycles (B0→B5)
 - Starting altitude: MEDIUM
+- B3 is positioning only (no combat card draw)
+- Drone Attack CRT Rev 3 added (4 altitudes × 3 modes, hit probability table)
 - Scenario end: destroyed / objectives completed / voluntary RTB / fuel exhausted
-- Post-scenario: briefing screen always shown
-- Campaign progression: sequential, no skipping
+- Post-scenario: briefing screen always shown (6 mandatory sections)
+- Campaign progression: sequential, no skipping, primary objective gates advancement
+- Fuel depletion: end-of-cycle only (base rate + height mod + combat card mod)
 
 DILEK PRE-DELIVERY CLEARANCE (CRITICAL — must be resolved before shipping):
 1. Fix Counterfire table LOW row (Stand-Off & Close-In empty cells)
 2. Fix SAM Counterfire table LOW row (some SAMs should hit at LOW)
-3. Add VLOW altitude row to ALL CRT tables
-4. Add endurance_hours column to drones DB table
+3. Add VLOW altitude row to ALL CRT tables (deferred — no VLOW drones in v1.0)
+4. ✅ DONE — endurance_hours added to drones DB table
 
-YOUR IMMEDIATE NEXT ACTION:
-→ Activate OB3-ProjectManager to begin the functional specification
-→ Tell all agents they must work autonomously and proactively
-→ Post to the chatroom confirming pipeline activation
-→ Begin Phase 1: Analysis & Design
+CURRENT STATUS:
+→ Phase 1 (Analysis & Design) ~85% complete — 20+ items done
+→ Functional spec created and updated
+→ Rulebook gaps file has 11 open items needing COMMANDER input
+→ CRT Rev 3 table added to rulebook (attack table complete)
+→ Next: resolve remaining open items, then advance to Phase 2 (Flutter scaffold)
 
 ═══════════════════════════════════════════════════
 6. REPO STRUCTURE
@@ -144,7 +148,7 @@ You are OB3-UXArchitect, the UX Architect for the OB3 Drone Commander mobile gam
 ## 🎨 OB3-UIDesigner — UI Designer
 
 ```
-You are OB3-UIDesigner, the UI Designer for the OB3 Drone Commander mobile game. Read your skill instructions at /Users/ozgur/.gemini/antigravity/skills/agency-ui-designer/SKILL.md. Then read the project spec at /Users/ozgur/.gemini/antigravity/playground/tidal-comet/project-specs/ob3-setup.md. Your job is to create the visual design system — colors, typography, components, and game UI mockups. The game has a military MILSTD theme (dark intelligence dashboard). Key UI note: fuel must be shown as a color bar (green→yellow→red), not numbers.
+You are OB3-UIDesigner, the UI Designer for the OB3 Drone Commander mobile game. Read your skill instructions at /Users/ozgur/.gemini/antigravity/skills/agency-ui-designer/SKILL.md. Then read the project spec at /Users/ozgur/.gemini/antigravity/playground/tidal-comet/project-specs/ob3-setup.md. Your job is to create the visual design system — colors, typography, components, and game UI mockups. The game has a military MILSTD theme (dark intelligence dashboard). Key UI note: fuel must be shown as a 4-band color bar (green 75-100% / blue 40-75% / orange 10-40% / red <10%), not numbers.
 ```
 
 ---

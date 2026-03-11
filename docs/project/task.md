@@ -17,7 +17,8 @@
 - [x] Record deck composition rules (3 decks, DB-driven, duplicates, shuffling)
 - [x] Record deck exhaustion rules (reshuffle from original)
 - [x] Record card data source rule (DB sole source of truth, no hard-coding)
-- [x] Correct B-box cycle flow (B1=search, B2=target+threat, B3=combat card, B4=attack, B5=evasion)
+- [x] Correct B-box cycle flow (B1=search, B2=target+threat, B3=positioning, B4=attack, B5=evasion)
+- [x] Add Drone Attack CRT Rev 3 (4 altitudes × 3 modes, hit probability summary, weapon restrictions)
 - [x] Record Target Determination detailed flow (dice display, VP banking, kill list)
 - [x] Record Objectives Tracking (primary gates campaign, secondary VP conditional)
 - [x] Record Primary Objective Completion Prompt (RTB vs Continue, shown once)
@@ -71,7 +72,7 @@
 ## 🚨 DILEK Pre-Delivery Clearance (CRITICAL)
 - [ ] Fix Counterfire table LOW row (Stand-Off & Close-In empty cells)
 - [ ] Fix SAM Counterfire table LOW row (some SAMs should hit at LOW)
-- [ ] Add VLOW altitude row to ALL CRT tables (deferred — no VLOW drones yet)
+- [x] Add VLOW row to Drone Attack CRT ✅ (Rev 3 — other CRT tables still need VLOW)
 - [x] Add `endurance_hours` column to `drones` DB table ✅
 
 ## Scope Decisions
@@ -87,7 +88,8 @@
 - [x] B1: Endurance + SI for all 28 drones → Done, in DB
 - [x] E3: Post-Scenario Briefing content → 6 sections defined
 - [x] H3: SI values → Done, all 28 updated in DB
-- [ ] A1-A3: VLOW CRT values (deferred — no VLOW drones)
+- [x] Q3: LOW/Stand-Off 0% hit → Confirmed by CRT Rev 3
+- [ ] A1-A3: VLOW CRT values (Counterfire + SAM tables — deferred)
 - [ ] B2: Fuel consumption rate (1F = ? hours)
 - [ ] C1-C3: Combat card deck contents
 - [ ] D1-D2: Scenario definitions for v1.0
