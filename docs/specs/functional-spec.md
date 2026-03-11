@@ -173,9 +173,15 @@ SQLite: `loadouts` table, linked to `drones` by drone_id
 4 levels: **VLOW / LOW / MEDIUM / HIGH**
 (Starting altitude: MEDIUM)
 
-### 6.5 Fuel Display
-- **Color bar** (NOT numeric): Green → Yellow → Red as fuel declines
-- No fuel number shown to player
+### 6.5 Fuel Display (= Endurance)
+- Fuel IS endurance. Displayed as **"FUEL"** on screen
+- **Color bar** (NO numeric value shown to player):
+  - 🟢 Green: 75–100%
+  - 🔵 Blue: 40–75%
+  - 🟠 Orange: 10–40%
+  - 🔴 Red: 0–10%
+- **Depletion**: base rate per cycle + height modifier + combat card modifier. Applied at **end of each cycle only**
+- **No score value** — remaining fuel at RTB/end has zero impact on VP
 
 ### 6.6 Attack Modes
 | Mode | Fuel Cost | Notes |

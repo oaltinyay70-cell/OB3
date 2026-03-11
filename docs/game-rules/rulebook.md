@@ -711,6 +711,32 @@ Damage affects drone subcomponents cascadingly:
 
 ---
 
+### 6.5. Fuel / Endurance Mechanic
+
+> [!IMPORTANT]
+> **Fuel IS Endurance.** Wherever "fuel" appears in rules, it means endurance. On the app screen it is displayed as **"FUEL"**.
+
+| Attribute | Specification |
+|-----------|--------------|
+| **Initial Value** | Full — value defined by scenario designer in DB (endurance_hours column) |
+| **Depletion Method** | Base rate per cycle (fixed, designer-defined) **PLUS** modifiers from active height level **AND** active combat card effect |
+| **Depletion Timing** | Applied at the **end of each cycle** (End-of-Cycle Check step 4) — **not mid-step** |
+| **Score Impact** | **None.** Remaining fuel on RTB or scenario end has NO effect on VP or campaign score |
+| **Exhaustion Result** | Scenario ends. Post-scenario briefing is displayed. Same code path as voluntary RTB |
+
+#### 6.5.1. Fuel Display — Color Bar
+
+The fuel gauge is a **color-coded bar** (no numeric value shown to player):
+
+| Fuel Remaining | Color | Hex Suggestion |
+|:--------------:|:-----:|:--------------:|
+| 75% – 100% | 🟢 **Green** | `#22C55E` |
+| 40% – 75% | 🔵 **Blue** | `#3B82F6` |
+| 10% – 40% | 🟠 **Orange** | `#F97316` |
+| 0% – 10% | 🔴 **Red** | `#EF4444` |
+
+---
+
 ## 7. Scoring
 
 ### Maximum Kill Method
