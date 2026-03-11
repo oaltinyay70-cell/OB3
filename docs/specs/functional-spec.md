@@ -34,6 +34,12 @@ After any end condition → **Post-Scenario Briefing screen** is displayed.
 ### 2.3 Campaign Rules (v1.1 only — out of scope)
 - Scenarios play in sequential order, no skipping
 
+### 2.4 Deck Composition
+- **Triple-Deck System**: Each scenario uses three independent card pools: Combat, Target, and Threat.
+- **DB-Driven**: Composition (IDs and counts) is stored in the database per scenario.
+- **Duplicate Support**: Designers can include multiple copies of any card in a deck.
+- **Randomization**: Independent shuffling of each deck occurs at scenario initialization.
+
 ---
 
 ## 3. Screens (Required for v1.0)

@@ -464,6 +464,14 @@ Drawn at B1 and B3. Each has instructions that must be executed immediately.
 > [!NOTE]
 > **ENGINEER** sub-category (6 cards) = **PERSONNEL class**. Confirmed by designer: Engineers are treated identically to PERSONNEL for all game mechanics (Target Acquisition range, weapon compatibility, VP calculation). The different name is purely flavour (e.g., like "Infantry SQD" vs "Sappers").
 
+### 8.2.1 Target Card Rules & Instructions
+
+Target cards may contain specific combat mechanics stored in the `instructions` (or `instruction`) column of the `target_cards` table. 
+
+> [!IMPORTANT]
+> The engine **MUST** parse these rules when computing CRTs. For example, a T-90 card might specify `* Special Rule: +1L Column Shift in Attack phase`. The targeting logic inside the `Attack Resolution` step must check the active target card's instructions and apply these shifts or DRMs dynamically.
+
+
 ### 8.3. Threat Cards (36 total, 5 sub-categories)
 
 | Sub-Category | Count | Maps to Rulebook Name |

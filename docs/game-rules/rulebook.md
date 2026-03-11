@@ -98,6 +98,16 @@ The game is a board game simulating a Drone Operation based on sensory input and
 
 **Dice Required:** One D6 (six-sided) and two D10 (ten-sided).
 
+### 2.1. Deck Composition
+
+> [!IMPORTANT]
+> Official card deck rules for mobile adaptation.
+
+- **Three Independent Decks**: Each scenario utilizes three distinct card decks: **Combat**, **Target**, and **Threat**.
+- **Scenario Defined**: The composition of each deck (specific card IDs and their quantities) is defined by the scenario designer and stored in the database.
+- **Duplicates Permitted**: A scenario designer may include the same card more than once in a deck (duplicates are intentional and fully supported).
+- **Independent Shuffling**: Each deck is shuffled independently before the scenario begins.
+
 ### 2.1. The Game Play
 
 - The game consists of **turns**
