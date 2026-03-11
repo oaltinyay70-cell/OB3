@@ -96,7 +96,7 @@ stateDiagram-v2
 
 #### B0 — In Transit
 
-- **First turn:** Set altitude to HIGH (or drone's maximum)
+- **First turn:** Set altitude to MEDIUM (starting altitude per functional spec)
 - **Returning from B5:** If COMMS Damage > 2, roll 1D6 for controllability check
   - ≤2 → All OK
   - 3–5 → Controllable with difficulty (−1 Attack DRM)
@@ -105,10 +105,9 @@ stateDiagram-v2
 
 #### B1 — Search
 
-- **Optional:** Change altitude (costs 1F per level change)
-- **Required:** Draw a combat card and execute its instructions
-- If combat card deck is empty → reshuffle, place face-up
-- If no fuel → forced RTB
+- **Optional:** Change altitude (costs 2F UP / 1F DOWN per level)
+- **Required:** Option to resolve any target/threat cards (not a full mechanics phase, rules ambiguous) // TODO cleanup based on spec
+- If fuel = 0 after card resolution → forced RTB
 
 #### B2 — Target Acquisition / Threat Determination
 
@@ -119,7 +118,7 @@ stateDiagram-v2
 
 #### B3 — Positioning
 
-- **Optional:** Change altitude (costs 1F)
+- **Optional:** Change altitude (costs 2F UP / 1F DOWN per level)
 - **Required:** Draw a combat card and execute its instructions
 
 #### B4 — Drone Attack
@@ -162,11 +161,11 @@ flowchart LR
 
 | Indicator | Starts At | Max | Effect |
 |-----------|-----------|-----|--------|
-| **Structural Integrity** | 0 | Drone's max DP | ≥ max → drone destroyed |
+| **Structural Integrity** | Drone max SI | 0 (Destroyed) | 0 → drone destroyed |
 | **Sensors** | 0 | 9 | Every 4 points → −1 Attack DRM |
 | **COMMS** | 0 | 5 | > 2 → COMMS check at B0 each turn |
-| **VIS/RCS** | 0 | — | Higher → enemy finds you easier (+10 Threat DRM per 2 VIS) |
-| **Fuel** | Drone's endurance | 0 | 0 → forced RTB |
+| **VIS/RCS** | 0 (base) | — | Higher → enemy finds you easier (+10 Threat DRM per 2 VIS) |
+| **Fuel** | Drone endurance | 0 | 0 → forced RTB. Depleted at END of cycle only |
 
 ---
 
@@ -244,11 +243,11 @@ GameState {
   attack_mode: Enum(STANDOFF, CLOSE_IN, FO_LAZE)
 
   // Health indicators
-  structural_integrity: int   // starts 0, max = drone.max_structural_integrity
+  structural_integrity: int   // starts at drone.max_structural_integrity
   sensors_damage: int         // starts 0, max 9
   comms_damage: int           // starts 0, max 5
-  vis_rcs: int                // starts 0
-  fuel: int                   // starts at drone.fuel
+  vis_rcs: int                // starts at default based on drone
+  fuel: int                   // starts at drone.fuel (endurance)
 
   // Deck state
   loadout: List<Weapon>       // remaining weapons

@@ -60,7 +60,7 @@ Perform the COMMS controllability check. Called at B0 when returning from B5 wit
 
 Optional altitude change. Called at B1 or B3.
 
-- **Cost:** 1F per altitude level changed
+- **Cost:** 2F per UP level, 1F per DOWN level
 - **Validation:** Target altitude must be in `drone.altitude` (supported altitudes)
 - **Returns:** `{newAltitude, fuelCost}`
 
@@ -179,7 +179,7 @@ AttackResult {
 - If HIT → move target card to Destroyed pile, add VP
 - If miss → move target card to Discard pile
 - Remove used weapon from loadout
-- Reduce fuel by `fuelCost`
+- Add `fuelCost` to cycle total (deducted at end of cycle)
 
 ### `resolveSAMReaction(vis: int, attackMode: AttackMode, altitude: Altitude) → SAMReactionResult`
 
@@ -253,10 +253,10 @@ Apply structural damage and cascade to sub-components. Called after any damage e
 
 | Step | Rule |
 |------|------|
-| 1 | Add `damage` to `structural_integrity` |
-| 2 | If `structural_integrity >= drone.max_structural_integrity` → **drone destroyed** |
-| 3 | For every 2 points of total SI damage → `sensors_damage + 1` (max 9) |
-| 4 | For every 3 points of total SI damage → `comms_damage + 1` (max 5) |
+| 1 | `structural_integrity -= damage` |
+| 2 | If `structural_integrity <= 0` → **drone destroyed** |
+| 3 | For every 2 points of total SI damage (max - current) → `sensors_damage + 1` (max 9) |
+| 4 | For every 3 points of total SI damage (max - current) → `comms_damage + 1` (max 5) |
 | 5 | For every 1 point of new COMMS or Sensors damage → `vis_rcs + 1` |
 
 **Sensors combat effect:** For every 4 points of Sensor Damage → −1 to Drone Attack Roll.
@@ -280,16 +280,17 @@ DamageResult {
 
 ### `consumeFuel(amount: int, state: GameState) → FuelResult`
 
-Consume fuel and check for forced RTB.
+Consume fuel and check for forced RTB. Applies total fuel burned at **end of cycle only** (per spec).
 
-**Fuel costs by source:**
+**Fuel costs by source (accumulated during cycle):**
 
 | Source | Cost |
 |--------|------|
 | B2 — Target/Threat phase entry | 1F |
-| Altitude change (B1 or B3) | 1F per level |
+| Altitude change (B1 or B3) | 2F per UP level, 1F per DOWN level |
 | Attack CRT result | 1F / 2F / 3F (per cell) |
 | Evasion CRT result | 0F / 1F / 2F (per cell) |
+| Base burn rate | scenario-defined rate per cycle |
 | Loadout with `(+)` marker | +2F per cycle |
 
 **Returns:**

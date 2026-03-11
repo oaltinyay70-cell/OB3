@@ -2,7 +2,7 @@
 
 > A mobile game adaptation of the **Obscure Battles 3: Drone Commander** solo board game — UCAV combat operations on your phone.
 
-🚧 **Status:** In Development — Phase 0: Foundation
+🚧 **Status:** In Development — Phase 1: Analysis & Design
 
 ---
 
@@ -148,8 +148,8 @@ Development uses an 8-agent pipeline, each with a specialized skill:
 
 | Phase | Status | Description |
 |-------|--------|-------------|
-| **0: Foundation** | 🟡 In Progress | Discovery, rulebook parsing, project setup |
-| **1: Analysis & Design** | ⬜ Planned | Functional spec, UX architecture, design system |
+| **0: Foundation** | 🟢 Done | Discovery, rulebook parsing, project setup |
+| **1: Analysis & Design** | 🟡 In Progress | Functional spec, UX architecture, design system |
 | **2: Project Setup** | ⬜ Planned | Flutter scaffold, database integration, project structure |
 | **3: Core Implementation** | ⬜ Planned | Game engine, card systems, combat resolution |
 | **4: Scenario System** | ⬜ Planned | Scenario loader, scenario editor |
@@ -177,10 +177,14 @@ Development uses an 8-agent pipeline, each with a specialized skill:
 |----------|-------------|
 | [Rulebook](docs/game-rules/rulebook.md) | Complete game rules (V3.1-D10) with Q&A |
 | [Game Loop Diagram](docs/game-rules/game_loop_diagram.md) | Mermaid flowchart of B0–B5 cycle |
+| [Functional Specification](docs/specs/functional-spec.md) | Core mechanics, state machine rules, scoring |
+| [UX Architecture](docs/specs/ux-architecture.md) | Screen flows, components, component hierarchy |
+| [Design System](docs/specs/design-system.md) | Colors (MILSTD dark), typography, UI widgets |
 | [Architecture](ARCHITECTURE.md) | System design, state machine, database |
 | [Project Brief](docs/discovery/project_brief.md) | Background, key decisions, scope |
 | [Discovery Q&A](docs/discovery/discovery_questions.md) | Answered discovery questions |
 | [Game Engine API](docs/specs/game-engine-api.md) | Internal API reference for game mechanics |
+| [Task Breakdown](project-tasks/task-breakdown.md) | 27-step developer implementation plan |
 | [Agent Roster](project-specs/agent-roster.md) | Agent roles and pipeline flow |
 
 ---
