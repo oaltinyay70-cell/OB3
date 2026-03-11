@@ -142,7 +142,39 @@ For each v1.0 scenario, what are:
 
 **Your answer:** ⚠️ Question not understood. Will rephrase:
 
-> For the v1.0 scenario, please provide: scenario name/setting, primary objective (e.g. "destroy 3 tanks"), which drones are available, and any special rules. The target/threat deck composition can come from the DB.
+> Please fill in the detailed scenario definition below:
+
+**Scenario Name:**
+The Milk run
+
+**Scenario Subtitle:**
+
+
+**Scenario Main Text (Briefing):**
+
+
+**Allowed Drones:**
+all
+
+**Primary Objective (e.g., destroy 1 specific target card):**
+kill 1 TANK type target card
+
+**Secondary Objective(s):**
+
+
+**Combat Deck Composition (Which cards & how many):**
+
+
+**Target Deck Composition (Which cards & how many):**
+
+
+**Threat Deck Composition (Which cards & how many):**
+
+
+**Any Special Rules?:**
+none
+
+
 ---
 
 ## E. Scoring & Post-Scenario — ✅ E3 RESOLVED
@@ -192,12 +224,10 @@ FO/Laze costs 3F per the Attack CRT — is this correct? That's 3× the cost of 
 
 ## G. Drone Special Abilities
 
-### G1. AEASA Radar
-Beyond the +10 DRM on Target Acquisition, does AEASA Radar have any other gameplay effect?
+### G1. AESA Radar ✅ RESOLVED
+Beyond the +10 DRM on Target Acquisition, does AESA Radar have any other gameplay effect?
 
-**Your answer:**
-
-
+**Your answer:** No other effect. It just provides the +10 DRM bonus.
 ### G2. SATCOM
 Beyond -1 to COMMS check DRM, does SATCOM have any other benefit?
 

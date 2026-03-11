@@ -569,7 +569,7 @@ Both done in **B2**. Order doesn't matter but both must complete before leaving 
 4. Draw top card from matching Target Type deck
 
 **DRM Modifiers:**
-- +10 for Drone AEASA Radar
+- +10 for Drone AESA Radar
 - +10 for "0" damage to Comms
 - -10 from DRM for every 1 point of COMMS damage
 
