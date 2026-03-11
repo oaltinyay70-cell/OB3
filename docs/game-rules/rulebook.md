@@ -330,6 +330,19 @@ Movement is always **1 box-step**. Cannot skip or go back unless specifically in
 | **REQUIRED** | Target Detection: Roll 2D10, apply DRM, consult Target Acquisition Table |
 | **REQUIRED** | Threat Determination: Roll 2D10, apply DRM, consult Threat Determination Table |
 
+##### Target Determination — Detailed Flow
+
+| Attribute | Specification |
+|-----------|--------------|
+| **Trigger** | Immediately after Target Detection roll is resolved |
+| **Action** | Draw one card from the Target Card deck |
+| **Display** | The drawn target card is displayed on screen to the player |
+| **Effect** | Card context is read from DB and applied to the current game state |
+| **Kill Resolution** | A DICE ROLL using the existing hit probability algorithm determines if the target is killed. Both the roll result AND outcome are displayed (e.g. `Roll: 14 — Hit!`) |
+| **On Kill — VP** | The VP value of the target (from DB) is added to the player's scenario VP **immediately**. This VP is permanently banked and is **NOT reversed** if the drone is destroyed later in the same cycle |
+| **On Kill — Kill List** | The target card name is appended to the player's kill list |
+| **On Miss** | No VP awarded. Kill list unchanged. Scenario continues to Step 3 (Threat resolution) |
+
 > **🎯 DRONE COMMANDER'S DECISION:**
 > If the target is NOT worth the risk of facing the threat:
 > - Discard both cards to Discarded Pile
