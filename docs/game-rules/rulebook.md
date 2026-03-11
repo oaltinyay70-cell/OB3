@@ -108,6 +108,11 @@ The game is a board game simulating a Drone Operation based on sensory input and
 - **Duplicates Permitted**: A scenario designer may include the same card more than once in a deck (duplicates are intentional and fully supported).
 - **Independent Shuffling**: Each deck is shuffled independently before the scenario begins.
 
+### 2.2. Deck Exhaustion
+
+- If any deck runs out of cards mid-scenario, that deck is **immediately reshuffled** from its full original designer-defined composition.
+- Play continues without interruption. **The scenario does NOT end due to deck exhaustion.**
+
 ### 2.1. The Game Play
 
 - The game consists of **turns**
