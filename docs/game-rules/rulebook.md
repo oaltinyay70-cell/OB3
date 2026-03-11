@@ -123,6 +123,11 @@ The game is a board game simulating a Drone Operation based on sensory input and
 - If any deck runs out of cards mid-scenario, that deck is **immediately reshuffled** from its full original designer-defined composition.
 - Play continues without interruption. **The scenario does NOT end due to deck exhaustion.**
 
+### 2.2.1. Deck Orientation & Storage
+- **Backside Up**: All decks (Target, Threat, Combat) must be placed in their respective card holding boxes **backside up** (face-down).
+- **Identification**: Decks are visually distinguished by their color-coded backs (Target: Cyan/Green, Threat: Red/Crimson, Combat: Blue).
+- **Drawing**: Cards are drawn from the top of the face-down stack as required by the cycle steps.
+
 ### 2.3. Card Data Source
 
 > [!CAUTION]
@@ -240,7 +245,7 @@ Tracking table for:
    - Some ammo can't be used for all attack types
    - Some weapons can't attack certain target types
    - Consult weapon counter for options
-5. Place Threat and Target Cards in separate decks per scenario; shuffle and place on game board
+5. Place Threat, Target, and Combat Cards in their respective card holding boxes, **backside up** (face-down).
 6. [OPTIONAL] Campaign: place Base counter on first base territory zone
 7. Ready to take off
 
@@ -382,15 +387,13 @@ Immediately after the kill that completes the primary objective, and **before pr
 #### 6.3.4. B3 — "Positioning"
 
 > [!IMPORTANT]
-> Designer clarification: Combat Card is drawn at B3 (optional), not B1. Altitude change also optional here.
+> Designer clarification: B3 is positioning only. Altitude change is optional.
 
 | Action Type | Description |
 |------------|-------------|
-| **OPTIONAL** | Change altitude — costs 1F per change |
-| **OPTIONAL** | Draw a **Combat Card** and execute its instructions for this cycle only |
+| **OPTIONAL** | Change altitude — free action |
 
-- If combat cards depleted → reshuffle and place back face-up
-- After completing actions → move to B4
+After completing actions → move to B4
 
 #### 6.3.5. B4 — "Drone Attack"
 
@@ -592,9 +595,9 @@ Both done in **B2**. Order doesn't matter but both must complete before leaving 
 | **FO/Lazing** | Act as Forward Observer for heavy fire group (bomber, artillery battery) |
 
    **Weapon mode restrictions:**
-   - AA missiles → Stand-off only
-   - Torpedoes/Sonobuoys → Close-in only
-   - Anti-shipping missiles → Stand-off only
+   - AA missiles → Stand-Off / Medium–High only
+   - Torpedoes & Sonobuoys → Close-In only
+   - Anti-Shipping missiles → Stand-Off only
 
 2. **Select weapon** — consult weapon counter for compatibility
 
@@ -612,18 +615,40 @@ Both done in **B2**. Order doesn't matter but both must complete before leaving 
 
 8. **Fuel/ammo:** Reduce fuel by amount in cell; remove used weapon
 
-**DRONE ATTACK TABLE**
+**DRONE ATTACK TABLE (CRT — Rev 3)**
 
-|  | Stand-Off ||||||| Close-In ||||||| FO/Laze ||||||
+Roll 1D6 + DRM modifiers. Find the intersecting cell. ❖ HIT = target destroyed. Fuel shown is always expended regardless of result.
+
+|  | Stand-Off (1F base) |||||| Close-In (2F base) |||||| FO/Laze (3F base) ||||||
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | **ALT / DRM** | **1** | **2** | **3** | **4** | **5** | **6** | **1** | **2** | **3** | **4** | **5** | **6** | **1** | **2** | **3** | **4** | **5** | **6** |
-| **LOW** | 1F | 1F | 1F | 1F | 1F | 1F | 2F | 2F | 2F | 2F | 2F | 2F+HIT | 3F | 3F | 3F | 3F | 3F | 3F+HIT |
-| **MEDIUM** | 1F | 1F | 1F | 1F | 1F | 1F+HIT | 2F | 2F | 2F | 2F | 2F+HIT | 2F+HIT | 3F | 3F | 3F+HIT | 3F+HIT | 3F+HIT | 3F+HIT |
-| **HIGH** | 1F | 1F | 1F | 1F | 1F+HIT | 1F+HIT | 2F | 2F | 2F | 2F+HIT | 2F+HIT | 2F+HIT | 3F | 3F | 3F | 3F+HIT | 3F+HIT | 3F+HIT |
+| **VERY LOW** | N/A | N/A | N/A | N/A | N/A | N/A | 2F | 2F ❖ | 2F ❖ | 2F ❖ | 2F ❖ | 2F ❖ | 3F | 3F | 3F ❖ | 3F ❖ | 3F ❖ | 3F ❖ |
+| **LOW** | 1F | 1F | 1F | 1F | 1F | 1F | 2F ❖ | 2F ❖ | 2F ❖ | 2F | 2F | 2F | 3F | 3F | 3F | 3F | 3F | 3F ❖ |
+| **MEDIUM** | 1F | 1F | 1F | 1F | 1F | 1F ❖ | 2F | 2F | 2F | 2F | 2F ❖ | 2F ❖ | 3F ❖ | 3F ❖ | 3F ❖ | 3F ❖ | 3F | 3F |
+| **HIGH** | 1F | 1F | 1F | 1F | 1F ❖ | 1F ❖ | 2F | 2F | 2F | 2F ❖ | 2F ❖ | 2F ❖ | 3F | 3F | 3F | 3F ❖ | 3F ❖ | 3F ❖ |
+
+**Hit Probability Summary**
+
+| Altitude | Mode | HIT % | Min DRM to HIT | Hits / 6 |
+|----------|------|-------|-----------------|----------|
+| VERY LOW | Stand-Off | N/A | N/A | N/A |
+| VERY LOW | Close-In | 83.3% | DRM 2 | 5 / 6 |
+| VERY LOW | FO/Laze | 66.7% | DRM 3 | 4 / 6 |
+| LOW | Stand-Off | 0% | NO HIT | 0 / 6 |
+| LOW | Close-In | 50% | DRM 1 | 3 / 6 |
+| LOW | FO/Laze | 16.7% | DRM 6 | 1 / 6 |
+| MEDIUM | Stand-Off | 16.7% | DRM 6 | 1 / 6 |
+| MEDIUM | Close-In | 33.3% | DRM 5 | 2 / 6 |
+| MEDIUM | FO/Laze | 66.7% | DRM 3 | 4 / 6 |
+| HIGH | Stand-Off | 33.3% | DRM 5 | 2 / 6 |
+| HIGH | Close-In | 16.7% | DRM 6 | 1 / 6 |
+| HIGH | FO/Laze | 50% | DRM 4 | 3 / 6 |
 
 > **Notes:**
-> - (1) Shift 1 RIGHT for each 2 Pts of Sensor Damage
-> - (2) Drone uses fuel indicated in the crossed cell
+> 1. Stand-Off mode is **NOT available** at Very Low altitude.
+> 2. Shift 1 column **RIGHT** for each 2 points of Sensor Damage.
+> 3. Drone expends fuel shown in the final crossed cell — **regardless of HIT or MISS**.
+> 4. **Weapon restrictions:** AA missiles → Stand-Off / Medium–High only. Torpedoes & Sonobuoys → Close-In only. Anti-Shipping → Stand-Off only.
 
 ##### 6.4.3.1. [OPTIONAL] Attacking SAM Type Targets
 
@@ -840,11 +865,11 @@ Similarly, the **SAM Target Unit Special Counterfire Table** shows the entire LO
 
 ---
 
-### Q3. Drone Attack Table — LOW / Stand-Off
+### Q3. Drone Attack Table — LOW / Stand-Off ✅ RESOLVED
 
 The LOW / Stand-Off results are all `1F` with **no HIT** anywhere (DRM 1–6). This means Stand-Off at LOW altitude can **never** hit a target. Is that correct by design?
 
-**Your answer:** Yes, correct by design. The drone needs to carry an additional kit to make a hit at LOW/Stand-Off. Keep as-is.
+**Your answer:** Yes, correct by design. **Confirmed by CRT Rev 3** — LOW/Stand-Off = 0% hit rate (0/6). The drone needs to carry an additional kit to make a hit at LOW/Stand-Off. Keep as-is.
 
 ---
 

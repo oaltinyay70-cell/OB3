@@ -143,7 +143,6 @@ SQLite: `loadouts` table, linked to `drones` by drone_id
 
 #### B3 — Positioning
 - Optional: change height (free action)
-- Optional: draw **Combat Card** (effects last this cycle only)
 
 #### B4 — Drone Attack
 - Select height, attack mode (Stand-Off / Close-In / FO-Laze), weapon
