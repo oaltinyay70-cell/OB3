@@ -343,6 +343,15 @@ Movement is always **1 box-step**. Cannot skip or go back unless specifically in
 | **On Kill — Kill List** | The target card name is appended to the player's kill list |
 | **On Miss** | No VP awarded. Kill list unchanged. Scenario continues to Step 3 (Threat resolution) |
 
+##### Objectives Tracking
+
+After **every** Step 2 kill resolution, the system must check the player's progress against scenario objectives:
+
+| Objective Type | Rules |
+|----------------|-------|
+| **Primary** | Required number and type of specific target cards killed. Must be achieved to unlock the next scenario in a Campaign. Status checked after **each** kill. |
+| **Secondary** | Optional additional kills for bonus VP. VP from secondary objectives is **ONLY** counted in the final campaign score if the primary objective was also achieved. During play, secondary VP is banked normally; **filtering occurs at post-scenario scoring time**. |
+
 > **🎯 DRONE COMMANDER'S DECISION:**
 > If the target is NOT worth the risk of facing the threat:
 > - Discard both cards to Discarded Pile
