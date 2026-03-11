@@ -89,10 +89,32 @@ Can all drones access VLOW, or is it restricted to certain classes/types?
 
 **Your answer:** Depends on the scenario. **Minimum 1** combat card per scenario. Deck composition is defined by scenario designer in DB.
 
-### C2. List the combat card effects
-What events/conditions do the combat cards have? Examples: weather, comms failure, bonus DRM, altitude change, etc. Please list as many as you can.
+### C2. List the combat card effects ✅ RESOLVED
+What events/conditions do the combat cards have?
 
-**Your answer:**
+**Your answer:** 18 combat cards defined in two categories:
+- **Attack DRM Modifiers** (11 cards): range from +2 to -2, one is altitude-conditional (GROUND HUGGING), one exempts FO/Laze (GHOST SIGNAL)
+- **Altitude Change** (7 cards): +1, +2, -1, -2, forced HIGH, forced VLOW
+- All card names, flavor text, and effects recorded in rulebook section 2.7.1.
+
+AGGRESSIVE STRIKE PROFILE Combat Card "Maverick's flying. Duck." Attack DRM: +2 Apply +2 to all attack rolls.
+WHITEOUT Combat Card "Winter is here. Targeting is not." Attack DRM: -2 Apply -2 to all attack rolls.
+TAILWIND Combat Card "The Force is strong with this one." Attack DRM: +1 Apply +1 to all attack rolls.
+STATIC Combat Card "Houston, we have a problem." Attack DRM: -1 Apply -1 to all attack rolls.
+LOST SIGNAL Combat Card "E.T. can't phone home either." Attack DRM: -2 Apply -2 to all attack rolls.
+CLEAR SKIES Combat Card "I see dead targets." Attack DRM: +2 Apply +2 to all attack rolls.
+GROUND HUGGING Combat Card "Keep your friends close. Keep your altitude lower." Attack DRM: +1 Apply +1 to all attack rolls at Very Low or Low altitude.
+UPDRAFT Combat Card "Physics has opinions." Attack DRM: -1 Apply -1 to all attack rolls.
+GHOST SIGNAL Combat Card "These aren't the targets you're looking for." Attack DRM: -1 Apply -1 to all attack rolls. FO/Laze mode unaffected.
+BURST TRANSMISSION Combat Card "One ping only, please." Attack DRM: +1 Apply +1 to all attack rolls.
+FOG OF WAR Combat Card "I love the smell of confusion in the morning." Attack DRM: -2 Apply -2 to all attack rolls.
+THERMAL SPIKE Combat Card "To infinity — starting with one altitude level." Altitude Change: +1 to altitude level.
+DIVE DIVE DIVE Combat Card "Just keep swimming. Lower." Altitude Change: -1 to altitude level.
+DEAD DROP Combat Card "What goes up, must go down. Immediately." Altitude Change: -1 to altitude level.
+STRATOSPHERIC Combat Card "I'm on top of the world, Ma." Altitude Change: +2 to altitude levels.
+NOSEDIVE Combat Card "Hello darkness, my old friend." Altitude Change: -2 to altitude levels.
+DECK LEVEL Combat Card "Why so serious? Fly lower." Altitude Change: Forced to VERY LOW.
+TOP GUN Combat Card "You can be my wingman any time." Altitude Change: Forced to HIGH.
 
 
 ### C3. "No Event" ratio ✅ RESOLVED
@@ -118,23 +140,22 @@ For each v1.0 scenario, what are:
 - Threat deck composition
 - Special rules (if any)
 
-**Your answer:**
+**Your answer:** ⚠️ Question not understood. Will rephrase:
 
-
+> For the v1.0 scenario, please provide: scenario name/setting, primary objective (e.g. "destroy 3 tanks"), which drones are available, and any special rules. The target/threat deck composition can come from the DB.
 ---
 
 ## E. Scoring & Post-Scenario — ✅ E3 RESOLVED
 
-### E1. VP Values
+### E1. VP Values ✅ RESOLVED
 Are VP values defined on individual target cards, or is there a standard VP chart by target type?
 
-**Your answer:**
+**Your answer:** VP values are defined **on each individual target card**. Each card carries its own VP award.
 
+### E2. Rank / Rating System ✅ RESOLVED
+After a scenario, does the player get a rank/grade based on score? Or just a raw VP number?
 
-### E2. Rank / Rating System
-After a scenario, does the player get a rank/grade (e.g., A/B/C or "Ace"/"Veteran") based on score? Or just a raw VP number?
-
-**Your answer:**
+**Your answer:** VP accumulates on the player's profile. At certain VP thresholds, the player earns **medals** and **rank-ups**. This is a persistent progression system.
 
 
 ### E3. Post-Scenario Briefing Content ✅ RESOLVED

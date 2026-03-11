@@ -216,8 +216,39 @@ Tracking table for:
 
 - Add randomness to gameplay
 - Some have events/conditions that take precedence over normal rules
-- "No Event" cards = discard without action
+- "No Event" cards = discard without action (~50% of deck)
 - If all used up → reshuffle and place back face-up
+- **Deck size**: scenario-dependent (minimum 1 card). Defined by scenario designer in DB.
+
+#### 2.7.1. Combat Card Catalog (18 cards)
+
+**Attack DRM Modifiers** (11 cards):
+
+| Card Name | Flavor Text | Effect |
+|-----------|-------------|--------|
+| **AGGRESSIVE STRIKE PROFILE** | "Maverick's flying. Duck." | Attack DRM: **+2** |
+| **CLEAR SKIES** | "I see dead targets." | Attack DRM: **+2** |
+| **TAILWIND** | "The Force is strong with this one." | Attack DRM: **+1** |
+| **BURST TRANSMISSION** | "One ping only, please." | Attack DRM: **+1** |
+| **GROUND HUGGING** | "Keep your friends close. Keep your altitude lower." | Attack DRM: **+1** (only at VLOW or LOW) |
+| **WHITEOUT** | "Winter is here. Targeting is not." | Attack DRM: **-2** |
+| **LOST SIGNAL** | "E.T. can't phone home either." | Attack DRM: **-2** |
+| **FOG OF WAR** | "I love the smell of confusion in the morning." | Attack DRM: **-2** |
+| **STATIC** | "Houston, we have a problem." | Attack DRM: **-1** |
+| **UPDRAFT** | "Physics has opinions." | Attack DRM: **-1** |
+| **GHOST SIGNAL** | "These aren't the targets you're looking for." | Attack DRM: **-1** (FO/Laze mode unaffected) |
+
+**Altitude Change** (7 cards):
+
+| Card Name | Flavor Text | Effect |
+|-----------|-------------|--------|
+| **THERMAL SPIKE** | "To infinity — starting with one altitude level." | Altitude: **+1 level** |
+| **STRATOSPHERIC** | "I'm on top of the world, Ma." | Altitude: **+2 levels** |
+| **TOP GUN** | "You can be my wingman any time." | Altitude: **forced to HIGH** |
+| **DIVE DIVE DIVE** | "Just keep swimming. Lower." | Altitude: **-1 level** |
+| **DEAD DROP** | "What goes up, must go down. Immediately." | Altitude: **-1 level** |
+| **NOSEDIVE** | "Hello darkness, my old friend." | Altitude: **-2 levels** |
+| **DECK LEVEL** | "Why so serious? Fly lower." | Altitude: **forced to VLOW** |
 
 ---
 
