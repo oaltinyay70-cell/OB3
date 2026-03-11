@@ -352,6 +352,16 @@ After **every** Step 2 kill resolution, the system must check the player's progr
 | **Primary** | Required number and type of specific target cards killed. Must be achieved to unlock the next scenario in a Campaign. Status checked after **each** kill. |
 | **Secondary** | Optional additional kills for bonus VP. VP from secondary objectives is **ONLY** counted in the final campaign score if the primary objective was also achieved. During play, secondary VP is banked normally; **filtering occurs at post-scenario scoring time**. |
 
+##### Primary Objective Completion Prompt
+
+Immediately after the kill that completes the primary objective, and **before proceeding to Step 3** (Threat), the game must display a prompt:
+
+- **Option A: RTB** — end the scenario now and display post-scenario briefing
+- **Option B: Continue** — proceed to Step 3 (Threat Card) to attempt additional kills
+
+> [!NOTE]
+> This prompt is shown **once** per primary objective completion event. If the player continues, it does **not** re-appear in subsequent cycles. RTB remains available to the player at all times as a free action.
+
 > **🎯 DRONE COMMANDER'S DECISION:**
 > If the target is NOT worth the risk of facing the threat:
 > - Discard both cards to Discarded Pile
@@ -399,7 +409,17 @@ After completing actions → move to B5.
 | **REQUIRED** | Consult EVASION CRT TABLE for result |
 | **REQUIRED** | Apply results — damage inflicted if evasion fails |
 
-If drone is destroyed (SI = 0) → scenario ends immediately.
+##### Threat Determination — Detailed Flow
+
+| Attribute | Specification |
+|-----------|--------------|
+| **Trigger** | Immediately after Step 2 is resolved (unless player chose RTB at the Step 2 prompt) |
+| **Action** | Draw one card from the Threat Card deck |
+| **Display** | The drawn threat card is displayed on screen to the player |
+| **Effect** | Threat card context is read from DB and applied to the game flow |
+| **Damage Resolution** | If the threat card result produces damage: evasion roll using the existing evasion algorithm. If damage lands: apply to drone HP using **active damage multiplier (combat card modifier × height modifier)** |
+| **Drone Destroyed** | If drone HP reaches 0 or below: **SCENARIO ENDS IMMEDIATELY**. All previously banked VP is retained |
+| **Drone Survives** | Proceed to the End-of-loop check |
 
 > **🎯 DRONE COMMANDER'S DECISION:**
 > If drone survives:
