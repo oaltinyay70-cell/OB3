@@ -426,6 +426,22 @@ After completing actions → move to B5.
 > - a) Continue mission → move to **B0** (requires fuel)
 > - b) **RTB** → end scenario, trigger Post-Scenario Briefing
 
+#### 6.3.7. End-of-Loop Check
+
+After threat evasion is resolved and the drone has not been destroyed, the following checks are performed in **strict order**:
+
+| # | Check | Result |
+|---|-------|--------|
+| 1 | Drone destroyed? | **YES**: End scenario immediately. Display post-scenario briefing. |
+| 2 | Fuel exhausted? | **YES**: End scenario (forced RTB due to fuel). Display post-scenario briefing. |
+| 3 | Player initiated RTB? | **YES**: End scenario. Display post-scenario briefing. |
+| 4 | All checks passed | Apply fuel depletion for this cycle. **Clear combat card modifier.** Increment cycle counter. Return to Step 1 (B0). |
+
+> [!WARNING]
+> **OB3-SeniorDev must verify:**
+> - Fuel exhaustion triggers the **same post-scenario briefing path** as destruction or voluntary RTB
+> - Cycle counter increments correctly and is **persisted in game state**
+
 ---
 
 ### 6.4. Combat Rules
