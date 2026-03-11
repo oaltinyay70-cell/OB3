@@ -113,6 +113,14 @@ The game is a board game simulating a Drone Operation based on sensory input and
 - If any deck runs out of cards mid-scenario, that deck is **immediately reshuffled** from its full original designer-defined composition.
 - Play continues without interruption. **The scenario does NOT end due to deck exhaustion.**
 
+### 2.3. Card Data Source
+
+> [!CAUTION]
+> **Architectural constraint** — must be enforced in all game engine code.
+
+- All card instructions and game effects are **read from the database at the time the card is drawn**.
+- Cards must **never be hard-coded** in game logic. The DB is the **sole source of truth** for card behaviour.
+
 ### 2.1. The Game Play
 
 - The game consists of **turns**
