@@ -58,7 +58,7 @@ After any end condition → **Post-Scenario Briefing screen** is displayed.
 ## 4. Drone Selection Screen
 
 ### 4.1 Data Source
-SQLite: `drone_commander_cards.db`, table: `drones` (28 rows)
+SQLite: `ob3.db`, table: `drones` (28 rows)
 
 ### 4.2 Per-Drone Display
 - Name, country flag, drone class
@@ -264,7 +264,7 @@ Mandatory — displayed after every scenario end (no code path skips it).
 |-------|-----------|
 | Framework | Flutter |
 | Platform | iOS (primary), Android (future) |
-| Database | SQLite (`drone_commander_cards.db`) |
+| Database | SQLite (`ob3.db`) |
 | State Mgmt | TBD (UXArchitect to specify) |
 | Theme | MILSTD dark military dashboard |
 

@@ -64,7 +64,7 @@
 |-------|-----------|
 | Framework | Flutter (Dart) |
 | Platform | iOS first, Android later |
-| Database | SQLite via `sqflite` — bundled `drone_commander_cards.db` |
+| Database | SQLite via `sqflite` — bundled `ob3.db` |
 | State Management | BLoC + Freezed |
 | Navigation | go_router |
 | Theme | MILSTD dark military dashboard |
@@ -1134,7 +1134,7 @@ Card dimensions: 280pt × 380pt, 6pt radius, 2px border.
 
 ### 18.1 Database File
 
-- **Path**: `assets/db/drone_commander_cards.db`
+- **Path**: `assets/db/ob3.db`
 - **Engine**: SQLite 3
 - **Tables**: 12
 
@@ -1480,7 +1480,7 @@ lib/
 
 | File | Path | Contents |
 |------|------|----------|
-| Main DB | `assets/db/drone_commander_cards.db` | 12 tables, all game data |
+| Main DB | `assets/db/ob3.db` | 12 tables, all game data |
 | Secondary DB | `assets/db/ob3.db` | Empty (unused) |
 
 ---

@@ -16,7 +16,7 @@ Then read these files IN ORDER:
 1. Project spec: /Users/ozgur/.gemini/antigravity/playground/tidal-comet/project-specs/ob3-setup.md
 2. Rulebook (with Q&A): /Users/ozgur/.gemini/antigravity/playground/tidal-comet/docs/game-rules/rulebook.md
 3. Game loop diagram: /Users/ozgur/.gemini/antigravity/playground/tidal-comet/docs/game-rules/game_loop_diagram.md
-4. Database: /Users/ozgur/.gemini/antigravity/playground/tidal-comet/assets/db/drone_commander_cards.db
+4. Database: /Users/ozgur/.gemini/antigravity/playground/tidal-comet/assets/db/ob3.db
 
 YOUR DELIVERABLES:
 1. docs/specs/functional-spec.md — Complete functional specification covering:
@@ -141,7 +141,7 @@ Then read these files IN ORDER:
 4. UX Architecture: /Users/ozgur/.gemini/antigravity/playground/tidal-comet/docs/specs/ux-architecture.md (WAIT for UX)
 5. Design System: /Users/ozgur/.gemini/antigravity/playground/tidal-comet/docs/specs/design-system.md (WAIT for UI)
 6. Task list: /Users/ozgur/.gemini/antigravity/playground/tidal-comet/project-tasks/ob3-tasklist.md (WAIT for BA)
-7. Database: /Users/ozgur/.gemini/antigravity/playground/tidal-comet/assets/db/drone_commander_cards.db
+7. Database: /Users/ozgur/.gemini/antigravity/playground/tidal-comet/assets/db/ob3.db
 
 YOUR DELIVERABLES:
 - Flutter source code in lib/ implementing the game engine per task list

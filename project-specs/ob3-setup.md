@@ -7,7 +7,7 @@ Adapt the **Obscure Battles 3: Drone Commander** solo board game into a mobile g
 ## Source Materials
 
 - **Rulebook**: [docs/game-rules/rulebook.md](../docs/game-rules/rulebook.md) (V3.1-D10)
-- **Database**: [assets/db/drone_commander_cards.db](../assets/db/drone_commander_cards.db)
+- **Database**: [assets/db/ob3.db](../assets/db/ob3.db)
 
 ### Database Schema (12 tables)
 

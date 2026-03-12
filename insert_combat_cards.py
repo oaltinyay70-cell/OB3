@@ -1,7 +1,7 @@
 import sqlite3
 import os
 
-db_path = "/Users/ozgur/.gemini/antigravity/playground/tidal-comet/assets/db/drone_commander_cards.db"
+db_path = "/Users/ozgur/.gemini/antigravity/playground/tidal-comet/assets/db/ob3.db"
 conn = sqlite3.connect(db_path)
 c = conn.cursor()
 

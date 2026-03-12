@@ -15,7 +15,7 @@
 
 ## Phase 2: Project Setup
 - [ ] Scaffold Flutter project in `tidal-comet`
-- [ ] Integrate existing database (`drone_commander_cards.db`)
+- [ ] Integrate existing database (`ob3.db`)
 - [ ] Set up project structure (layers, state management, routing)
 
 ## Phase 3: Core Implementation

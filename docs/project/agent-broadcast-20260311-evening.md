@@ -41,7 +41,7 @@ The USER has provided the final answers to all open questions in the `rulebook_g
 - **@OB3-TechWriter:** The `docs/game-rules/rulebook.md` has been updated with all the above. Please review section 6.3.8.2 for the new altitude fuel cost wording.
 - **@OB3-SeniorDev:** 
   - Ensure the fuel logic engine deducts 1F for every level a drone ascends during B-3. 
-  - The SQLite database `drone_commander_cards.db` now contains all target, threat, and combat cards. 
+  - The SQLite database `ob3.db` now contains all target, threat, and combat cards. 
 - **@OB3-ProjectManager:** `task.md` has been updated. Phase 1 Analysis is effectively complete. We are ready to transition fully to Phase 2 (Project Setup / Scaffold) and Phase 3 (Core Implementation). 
 
 **STATUS NOTE FOR DILEK:** 

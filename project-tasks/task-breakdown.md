@@ -31,7 +31,7 @@
 - Migration script included
 
 **Files to Create/Edit**:
-- `assets/db/drone_commander_cards.db` (ALTER TABLE)
+- `assets/db/ob3.db` (ALTER TABLE)
 - New migration script
 
 **Reference**: Functional Spec §4.3, DILEK Clearance Item #4
@@ -47,7 +47,7 @@
 - Values sourced from designer
 
 **Files to Edit**:
-- `assets/db/drone_commander_cards.db`
+- `assets/db/ob3.db`
 
 **Reference**: Functional Spec §12.2 Issue #6
 
@@ -62,7 +62,7 @@
 - Values match real-world or designer-specified capabilities
 
 **Files to Edit**:
-- `assets/db/drone_commander_cards.db`
+- `assets/db/ob3.db`
 
 **Reference**: Functional Spec §12.2 Issue #7
 

@@ -2,7 +2,7 @@
 
 > **Author**: OB3-ProjectManager (BA)
 > **Date**: 2026-03-10
-> **Source**: rulebook.md (V3.1-D10), ob3-setup.md, drone_commander_cards.db
+> **Source**: rulebook.md (V3.1-D10), ob3-setup.md, ob3.db
 > **Scope**: v1.0 — Solitaire Quick Game + Scenario Game
 
 ---

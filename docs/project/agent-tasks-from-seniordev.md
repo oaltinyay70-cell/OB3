@@ -31,7 +31,7 @@ Q9 confirmed 4 altitude levels: **VLOW — LOW — MEDIUM — HIGH**. The rulebo
 - SAM Special Counterfire Table (3 modes × 6 columns)
 
 ### Task 4: Add `endurance_hours` Column to `drones` Table
-The database at `assets/db/drone_commander_cards.db` has a `drones` table with a `range` column (distance in km) but **no fuel/endurance column**. Per Q7 answer, fuel = endurance in hours.
+The database at `assets/db/ob3.db` has a `drones` table with a `range` column (distance in km) but **no fuel/endurance column**. Per Q7 answer, fuel = endurance in hours.
 
 **Please add an `endurance_hours` INTEGER column to the `drones` table and populate it for all 28 drones.** The engine currently defaults to 24 for all drones.
 
@@ -43,7 +43,7 @@ UPDATE drones SET endurance_hours = 24 WHERE id = 2; -- AKINCI
 -- ... etc for all 28 drones
 ```
 
-**Deliverable**: Updated `drone_commander_cards.db` file.
+**Deliverable**: Updated `ob3.db` file.
 
 ---
 

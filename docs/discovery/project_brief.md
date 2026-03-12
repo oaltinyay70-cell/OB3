@@ -27,7 +27,7 @@
 
 ## Existing Assets to Reuse
 
-### Database: `drone_commander_cards.db` (12 tables)
+### Database: `ob3.db` (12 tables)
 
 | Table | Rows | Purpose |
 |-------|------|---------|
@@ -68,7 +68,7 @@
 | Decision | Choice | Rationale |
 |----------|--------|-----------|
 | Starting point | Fresh codebase | Clean architecture, learned from v1 mistakes |
-| Database | Reuse `drone_commander_cards.db` | Rich, mature data (12 tables, 28 drones, 28 weapons, 111 targets) |
+| Database | Reuse `ob3.db` | Rich, mature data (12 tables, 28 drones, 28 weapons, 111 targets) |
 | Platform | **iOS first** | Reduce scope, Flutter makes Android follow-up easy |
 | Tech stack | **Flexible** (TBD) | Options: Flutter, native Swift, or other — needs decision |
 | Adaptation style | **Faithful mechanics**, adapted UX | Board game rules matter, but mobile UX must be native-feeling |

@@ -2,7 +2,7 @@ import sqlite3
 import json
 import os
 
-db_path = "/Users/ozgur/.gemini/antigravity/playground/tidal-comet/assets/db/drone_commander_cards.db"
+db_path = "/Users/ozgur/.gemini/antigravity/playground/tidal-comet/assets/db/ob3.db"
 html_path = "/Users/ozgur/.gemini/antigravity/playground/tidal-comet/scenario_editor.html"
 
 conn = sqlite3.connect(db_path)

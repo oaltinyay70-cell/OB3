@@ -2,7 +2,7 @@ import sqlite3
 import os
 import glob
 
-DB_PATH = "/Users/ozgur/Documents/OB3/assets/db/drone_commander_cards.db"
+DB_PATH = "/Users/ozgur/.gemini/antigravity/playground/tidal-comet/assets/db/ob3.db"
 ARTIFACTS_DIR = "/Users/ozgur/.gemini/antigravity/brain/cf68186a-400b-4ecd-b33c-5c57d6bf2b30"
 
 # (table, column, glob_pattern, card_number_or_None)

@@ -66,7 +66,7 @@ B0 (In Transit) → B1 (Search) → B2 (Target/Threat) → B3 (Positioning) → 
 
 ## Database
 
-The game reuses the mature `drone_commander_cards.db` from the first edition — 12 tables with comprehensive game data:
+The game reuses the mature `ob3.db` from the first edition — 12 tables with comprehensive game data:
 
 | Table | Rows | Purpose |
 |-------|------|---------|
@@ -114,7 +114,7 @@ tidal-comet/
 │   ├── OB3-QA.md               # 🧪 Evidence Collector (QA)
 │   └── OB3-TechWriter.md       # ✍️ Technical Writer
 ├── assets/
-│   └── db/                     # drone_commander_cards.db (SQLite)
+│   └── db/                     # ob3.db (SQLite)
 ├── docs/
 │   ├── discovery/              # Project brief, discovery Q&A
 │   ├── game-rules/             # Parsed rulebook, game loop diagram

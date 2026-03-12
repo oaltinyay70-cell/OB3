@@ -22,7 +22,7 @@ graph TB
     end
 
     subgraph Data["Data Layer"]
-        DB["SQLite Database<br/>(drone_commander_cards.db)"]
+        DB["SQLite Database<br/>(ob3.db)"]
         GS["Game State<br/>(In-Memory)"]
         CD["Card Decks<br/>(Shuffled Stacks)"]
     end
@@ -171,7 +171,7 @@ flowchart LR
 
 ## Database Schema
 
-The `drone_commander_cards.db` SQLite database contains 12 tables. The relationships are:
+The `ob3.db` SQLite database contains 12 tables. The relationships are:
 
 ```mermaid
 erDiagram
