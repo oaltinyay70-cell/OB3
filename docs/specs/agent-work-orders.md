@@ -10,15 +10,13 @@
 
 | # | Blocker | Owner | Priority |
 |---|---------|-------|----------|
-| 1 | **VLOW altitude CRT rows** — Attack, Counterfire, and SAM tables need a VLOW row | Game Designer / DILEK | 🔴 CRITICAL |
-| 2 | **Counterfire LOW row** — Stand-Off & Close-In cells are all empty (likely wrong) | Game Designer / DILEK | 🔴 CRITICAL |
-| 3 | **SAM Counterfire LOW row** — All cells empty (some SAMs should hit at LOW) | Game Designer / DILEK | 🔴 CRITICAL |
+| 1 | **SAM Counterfire LOW row** — All cells empty (some SAMs should hit at LOW) | Game Designer / DILEK | 🔴 CRITICAL |
 | 4 | **`endurance_hours` column** in `drones` table + actual values per drone | OB3-SeniorDev (DB) | 🟡 HIGH |
 | 5 | **Scenario Editor survey form** — multiple-choice input design | OB3-ProjectManager | 🟡 HIGH |
 | 6 | **Design system** — visual polish on top of UX tokens | OB3-UIDesigner | 🟡 HIGH |
 
 > [!WARNING]
-> Items 1–3 are **game designer clearance items**. The engine can be scaffolded without them, but CRT lookups cannot be finalized. Suggest using placeholder/interpolated values if designer response is slow.
+> Item 1 is a **game designer clearance item**. The engine can be scaffolded without it, but SAM CRT lookups cannot be finalized. Suggest using placeholder/interpolated values if designer response is slow.
 
 ---
 
@@ -74,7 +72,7 @@
 | DEV-7 | GameBloc state machine | `lib/game/bloc/game_bloc.dart` | Implement transition table from Section 2.4 |
 
 **Blocked on** (can defer):
-- VLOW CRT rows (use interpolated placeholders)
+- SAM Counterfire LOW row corrections
 - `endurance_hours` actual values (use `range / 100` as temp proxy)
 
 ---
@@ -118,7 +116,7 @@ IMMEDIATELY (no blockers):
 
 ASAP (needs input/data):
 ├── OB3-ProjectManager: PM-1 through PM-4 (specs + data collection)
-└── DILEK: Escalate CRT table corrections to game designer
+└── DILEK: Escalate SAM Counterfire LOW row correction to game designer
 
 LATER:
 ├── OB3-MobileBuilder: After core screens work

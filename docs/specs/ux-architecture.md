@@ -1,9 +1,9 @@
 # OB3 — Drone Commander Mobile: UX Architecture
 
 > **Agent**: OB3-UXArchitect  
-> **Date**: 2026-03-10  
-> **Status**: Ready for Review  
-> **Handoff to**: OB3-UIDesigner (design system), OB3-SeniorDev (implementation)
+> **Date**: 2026-03-12 (Rev 2 — post UI Designer review)  
+> **Status**: ✅ Approved — UI Designer deliverables integrated  
+> **Handoff to**: OB3-SeniorDev (implementation)
 
 ---
 
@@ -13,17 +13,19 @@
 
 | ID | Screen | Purpose | Entry Points |
 |----|--------|---------|--------------|
-| `S00` | **Splash / Boot** | App launch, DB init, asset loading | App cold start |
-| `S01` | **Main Menu** | Hub: Quick Game, Scenarios, Settings, About | After splash, after game-end |
-| `S02` | **Drone Selection** | Browse + pick one of 28 drones | Quick Game or Scenario flow |
-| `S03` | **Loadout Configuration** | Equip weapons/kits on hardpoints | After drone selected |
-| `S04` | **Mission Briefing** | Scenario context, objectives, confirm launch | After loadout confirmed |
-| `S05` | **Game Board** | Main gameplay — B0→B5 loop | After mission briefing |
-| `S06` | **Post-Scenario Briefing** | Results, VP tally, damage summary | After RTB / destroyed / targets exhausted |
-| `S07` | **Scenario Browser** | Browse & select from DB scenarios | Main Menu → Scenarios |
-| `S08` | **Scenario Editor** | Create custom scenarios (survey-style) | Main Menu → Editor |
-| `S09` | **Settings** | Theme toggle, sound, difficulty options | Main Menu → Settings |
-| `S10` | **About / Credits** | Version, credits, rulebook reference | Main Menu → About |
+| `S00` | **Splash / Boot** | App launch, DB init, radar sweep animation | App cold start |
+| `S01` | **Call Sign Selection** | Set player name (first launch) | After splash (first launch only) |
+| `S02` | **Main Menu** | Hub: Quick Game, Scenarios, Campaign (disabled), Load Game, Settings, How To Play | After splash/call sign, after game-end |
+| `S03` | **Drone Selection** | Browse + pick one of 28 drones | Quick Game or Scenario flow |
+| `S04` | **Loadout Configuration** | Equip weapons/kits on hardpoints | After drone selected |
+| `S05` | **Mission Briefing** | Scenario context, objectives, confirm launch | After loadout confirmed |
+| `S06` | **Game Board** | Main gameplay — B0→B5 loop | After mission briefing |
+| `S07` | **Post-Scenario Briefing** | Results, VP tally, damage summary | After RTB / destroyed / targets exhausted |
+| `S08` | **Scenario Browser** | Browse & select from DB scenarios | Main Menu → Scenarios |
+| `S09` | **Scenario Editor** | Create custom scenarios (survey-style) | Main Menu → Editor |
+| `S10` | **Settings** | Theme toggle, sound, difficulty options | Main Menu → Settings |
+| `S11` | **How To Play** | Rules reference / tutorial | Main Menu → How To Play |
+| `S12` | **About / Credits** | Version, credits, rulebook reference | Main Menu → About |
 
 ### 1.2 Navigation Flow
 
@@ -56,10 +58,11 @@ flowchart TD
 
 ### 1.3 Navigation Rules
 
-1. **No deep-linking** within the game loop — once in `S05` (Game Board), navigation is purely state-driven
-2. **Back navigation** is allowed from `S02 → S01`, `S03 → S02`, `S04 → S03` but **not** from `S05` (must RTB or be destroyed)
+1. **No deep-linking** within the game loop — once in `S06` (Game Board), navigation is purely state-driven
+2. **Back navigation** is allowed from `S03 → S02`, `S04 → S03`, `S05 → S04` but **not** from `S06` (must RTB or be destroyed)
 3. **Settings** is accessible from Main Menu only (not mid-game in v1.0)
-4. **Replay** from Post-Scenario Briefing re-enters `S04` with same drone/loadout
+4. **Replay** from Post-Scenario Briefing re-enters `S05` with same drone/loadout
+5. **Call Sign** screen only shows on first launch (skip if call sign already stored)
 
 ---
 
@@ -329,8 +332,9 @@ GameState
 
 **Validation Rules (before confirm):**
 1. At least one weapon OR one kit selected
-2. All `(%)` exclusivity rules satisfied
-3. Weapon quantities do not exceed availability
+2. FO/Laze attack mode requires either an FO/Laze Kit OR a drone with built-in FO/Laze capability
+3. All `(%)` exclusivity rules satisfied
+4. Weapon quantities do not exceed availability
 
 ---
 
@@ -408,7 +412,7 @@ A horizontal stepper showing `B0 → B1 → B2 → B3 → B4 → B5`. The curren
 - Otherwise: auto-transition animation to B1
 
 ##### B1 — Search
-- **Altitude choice**: Show altitude selector (only altitudes drone supports). Highlight cost: "-1F per change"
+- **Altitude choice**: Show altitude selector (only altitudes drone supports). Highlight cost: "0F to lower, +1F per level raised"
 - **Combat card**: Animate card draw → flip → show card face with instructions
 - **Resolve**: If event: show event description + "Apply" button. If "No Event": show "Continue" button
 - **Auto**: Check fuel → if 0, show "FORCED RTB" overlay
@@ -425,7 +429,7 @@ A horizontal stepper showing `B0 → B1 → B2 → B3 → B4 → B5`. The curren
   - Show target VP and threat severity to help the player decide
 
 ##### B3 — Positioning
-- **Altitude choice**: Same selector as B1
+- **Altitude choice**: Same selector and cost (0F to lower, +1F per level raised) as B1
 - **Combat card**: Same draw/resolve flow as B1
 
 ##### B4 — Drone Attack
@@ -934,7 +938,6 @@ final router = GoRouter(
 | Dependency | Owner | Status |
 |------------|-------|--------|
 | VLOW CRT table rows | Game Designer / DILEK | ⬜ OPEN |
-| Counterfire LOW row corrections | Game Designer / DILEK | ⬜ OPEN |
 | SAM Counterfire LOW row corrections | Game Designer / DILEK | ⬜ OPEN |
 | `endurance_hours` column in `drones` table | OB3-SeniorDev / DB migration | ⬜ OPEN |
 | Scenario Editor survey form design | OB3-ProjectManager | ⬜ OPEN |
