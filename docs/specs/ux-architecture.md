@@ -139,20 +139,18 @@ stateDiagram-v2
     EngageOrRetreat --> B1_Search : Retreat (discard both)
     EngageOrRetreat --> B3_Positioning : Engage
     
-    state "B3 — Positioning" as B3_Positioning {
+    state "B3 — Positioning (IP)" as B3_Positioning {
         [*] --> B3_AltitudeChoice
-        B3_AltitudeChoice --> B3_CombatCard
-        B3_CombatCard --> B3_ResolveCombatCard
-        B3_ResolveCombatCard --> B3_Complete
+        B3_AltitudeChoice --> B3_Complete : Adjust altitude, review loadout
     }
     
     B3_Positioning --> B4_Attack
     
     state "B4 — Drone Attack" as B4_Attack {
-        [*] --> B4_SelectMode
-        B4_SelectMode --> B4_SelectWeapon
-        B4_SelectWeapon --> B4_SelectAltitude
-        B4_SelectAltitude --> B4_Roll
+        [*] --> B4_SelectAltitude
+        B4_SelectAltitude --> B4_SelectWeapon
+        B4_SelectWeapon --> B4_SelectMode
+        B4_SelectMode --> B4_Roll
         B4_Roll --> B4_ConsultCRT
         B4_ConsultCRT --> B4_ApplyResult
         B4_ApplyResult --> B4_SAMReaction : Target was SAM & missed
@@ -250,12 +248,12 @@ GameState
 |------|----|---------|--------------|
 | `B0` | `B1` | COMMS check passed | Set commsCheckPenalty if degraded |
 | `B0` | `GAME_OVER` | COMMS check ≥ 6 | gameEndReason = UNCONTROLLABLE |
-| `B1` | `B2` | Combat card resolved, fuel > 0 | Altitude may change (-1F) |
+| `B1` | `B2` | Combat card resolved (once per cycle), fuel > 0 | Altitude may change (-1F) |
 | `B1` | `FORCED_RTB` | fuel = 0 after combat card | gameEndReason = NO_FUEL |
 | `B2` | `B1` | Player retreats | Discard target + threat cards |
 | `B2` | `B3` | Player engages | Keep target + threat for B4/B5 |
 | `B2` | `TARGETS_EXHAUSTED` | No target cards left | gameEndReason = TARGETS_EXHAUSTED |
-| `B3` | `B4` | Combat card resolved | Altitude may change (-1F) |
+| `B3` | `B4` | Player taps CONTACT | Altitude may have changed |
 | `B4` | `B5` | Attack resolved | Apply hit/miss, fuel cost, weapon consumed |
 | `B4` | `GAME_OVER` | SAM reaction destroys drone | gameEndReason = DESTROYED |
 | `B5` | `B0` | Player continues, has fuel + ammo | cycleCount++, apply fuel/damage |
@@ -386,11 +384,11 @@ Six indicators in a horizontal strip:
 | Indicator | Display | Behavior |
 |-----------|---------|----------|
 | **Fuel** | Color bar (green→yellow→red gradient) | Width decreases as fuel burns |
-| **Structural Integrity** | Numeric + bar (damage / max) | Red pulse when damaged |
+| **Structural Integrity** | Color-coded progress bar (green→yellow→red) | Bar shrinks as damage increases |
 | **Sensors** | Numeric + icon (0–9 scale) | Amber when degraded |
 | **COMMS** | Numeric + icon (0–5 scale) | Warning icon when > 2 |
 | **VIS/RCS** | Numeric + icon | Higher = more visible, danger indicator |
-| **Altitude** | Text badge: VLOW / LOW / MED / HIGH | Tappable to change in B1/B3 |
+| **Altitude** | Text badge: VLOW / LOW / MED / HIGH | Shown in status ribbon, selectable in B1/B3 |
 
 #### 5.4 Box Progress Indicator
 
@@ -428,15 +426,24 @@ A horizontal stepper showing `B0 → B1 → B2 → B3 → B4 → B5`. The curren
     - ❌ **"RETREAT"** → discard both, return to B1
   - Show target VP and threat severity to help the player decide
 
-##### B3 — Positioning
-- **Altitude choice**: Same selector and cost (0F to lower, +1F per level raised) as B1
-- **Combat card**: Same draw/resolve flow as B1
+##### B3 — Positioning (IP)
+- **Altitude choice**: Inline selector (same as B1), NOT locked — player may adjust altitude before attack
+- **Loadout display**: Shows current weapons + remaining counts
+- **No combat card** is drawn at B3 — this is purely a positioning/altitude adjustment phase
+- Single "CONTACT → B4" button to advance
 
 ##### B4 — Drone Attack
-- **Step 1**: Attack mode selector — three large buttons: Stand-Off / Close-In / FO-Laze
-  - Disable modes that are incompatible with current loadout
-- **Step 2**: Weapon selector — list of remaining weapons, greyed if incompatible with target type
-- **Step 3**: Attack altitude selector — only altitudes the drone + weapon support
+- **Step 1 (① SELECT HEIGHT)**: Altitude bar unlocked — player can change altitude for fuel cost (2F↑ / 1F↓). Current altitude displayed.
+- **Step 2 (② SELECT WEAPON)**: List of remaining weapons with ammo, filtered by:
+  - **Altitude compatibility**: weapon's `fire_altitude` field
+  - **Weapon Type vs Target Type matrix**: ATGM→vehicles, Guided Bomb→all ground, Cruise Missile→SAM+HQ, Missile→vehicles+personnel, KIT→all ground
+  - Incompatible weapons greyed out (35% opacity), tapping shows snackbar explaining why
+  - Each weapon row shows compatible attack modes below the name (e.g. "Stand-Off / Close-In")
+- **Step 3 (③ ATTACK MODE)**: Three animated buttons — **highlighted green** if available at current altitude, dimmed if not. Selected mode shows **red**.
+  - Stand-Off: MEDIUM, HIGH only
+  - Close-In: VLOW, LOW only
+  - FO/Laze: any altitude
+  - `fire_range` determines weapon-mode compatibility: `close`→Close-In, `medium`/`far`→Stand-Off, `close-medium`→both
 - **Step 4**: Dice roll animation (1D6 + DRM breakdown shown)
 - **Step 5**: CRT result displayed (HIT or MISS) with fuel cost
   - HIT: target card slides to "Destroyed" pile, VP added
@@ -445,8 +452,9 @@ A horizontal stepper showing `B0 → B1 → B2 → B3 → B4 → B5`. The curren
   - Roll 1D6 + VIS → if ≥ 6, SAM fires → consult SAM CRT → apply damage
 
 ##### B5 — Evasive Action
+- **Attack result**: HIT/MISS result from B4 shown first (labeled "ATTACK RESULT")
 - **Roll**: 1D6 + DRM breakdown
-- **CRT result**: Display damage (if any) + fuel cost
+- **CRT result**: Counterfire result displayed (labeled "COUNTERFIRE RESULT") — damage (if any) + fuel cost
 - **Damage cascade**: If damaged, animate cascade (SI → Sensors → COMMS → VIS)
 - **Survival check**: If SI ≥ max DP → "DRONE DESTROYED" overlay
 - **Decision UI** (if survived):
@@ -711,8 +719,8 @@ Each box transition has a deliberate pacing to prevent the game from feeling lik
 | B2 (target roll) | 1.5s dice animation | Watch dice |
 | B2 (threat roll) | 1.5s dice animation | Watch dice |
 | B2 (decision) | **Indefinite wait** | Engage or Retreat |
-| B3 | Same as B1 | Altitude + combat card |
-| B4 (selections) | **Indefinite wait** (3 choices) | Mode, weapon, altitude |
+| B3 | Same as B1 minus combat card | Altitude only |
+| B4 (selections) | **Indefinite wait** (3 choices) | Height, weapon, mode |
 | B4 (attack) | 1.5s dice + result animation | Watch outcome |
 | B5 (evasion) | 1.5s dice + result animation | Watch outcome |
 | B5 (decision) | **Indefinite wait** | Continue or RTB |
@@ -783,14 +791,15 @@ This is critical for player understanding and debuggability.
 ### Event Flow Example (B4 Attack)
 
 ```
-User selects mode → AttackModeSelected event
-  → GameBloc updates state.attackMode
+User selects altitude → AltitudeChanged event
+  → GameBloc updates state.altitude, consumes fuel
 
 User selects weapon → WeaponSelected event
-  → GameBloc validates weapon compatibility
+  → GameBloc validates: weapon type vs target type, weapon altitude compatibility
+  → Auto-selects first compatible attack mode
 
-User selects altitude → AttackAltitudeSelected event
-  → GameBloc validates drone can operate at altitude
+User selects attack mode → AttackModeSelected event
+  → GameBloc validates: mode vs altitude, weapon vs mode (fire_range)
 
 User taps "Fire" → ExecuteAttack event
   → GameBloc:

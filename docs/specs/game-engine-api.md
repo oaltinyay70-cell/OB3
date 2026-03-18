@@ -58,7 +58,7 @@ Perform the COMMS controllability check. Called at B0 when returning from B5 wit
 
 ### `changeAltitude(current: Altitude, target: Altitude, drone: Drone) → AltitudeResult`
 
-Optional altitude change. Called at B1 or B3.
+Optional altitude change. Called at B1, B3, or **B4** (before attack execution).
 
 - **Cost:** 2F per UP level, 1F per DOWN level
 - **Validation:** Target altitude must be in `drone.altitude` (supported altitudes)
@@ -66,11 +66,24 @@ Optional altitude change. Called at B1 or B3.
 
 ### `drawCombatCard(deck: Stack<CombatCard>) → CombatCard`
 
-Draw and execute a combat card. Called at B1 and B3.
+Draw and execute a combat card. Called at **B1 only** (not B3).
 
 - If deck is empty → reshuffle discard pile, place back face-up
 - **Returns:** The drawn combat card
 - **Side effects:** Execute card instructions (may modify DRM, fuel, or game state)
+
+---
+
+## Phase B3 — Positioning (IP)
+
+B3 is an altitude-only positioning phase. **No combat card is drawn.**
+
+### `advanceFromB3() → void`
+
+Advance from B3 (IP) to B4 (Attack). The player may optionally change altitude before advancing.
+
+- **No combat card draw** — this was removed from B3 to streamline gameplay
+- **Resets:** attack mode, weapon selection
 
 ---
 
@@ -153,12 +166,22 @@ Resolve a drone attack. Called at B4.
 ```
 
 **Procedure:**
-1. Validate weapon compatibility:
-   - AA missiles → STANDOFF only, MEDIUM or HIGH altitude only
-   - Torpedoes/Sonobuoys → CLOSE_IN only
-   - Anti-shipping missiles → STANDOFF only
-   - Weapon `targets` field must include target type
-2. Roll 1D6
+1. Validate attack mode vs altitude:
+   - **Stand-Off**: MEDIUM or HIGH only
+   - **Close-In**: VLOW or LOW only
+   - **FO/Laze**: any altitude
+2. Validate weapon type vs target type (engagement matrix):
+   - **ATGM**: TRUCK, AFV, TANK, VIP only
+   - **Guided Bomb**: all ground targets (not AIR)
+   - **Cruise Missile**: SAM, HQ/BUNKER only
+   - **Missile**: TRUCK, PERSONNEL, AFV, TANK, VIP only
+   - **KIT**: all ground targets (not AIR)
+3. Validate weapon vs attack mode (`fire_range` field):
+   - `close` → Close-In only
+   - `medium` / `far` → Stand-Off only
+   - `close-medium` → both Close-In and Stand-Off
+4. Validate weapon can fire at current altitude (`fire_altitude` field)
+5. Roll 1D6
 3. Sum DRM: loadout counter + combat card + drone info + target card + scenario
 4. Apply column shifts: shift 1 RIGHT per 2 points of Sensor Damage
 5. Clamp final DRM column to `[1, 6]`

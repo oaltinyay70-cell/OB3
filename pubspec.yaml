@@ -1,0 +1,41 @@
+name: drone_commander
+description: "OB3 Drone Commander — UCAV combat mobile game"
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: ^3.11.0
+
+dependencies:
+  flutter:
+    sdk: flutter
+  cupertino_icons: ^1.0.8
+  sqflite: ^2.4.2
+  path_provider: ^2.1.5
+  path: ^1.9.1
+  equatable: ^2.0.8
+  collection: ^1.19.1
+  flutter_bloc: ^9.1.1
+  freezed_annotation: ^3.1.0
+  go_router: ^17.1.0
+  json_annotation: ^4.11.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^6.0.0
+  build_runner: ^2.12.2
+  freezed: ^3.2.5
+  json_serializable: ^6.13.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/db/
+    - assets/images/avatars/
+    - assets/images/drones/
+    - assets/images/cards/combat/
+    - assets/images/cards/targets/
+    - assets/images/cards/threats/
+    - assets/images/drone_center.png

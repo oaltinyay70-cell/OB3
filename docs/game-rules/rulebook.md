@@ -68,10 +68,10 @@ Campaign  (cumulative VP, progression gate)
 ```
 
 > [!NOTE]
-> **Reconciliation with B0–B5**: The original boardgame rulebook describes movement boxes B0–B5 within each cycle. The three-card sequence (Combat/Target/Threat) maps to specific B boxes. Designer clarification needed on exact mapping:
-> - **Combat Card** drawn at → B1 (Search)?
-> - **Target Card** drawn at → B3 (Positioning)?
-> - **Threat Card** resolved at → B4/B5 (Attack/Evasion)?
+> **Reconciliation with B0–B5**: The original boardgame rulebook describes movement boxes B0–B5 within each cycle. The three-card sequence (Combat/Target/Threat) maps to specific B boxes:
+> - **Combat Card** drawn at → B1 (Search) — **this is the only time and place a combat card is mandatorily drawn from its deck**
+> - **Target Card** drawn at → B2 (Acquisition)
+> - **Threat Card** drawn at → B2 (Acquisition)
 
 ### 1.2. Scenario Termination Conditions
 
@@ -161,12 +161,12 @@ The game is a board game simulating a Drone Operation based on sensory input and
 
 - Feature information for targets the player hunts
 - Each has a **VP Value** — added to score when target is destroyed
-- May display additional DRM to add to Combat Attack procedure
+- May display additional DRM — **these values are effective only for attacking these targets** (applied during B4 Attack resolution only)
 
 ### 2.4. Threat Cards
 
 - Feature information about threats trying to shoot the drone down
-- May display additional DRM for Counter Fire and Evasion procedure
+- May display additional DRM for Counter Fire and Evasion procedure — **unless otherwise stated, the effects of a threat card are effective only for the counterfire in the current cycle**
 
 ### 2.5. Loadout Markers
 
@@ -182,6 +182,16 @@ Once loadout is decided, corresponding markers are placed on the Drone Info Card
 | `(*D)` | Only usable on D-class Drones or bigger |
 | `(%)` | If carried, no other weapon OR KIT loadout can be carried |
 | `(+)` | If carried, add +2 Fuel extra to normal fuel usage in game cycle |
+
+**Fire Range = Attack Mode indicator:**
+
+| fire_range value | Allowed Attack Modes |
+|------------------|---------------------|
+| `close` | Close-In only |
+| `medium` or `far` | Stand-Off only |
+| `close-medium` | **Both** Close-In and Stand-Off |
+
+> A weapon **cannot** be used in an attack mode its `fire_range` does not support. The UI will grey out incompatible weapons.
 
 ### 2.6. Drone Info Cards
 
@@ -257,9 +267,8 @@ Tracking table for:
 | Term | Meaning |
 |------|---------|
 | **CRT** | Combat Resolution Table |
-| **DR** | Dice Roll (1D6 = single roll of six-sided die). DR cannot exceed 6 or be less than 1 |
-| **DRM** | Dice Roll Modified — final roll after modifiers. Can exceed 10 or go below 1 |
-| **D10** | Ten-sided die (used in Target Acquisition and Threat Determination) |
+| **DR** | Dice Roll — the raw result from rolling a die. **1D6** = a roll result from a 6-sided die (range 1–6). **1D10** = a roll result from a 10-sided die (range 0–9). **2D10** = two 10-sided dice rolled together (used for Target Acquisition and Threat Determination, producing a combined value) |
+| **DRM** | Dice Roll Modified — the **final** value after combining the basic dice roll result with all applicable modifiers from other sources (combat cards, target cards, threat cards, drone abilities, scenario rules, etc.). DRM can exceed the die's natural maximum or go below 1 |
 | **Discarded Pile** | Revealed cards kept here; destroyed Target Cards go to separate pile |
 | **Destroyed Target Pile** | Cards for targets successfully destroyed |
 
@@ -335,6 +344,10 @@ The game loops through **B0 → B5** until:
 - b) Run out of fuel → return to base
 - c) Shot down
 
+> [!NOTE]
+> **Mobile App Display:** The app uses military phase names instead of B0–B5:
+> B0 = **INGRESS**, B1 = **RECON**, B2 = **CONTACT**, B3 = **IP**, B4 = **WEAPONS HOT**, B5 = **EGRESS**
+
 ### 6.2. Basic Rules
 
 Movement from box to box is governed by Movement Rules. Combat (target determination, attack, evasion) is governed by Combat Rules.
@@ -358,9 +371,10 @@ Movement is always **1 box-step**. Cannot skip or go back unless specifically in
 
 | Action Type | Description |
 |------------|-------------|
-| **OPTIONAL** | Change altitude — costs 1F (fuel) per altitude change |
+| **OPTIONAL** | Change altitude — free action in Digital |
+| **REQUIRED** | Draw a **Combat Card** — executes immediately |
 
-- No card draws at B1
+- A Combat Card is drawn EXACTLY ONCE per cycle at B1. If returning to B1 via Retreat from B2, a new combat card is **not** drawn
 - After completing actions → move to B2
 
 #### 6.3.3. B2 — "Target Acquisition / Threat Determination"
@@ -658,32 +672,44 @@ Roll 1D6 + DRM modifiers. Find the intersecting cell. ❖ HIT = target destroyed
 |---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|---|
 | **ALT / DRM** | **1** | **2** | **3** | **4** | **5** | **6** | **1** | **2** | **3** | **4** | **5** | **6** | **1** | **2** | **3** | **4** | **5** | **6** |
 | **VERY LOW** | N/A | N/A | N/A | N/A | N/A | N/A | 2F | 2F ❖ | 2F ❖ | 2F ❖ | 2F ❖ | 2F ❖ | 3F | 3F | 3F ❖ | 3F ❖ | 3F ❖ | 3F ❖ |
-| **LOW** | 1F | 1F | 1F | 1F | 1F | 1F | 2F ❖ | 2F ❖ | 2F ❖ | 2F | 2F | 2F | 3F | 3F | 3F | 3F | 3F | 3F ❖ |
-| **MEDIUM** | 1F | 1F | 1F | 1F | 1F | 1F ❖ | 2F | 2F | 2F | 2F | 2F ❖ | 2F ❖ | 3F ❖ | 3F ❖ | 3F ❖ | 3F ❖ | 3F | 3F |
-| **HIGH** | 1F | 1F | 1F | 1F | 1F ❖ | 1F ❖ | 2F | 2F | 2F | 2F ❖ | 2F ❖ | 2F ❖ | 3F | 3F | 3F | 3F ❖ | 3F ❖ | 3F ❖ |
-
-**Hit Probability Summary**
+| **LOW** | N/A | N/A | N/A | N/A | N/A | N/A | 2F ❖ | 2F ❖ | 2F ❖ | 2F | 2F | 2F | 3F | 3F | 3F | 3F | 3F | 3F ❖ |
+| **MEDIUM** | 1F | 1F | 1F | 1F | 1F | 1F ❖ | N/A | N/A | N/A | N/A | N/A | N/A | 3F ❖ | 3F ❖ | 3F ❖ | 3F ❖ | 3F | 3F |
+| **HIGH** | 1F | 1F | 1F | 1F | 1F ❖ | 1F ❖ | N/A | N/A | N/A | N/A | N/A | N/A | 3F | 3F | 3F | 3F ❖ | 3F ❖ | 3F ❖ |
 
 | Altitude | Mode | HIT % | Min DRM to HIT | Hits / 6 |
 |----------|------|-------|-----------------|----------|
-| VERY LOW | Stand-Off | N/A | N/A | N/A |
+| VERY LOW | Stand-Off | **N/A** | N/A | N/A |
 | VERY LOW | Close-In | 83.3% | DRM 2 | 5 / 6 |
 | VERY LOW | FO/Laze | 66.7% | DRM 3 | 4 / 6 |
-| LOW | Stand-Off | 0% | NO HIT | 0 / 6 |
+| LOW | Stand-Off | **N/A** | N/A | N/A |
 | LOW | Close-In | 50% | DRM 1 | 3 / 6 |
 | LOW | FO/Laze | 16.7% | DRM 6 | 1 / 6 |
 | MEDIUM | Stand-Off | 16.7% | DRM 6 | 1 / 6 |
-| MEDIUM | Close-In | 33.3% | DRM 5 | 2 / 6 |
+| MEDIUM | Close-In | **N/A** | N/A | N/A |
 | MEDIUM | FO/Laze | 66.7% | DRM 3 | 4 / 6 |
 | HIGH | Stand-Off | 33.3% | DRM 5 | 2 / 6 |
-| HIGH | Close-In | 16.7% | DRM 6 | 1 / 6 |
+| HIGH | Close-In | **N/A** | N/A | N/A |
 | HIGH | FO/Laze | 50% | DRM 4 | 3 / 6 |
 
 > **Notes:**
-> 1. Stand-Off mode is **NOT available** at Very Low altitude.
-> 2. Shift 1 column **RIGHT** for each 2 points of Sensor Damage.
-> 3. Drone expends fuel shown in the final crossed cell — **regardless of HIT or MISS**.
-> 4. **Weapon restrictions:** AA missiles → Stand-Off / Medium–High only. Torpedoes & Sonobuoys → Close-In only. Anti-Shipping → Stand-Off only.
+> 1. Stand-Off mode is available at **MEDIUM and HIGH only** (N/A at VLOW and LOW).
+> 2. Close-In mode is available at **VLOW and LOW only** (N/A at MEDIUM and HIGH).
+> 3. FO/Laze mode is available at **any altitude**.
+> 4. Shift 1 column **RIGHT** for each 2 points of Sensor Damage.
+> 5. Drone expends fuel shown in the final crossed cell — **regardless of HIT or MISS**.
+> 6. **Weapon restrictions:** AA missiles → Stand-Off / Medium–High only. Torpedoes & Sonobuoys → Close-In only. Anti-Shipping → Stand-Off only.
+
+**Weapon Type vs Target Type Engagement Matrix**
+
+Not all weapon types can engage all target types. A weapon whose type cannot engage the current target is blocked.
+
+| Weapon Type | TRUCK | PERS | AFV | SAM | TANK | ARTY | HQ/BKR | VIP | AIR | ENGR |
+|-------------|:-----:|:----:|:---:|:---:|:----:|:----:|:------:|:---:|:---:|:----:|
+| **ATGM** | ✅ | ❌ | ✅ | ❌ | ✅ | ❌ | ❌ | ✅ | ❌ | ❌ |
+| **Guided Bomb** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
+| **Cruise Missile** | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ |
+| **Missile** | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ | ❌ | ✅ | ❌ | ❌ |
+| **KIT** (FO/Laze) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
 
 ##### 6.4.3.1. [OPTIONAL] Attacking SAM Type Targets
 
@@ -853,13 +879,47 @@ Game ends immediately when main objective is finished (regardless of drone survi
 
 ## 8. Design Your Own Scenario
 
-Guide for creating custom scenarios:
+The **OB3 Scenario Editor** is a 9-step wizard (Flutter web app) for creating custom scenarios:
 
-1. **Create the setting** — location, environmental parameters, other vectors
-2. **Define the mission** — target type, attack mode required, other targets, available threats
-3. **Build decks** — fill Target and Threat Card decks with appropriate cards
-4. **Choose drone and loadouts**
-5. **Play!**
+1. **Basic Info** — Title, description, briefing visual (JPG/PNG upload, max 100 KB), overview text, mission briefing
+2. **Drones** — Select available drones (multi-select or "ALL")
+3. **Objectives** — Define primary and secondary mission objectives (see below)
+4. **Target Cards** — Build the target deck (`card_id:quantity`)
+5. **Threat Cards** — Build the threat deck (`card_number:quantity`)
+6. **Combat Cards** — Build the combat deck (`card_id:quantity`)
+7. **Modifiers** — Gameplay adjustments (fuel cost, attack roll, evasion, altitude cost, target acquisition, threat determination)
+8. **Loadouts** — Exclude specific loadout options per drone
+9. **Metadata & Review** — Difficulty, play time, author, tags, summary
+
+### 8.1 Objective System (Sprint OBJ-1)
+
+Both primary and secondary objectives share **identical structure** — they differ only in designation. A scenario must have exactly **one primary** objective and can have **multiple secondary** objectives.
+
+**Condition types:**
+
+| Type | Description | Example |
+|------|-------------|---------|
+| `NAMED_CARD` | Eliminate a specific named target card | "Eliminate CULT LEADER" |
+| `KILL_QUOTA` | Eliminate N cards of a target sub-category | "Destroy 3 TANKs" |
+
+**Compound objectives:** Multiple conditions under the same objective — ALL must be met.
+Example: "Suppress Enemy Armour" = destroy 2 TANKs AND 3 AFVs.
+
+**Weapon requirement:** Optional per condition. If set, the kill only counts if the correct weapon type was used (e.g. `THERMOBARIC`).
+
+**In-game evaluation:**
+- Objective status checked after **every** kill at B4
+- HUD shows live progress: KILL_QUOTA → `Tanks: 1 / 3`; NAMED_CARD → `CULT LEADER: PENDING`
+- Primary objective complete → mission success → AAR screen
+- Secondary complete → notification only, mission continues
+
+**Workflow:**
+- **Save Draft**: Saves without validation (WIP scenarios)
+- **Publish**: Validates all required fields + at least one primary objective
+- **Export ⬇**: Downloads `.txt` file with objectives as `OBJECTIVE:` / `CONDITION:` blocks
+- **Import**: Reads `.txt` file, validates IDs against DB, creates new Draft
+
+Each scenario has a version counter starting at `v1.00`, incremented by `+0.01` on each save.
 
 ---
 
@@ -942,8 +1002,8 @@ Section 8 describes designing custom scenarios. Is this what you mean by the "sc
 
 **Your answer:** Yes, but we need to recreate this from the start. The BA (OB3-ProjectManager) should prep a form to take inputs as a multiple choice survey.
 
-> [!IMPORTANT]
-> **BA ACTION ITEM**: OB3-ProjectManager must create a scenario editor input survey form for the user.
+> [!NOTE]
+> **BA ACTION ITEM**: ✅ COMPLETED — Scenario editor implemented as a 9-step wizard (Flutter web app). Export produces `.txt` files with field descriptions and examples. Import reads `.txt` files. Publish writes to game DB. See `ob3_scenario_editor/` and `docs/specs/scenario-editor-survey.md` for details.
 
 ---
 
