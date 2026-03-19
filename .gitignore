@@ -44,3 +44,4 @@ app.*.map.json
 /android/app/profile
 /android/app/release
 .~lock*
+tools/scenario_designer/assets/data/ob3.db
