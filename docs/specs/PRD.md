@@ -504,6 +504,59 @@ The DB contains **two sets** of combat cards:
                                        (reshuffle when empty, face-up)
 ```
 
+### 8.5 Locked-In Card Visual Formats
+
+> [!IMPORTANT]
+> These formats are LOCKED. All card images — generated or rendered in-app — MUST strictly follow these specifications. Any deviation requires explicit approval.
+
+---
+
+#### THREAT CARD Format
+
+| Element | Specification |
+|---------|--------------|
+| Background | Dark charcoal / near-black |
+| Header bar | **Crimson/red** — left: `"THREAT CARD"` (white small caps), right: `"ID: THXX-XXX"` (amber monospace) |
+| Title | Bold white, large |
+| Subtitle | Amber caps — `"THREAT — [CATEGORY]"` |
+| Center image | **FLIR thermal** — amber/orange tones on dark background, targeting crosshair overlay, FLIR HUD data text |
+| Stat boxes | Left red box: column shift (e.g., `"+1R SHIFT"`), Right amber box: altitude range (e.g., `"ALT: LOW"`) |
+| Flavor text | Small monospace white, bottom |
+| Border | Crimson/red frame |
+| Palette | Red · Amber · Black only |
+
+---
+
+#### TARGET CARD Format
+
+| Element | Specification |
+|---------|--------------|
+| Background | Dark charcoal / near-black |
+| Header bar | **Cyan/teal** — left: `"TARGET CARD"` (white small caps), right: `"ID: TCXX000"` (cyan monospace) |
+| Title | Bold white, large |
+| Subtitle | Cyan caps — `"TARGET — [SUB-CATEGORY]"` |
+| Center image | **Green night-vision aerial** — top-down drone camera perspective, green NV tones, targeting crosshair, NV HUD overlay |
+| Stat boxes | Left dark box: `"X VP / VICTORY POINTS"`, Right dark box: `"ALT: [ALL/LOW/etc]"` |
+| Flavor text | Small monospace white, bottom |
+| Border | Cyan/teal frame |
+| Palette | Cyan · Green · Dark only |
+
+---
+
+#### COMBAT CARD Format
+
+| Element | Specification |
+|---------|--------------|
+| Background | Dark charcoal / near-black |
+| Header bar | **Cyan/teal** — left: `"COMBAT CARD"` (white small caps), right: `"ID: NEW_CC_XX"` (cyan monospace) |
+| Title | Bold white, large |
+| Subtitle | Cyan caps — `"COMBAT — [TYPE]"` (e.g., ATTACK / WEATHER / ALTITUDE / ELECTRONIC) |
+| Center image | **Cyan/teal tactical HUD** — digital imagery relevant to the card's theme (drone, radar, terrain, weather), teal glow, HUD data overlay |
+| Effect box | Dark box with cyan label `"COMBAT EFFECT"` + large bold white effect text (e.g., `"+2 ATTACK DRM"`) |
+| Flavor text | Small monospace white, bottom |
+| Border | Cyan/teal frame |
+| Palette | Cyan · Teal · Dark only |
+
 ---
 
 ## 9. Combat Resolution Tables (CRT)
