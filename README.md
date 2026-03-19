@@ -48,16 +48,16 @@ lib/
 
 ## Card Visuals
 
-UX-designed card images are stored in `assets/images/cards/`:
+All card images are stored as BLOBs in `assets/db/ob3.db`. The UI uses a 3-tier fallback: **DB BLOB → asset image → styled text**.
 
-| Type | Directory | Count | Naming |
-|------|-----------|-------|--------|
-| Combat | `cards/combat/` | 24 | `CC001.png` … `CC024.png` |
-| Target | `cards/targets/` | 17 | `TCTA001.png`, `TCAF002.png`, etc. |
-| Threat | `cards/threats/` | 5 | `THAAA001.png`, `THCAP003.png`, etc. |
+| Type | DB Table | Count | Format |
+|------|----------|-------|--------|
+| Combat (original) | `combat_cards` | 18 | `CC001`–`CC018` |
+| Combat (NEW_CC) | `combat_cards` | 19 | `NEW_CC_01`–`NEW_CC_19` |
+| Target | `target_cards` | 114 | `TCXX000` (10 sub-categories) |
+| Threat | `combat_cards` | 36 | `THXXX-000` (5 sub-categories) |
 
-Card models provide an `imagePath` getter that maps `card_number` → asset path.
-The UI uses a 3-tier fallback: **asset image → DB BLOB → styled text**.
+**Locked-in visual format:** See [`docs/specs/card-visual-spec.md`](docs/specs/card-visual-spec.md) for pixel-precise specs (canvas size, Pantone colors, typography, spacing).
 
 ## Status Ribbon
 
@@ -86,4 +86,14 @@ flutter run -d ios   # iOS simulator
 
 ## Database
 
-SQLite database at `assets/db/ob3.db`. Contains tables for drones (28), weapons, combat/target/threat cards, scenarios, loadouts, and CRT tables.
+SQLite database at `assets/db/ob3.db`. Contains:
+
+| Table | Rows |
+|-------|------|
+| `drones` | 28 |
+| `weapons` | 28 |
+| `combat_cards` | 37 (18 CC + 19 NEW_CC) + 36 threat cards |
+| `target_cards` | 114 (10 sub-categories) |
+| `scenarios` | varies |
+
+> Threat cards and combat cards share the `combat_cards` table, distinguished by `card_type`.

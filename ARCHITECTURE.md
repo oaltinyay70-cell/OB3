@@ -194,9 +194,8 @@ erDiagram
 |-------|------|-----------|
 | `drones` | 28 | `name`, `country`, `category`, `class` (A–D), `altitude`, loadout options, `has_aeasa_radar`, `has_satcom`, `has_autonomous_ai`, `max_structural_integrity`, `description` |
 | `weapons` | 28 | `type`, `name`, `targets` (compatible types), `range`, `altitude`, DRM per target type |
-| `combat_cards` | 18 | `card_number`, `type`, `name`, `instructions`, `image` |
-| `target_cards` | 111 | `card_number`, `type`, `sub_category`, `name`, `VP`, `altitude_restriction`, `weapon_type` |
-| `threat_cards` | 36 | `card_number`, `type`, `sub_category`, `name`, `altitude_restriction`, `column_shift` |
+| `combat_cards` | 73 total | Stores **both** combat event cards AND threat cards, distinguished by `card_type`. Combat: 37 cards (18 CC-series + 19 NEW_CC-series). Threat: 36 cards (5 sub-categories). Key fields: `card_number`, `card_type`, `card_name`, `instruction`, `attribute_effect`, `image` (BLOB) |
+| `target_cards` | 114 | `card_number`, `card_type`, `sub_category`, `card_name`, `vp`, `instruction`, `image` (BLOB). 10 sub-categories: AFV, AIR, ARTILLERY, ENGINEER, HQ-BUNKER, PERSONNEL, SAM, TANK, TRUCK, VIP |
 
 ### Scenario Tables
 
@@ -344,5 +343,19 @@ These items are flagged from the rulebook Q&A and must be resolved before implem
 
 ---
 
-*Architecture version: 0.1.0 — Phase 0 (Foundation)*
-*Last updated: 2026-03-10*
+---
+
+## Recent Changes (Change Log)
+
+| Date | Change |
+|------|--------|
+| 2026-03-19 | Added `docs/specs/card-visual-spec.md` — pixel-precise card format spec (canvas, Pantone, typography) |
+| 2026-03-19 | Finalised NEW_CC combat card set (19 cards, cyan/dark tactical HUD format) |
+| 2026-03-18 | LASER C-UAS → reclassified from threat deck to target deck (TCSA019) |
+| 2026-03-18 | SNIPER OVERWATCH → reclassified to target deck (TCPE013) |
+| 2026-03-18 | SPG-9 RECOILLESS → reclassified to target deck (TCPE014) |
+| 2026-03-18 | Added SMALL ARMS AMBUSH (THSA-006) and PKM GENERAL PURPOSE MG (THSA-004) to threat deck |
+| 2026-03-18 | Target deck now 114 cards; Threat deck 36 cards; Combat deck 37 event cards |
+
+*Architecture version: 0.2.0*  
+*Last updated: 2026-03-19*
