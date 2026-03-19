@@ -660,18 +660,19 @@ Same column shift rules. Only applies when attack misses a SAM target.
 | SATCOM | −1 to COMMS Check DRM | Confirmed: no other effect |
 | COMMS Redundancy | −1 to COMMS Check DRM | Confirmed: no other effect |
 | Autonomous DM AI | −1 to COMMS Check DRM | Confirmed: no other effect |
-| Built-in FO/Laze | Can use FO/Laze without kit | 22 of 28 drones have this |
+| Built-in FO/Laze | Can use FO/Laze without kit | **All 28 drones** have this |
+| FO/Laze Altitude | Only usable at VLOW, LOW, MEDIUM | Cannot be used at HIGH altitude |
 
-### 10.3 FO/Laze Kit Requirement
+### 10.3 FO/Laze Altitude Restriction
 
-6 drones that **DO NOT** have built-in FO/Laze and MUST load a kit:
-- TB-001 SCORPION (ID 9) — ⚠️ DB shows `has_builtin_fo_laze=1`, discrepancy
-- ORION (ID 17)
-- S-70 OKHOTNIK-B (ID 18)
-- ALTIUS-RU (ID 19)
+**All 28 drones** have a built-in FO/Laze designator. No external kit required.
 
-> [!WARNING]
-> The `has_builtin_fo_laze` column in the DB does not match the designer's confirmed list from `rulebook_gaps.md`. Reconciliation needed.
+FO/Laze is restricted by physics — the laser designator cannot reach targets accurately from HIGH altitude:
+- ✅ **VLOW, LOW, MEDIUM** — FO/Laze available
+- ❌ **HIGH** — FO/Laze disabled (engine enforces this)
+
+> [!NOTE]
+> DB confirmed: `has_builtin_fo_laze = 1` for all 28 drones. ORION, OKHOTNIK-B, and ALTIUS-RU corrected to 1. ✅ RESOLVED
 
 ---
 
@@ -1492,8 +1493,8 @@ lib/
 | 2 | `max_structural_integrity` = 1000 for **all** drones (placeholder) | 🔴 BLOCKER | Correct values in §10.1 |
 | 3 | 6 drones have **empty** `altitude` field (IDs 12,15,18,24,25,26) | 🔴 BLOCKER | Need designer input |
 | 4 | Weapon DRM columns **all zeros** (except 2 weapons) | 🟡 HIGH | May be intentional or missing |
-| 5 | `has_builtin_fo_laze` discrepancy vs designer's confirmed list | 🟡 HIGH | Reconcile |
-| 6 | 37 combat cards (2 overlapping sets) — which set to use? | 🟡 HIGH | Clarify with designer |
+| 5 | `has_builtin_fo_laze` discrepancy vs designer's confirmed list | ✅ RESOLVED | All 28 drones = 1; FO/Laze restricted to VLOW/LOW/MEDIUM in engine |
+| 6 | 37 combat cards (2 overlapping sets) — which set to use? | ✅ RESOLVED | Merged into 31-card unified deck CC001–CC031 (card_type='COMBAT'). `instruction` + `back_image` columns dropped. |
 
 ### 20.2 CRT Table Gaps
 

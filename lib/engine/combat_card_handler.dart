@@ -37,8 +37,8 @@ class CombatCardEffect {
 
 /// Interprets and applies combat card effects to the drone state.
 ///
-/// Each of the 18 combat cards has a specific effect parsed from the
-/// instruction text. This handler maps card numbers to their game effects.
+/// Each of the 31 merged combat cards has a specific effect parsed from the
+/// instructions text. This handler maps card numbers to their game effects.
 class CombatCardHandler {
   CombatCardHandler._();
 
@@ -94,7 +94,7 @@ class CombatCardHandler {
   /// Fallback: try to parse common instruction patterns.
   static CombatCardEffect _parseInstruction(
       CombatCard card, DroneState state) {
-    final text = card.instruction.toUpperCase();
+    final text = card.instructions.toUpperCase();
 
     if (text.contains('NO EVENT') || text.contains('NOTHING HAPPENS')) {
       return CombatCardEffect.noEvent;
@@ -132,7 +132,7 @@ class CombatCardHandler {
     // Unrecognized — treat as informational
     return CombatCardEffect(
       type: CombatCardEffectType.other,
-      description: '${card.cardName}: ${card.instruction}',
+      description: '${card.cardName}: ${card.instructions}',
     );
   }
 }

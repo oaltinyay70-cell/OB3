@@ -705,7 +705,7 @@ class _B4Content extends StatelessWidget {
     // Determine which modes are available at current altitude
     final bool canStandOff = alt == Altitude.medium || alt == Altitude.high;
     final bool canCloseIn = alt == Altitude.vlow || alt == Altitude.low;
-    const bool canFoLaze = true; // FO/Laze available at any altitude
+    final bool canFoLaze = alt == Altitude.vlow || alt == Altitude.low || alt == Altitude.medium; // FO/Laze: LOW + MEDIUM only
 
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -876,7 +876,7 @@ class _B4Content extends StatelessWidget {
                   final bool modeAvailable = switch (mode) {
                     AttackMode.standOff => canStandOff,
                     AttackMode.closeIn => canCloseIn,
-                    AttackMode.foLaze => canFoLaze,
+                    AttackMode.foLaze => canFoLaze, // HIGH altitude disables FO/Laze
                   };
                   final isSelected = state.selectedAttackMode == mode;
 

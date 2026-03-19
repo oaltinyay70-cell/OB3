@@ -564,6 +564,13 @@ class GameEngine {
       return false;
     }
 
+    // FO/Laze: LOW and MEDIUM altitudes only (not HIGH — designator range limit)
+    if (mode == AttackMode.foLaze &&
+        _droneState.altitude == Altitude.high) {
+      _log('FO/Laze requires VLOW, LOW or MEDIUM altitude (not HIGH).');
+      return false;
+    }
+
     if (mode == AttackMode.foLaze) {
       weapon = null; // Enforce no weapon for FO/Laze
     } else {

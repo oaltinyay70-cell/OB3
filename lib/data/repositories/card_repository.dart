@@ -13,11 +13,27 @@ class CardRepository {
   // Combat Cards
   // ---------------------------------------------------------------------------
 
-  /// Load all 18 combat cards.
+  /// Load all 31 merged combat cards (card_type = 'COMBAT', CC001–CC031).
   Future<List<CombatCard>> getAllCombatCards() async {
     final db = await _dbService.database;
-    final maps = await db.query('combat_cards', orderBy: 'card_number');
+    final maps = await db.query(
+      'combat_cards',
+      where: "card_type = 'COMBAT'",
+      orderBy: 'card_number',
+    );
     return maps.map((m) => CombatCard.fromMap(m)).toList();
+  }
+
+  /// Load a single combat card by its number (e.g. "CC013").
+  Future<CombatCard?> getCombatCardByNumber(String number) async {
+    final db = await _dbService.database;
+    final maps = await db.query(
+      'combat_cards',
+      where: 'card_number = ?',
+      whereArgs: [number],
+      limit: 1,
+    );
+    return maps.isEmpty ? null : CombatCard.fromMap(maps.first);
   }
 
   // ---------------------------------------------------------------------------
