@@ -1489,12 +1489,12 @@ lib/
 
 | # | Issue | Severity | Status |
 |---|-------|----------|--------|
-| 1 | `endurance_hours` column **missing** from `drones` table | 🔴 BLOCKER | Migration needed |
-| 2 | `max_structural_integrity` = 1000 for **all** drones (placeholder) | 🔴 BLOCKER | Correct values in §10.1 |
-| 3 | 6 drones have **empty** `altitude` field (IDs 12,15,18,24,25,26) | 🔴 BLOCKER | Need designer input |
-| 4 | Weapon DRM columns **all zeros** (except 2 weapons) | 🟡 HIGH | May be intentional or missing |
+| 1 | `endurance_hours` column **missing** from `drones` table | ✅ RESOLVED | False alarm — column is `range`, values present |
+| 2 | `max_structural_integrity` = 1000 for **all** drones (placeholder) | ✅ RESOLVED | Values 65–425 applied; `DatabaseService` bumped to v11 |
+| 3 | 6 drones have **empty** `altitude` field (IDs 12,15,18,24,25,26) | ✅ RESOLVED | AVENGER/OKHOTNIK/NEURON/TARANIS/GHATAK = HIGH capable; HERMES 450 = LOW/MED |
+| 4 | Weapon DRM columns **all zeros** (except 2 weapons) | ℹ️ INTENTIONAL | Confirmed by designer |
 | 5 | `has_builtin_fo_laze` discrepancy vs designer's confirmed list | ✅ RESOLVED | All 28 drones = 1; FO/Laze restricted to VLOW/LOW/MEDIUM in engine |
-| 6 | 37 combat cards (2 overlapping sets) — which set to use? | ✅ RESOLVED | Merged into 31-card unified deck CC001–CC031 (card_type='COMBAT'). `instruction` + `back_image` columns dropped. |
+| 6 | 37 combat cards (2 overlapping sets) — which set to use? | ✅ RESOLVED | Merged into 31-card unified deck CC001–CC031. `instruction` + `back_image` columns dropped. |
 
 ### 20.2 CRT Table Gaps
 

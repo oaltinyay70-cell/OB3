@@ -197,7 +197,7 @@ class _FuelGauge extends StatelessWidget {
   Widget build(BuildContext context) {
     final ds = state.droneState;
     final fraction = ds.fuelFraction;
-    final pct = (fraction * 100).round();
+
     final color = _fuelColor(fraction);
 
     return Padding(
@@ -627,7 +627,7 @@ class _B1Content extends StatelessWidget {
         if (state.currentCombatCard != null)
           _CombatCardVisual(
             cardName: state.currentCombatCard!.cardName,
-            instruction: state.currentCombatCard!.instruction,
+            instruction: state.currentCombatCard!.instructions,
             effectResult: state.lastCombatEffect,
             imagePath: state.currentCombatCard!.imagePath,
             imageBytes: state.currentCombatCard!.imageBytes,
@@ -1478,47 +1478,6 @@ class _ResultBanner extends StatelessWidget {
   }
 }
 
-class _ModeButton extends StatelessWidget {
-  const _ModeButton({
-    required this.label,
-    required this.isSelected,
-    required this.onTap,
-  });
-  final String label;
-  final bool isSelected;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: AnimatedContainer(
-        duration: const Duration(milliseconds: 200),
-        height: 40,
-        alignment: Alignment.center,
-        decoration: BoxDecoration(
-          color: isSelected
-              ? const Color(0xFFEF4444).withValues(alpha: 0.2)
-              : MilstdTheme.surface,
-          borderRadius: const BorderRadius.all(MilstdTheme.radiusSm),
-          border: Border.all(
-            color: isSelected ? const Color(0xFFEF4444) : MilstdTheme.borderDefault,
-            width: isSelected ? 2 : 1,
-          ),
-        ),
-        child: Text(
-          label,
-          style: TextStyle(
-            fontFamily: 'Rajdhani',
-            fontSize: 12,
-            fontWeight: FontWeight.w600,
-            color: isSelected ? const Color(0xFFEF4444) : MilstdTheme.textSecondary,
-          ),
-        ),
-      ),
-    );
-  }
-}
 
 class _SectionLabel2 extends StatelessWidget {
   const _SectionLabel2(this.text);
