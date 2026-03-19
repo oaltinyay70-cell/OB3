@@ -508,6 +508,11 @@ The DB contains **two sets** of combat cards:
 
 > [!IMPORTANT]
 > These formats are LOCKED. All card images — generated or rendered in-app — MUST strictly follow these specifications. Any deviation requires explicit approval.
+>
+> **Full pixel-precise spec (canvas size · Pantone · typography · spacing · prompt constants):**
+> 📄 [`docs/specs/card-visual-spec.md`](card-visual-spec.md)
+
+The table below is a quick-reference summary. For exact pixel values, hex codes, Pantone numbers, and font sizes, always refer to `card-visual-spec.md`.
 
 ---
 
