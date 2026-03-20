@@ -2,7 +2,7 @@
 
 **License Type**: Shareware  
 **Version**: 1.0  
-**Effective Date**: 2026-03-19  
+**Effective Date**: 2026-03-20  
 **Copyright Holder**: OB3 Project / oaltinyay70-cell  
 
 ---
