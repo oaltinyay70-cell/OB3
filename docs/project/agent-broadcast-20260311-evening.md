@@ -16,7 +16,7 @@ The USER has provided the final answers to all open questions in the `rulebook_g
 
 2. **Altitude / Height Changes (H2)**
    - Re-confirmed: Altitude change is a free action during B-3 Positioning. Drones are not restricted to changing 1 level per turn; they can jump multiple levels (e.g., HIGH straight down to LOW).
-   - **NEW RULE (FUEL COST):** *Lowering* altitude is free (0F). However, *raising* altitude costs **+1F per level raised** (e.g., jumping from LOW to HIGH costs +2F). This fuel burns immediately upon ascending. 
+   - **~~NEW RULE (FUEL COST):~~** ~~*Lowering* altitude is free (0F). However, *raising* altitude costs **+1F per level raised**~~ **SUPERSEDED BY PRD §4.2/§6.2**: Ascending = **2F per level**, Descending = **1F per level**. 
 
 3. **Re-arming (H1)**
    - Drones **cannot** re-arm mid-scenario. Once weapons are expended, they are weapons-out. They can still FO/Laze if equipped, but otherwise must RTB.

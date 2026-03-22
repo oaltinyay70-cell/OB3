@@ -60,6 +60,10 @@
 - [ ] Decision Point dialogs (B2 engage/retreat, B5 continue/RTB)
 - [ ] Post-Scenario Briefing screen (6 mandatory sections)
 - [ ] Card display widgets (target, threat, combat)
+- [x] AI Generated target card visuals — ALL 111/111 COMPLETE
+  - [x] AFV (18/18) · VIP (6/6) · ARTILLERY (18/18) · AIR (6/6)
+  - [x] TANK (15/15) · ENGINEER (6/6) · HQ-BUNKER (6/6)
+  - [x] PERSONNEL (12/12) · SAM (18/18) · TRUCK (6/6)
 
 ## Phase 4: Scenario System
 - [x] Scenario loader from database (deck composition, objectives)

@@ -26,6 +26,7 @@ The output of this survey populates the following tables:
 |-------|---------|-------------|------------|
 | Scenario Name | Text Input | Required, max 50 chars | `scenarios.name` |
 | Brief Description | Text Input | Required, max 100 chars | `scenarios.description` |
+| Briefing Visual | File Upload (JPG/PNG) | Optional, max 100 KB, 16:9 recommended | `scenarios.mission_briefing_image_path` (base64 data URI) |
 | Narrative Briefing | Text Area | Optional, max 1000 chars | `scenarios.narrative` |
 | Campaign Assignment | Dropdown | Optional (picks from campaigns) | `scenarios.campaign_name` |
 
@@ -40,15 +41,34 @@ The output of this survey populates the following tables:
 | Reinforcement Rule | Text Input | Text rule for campaign integration | `scenarios.reinforcement_rule` |
 | Special Global Rules | Text Area | Plain text modifier rules | `scenarios.special_rules` |
 
-### Step 3: Primary Objective
-*Define what constitutes mission success (critical for QUICK_KILL).*
+### Step 3: Objectives (Sprint OBJ-1)
+*Define primary and secondary mission objectives. Both share identical structure — differ only by `is_primary` flag.*
 
-| Field | UI Type | Constraints | DB Mapping |
-|-------|---------|-------------|------------|
-| Objective Description | Text Input | Required | `scenarios.primary_objective` |
-| Objective Target Name | Dropdown (Target Cards) | Select specific target (e.g., "General Barkov") | `scenarios.primary_objective_card_name` |
-| Required Weapon Type | Dropdown (Weapon Types) | e.g., "BUNKER BUSTER" required | `scenarios.primary_objective_weapon_req` |
-| Completion Zone | Select | Dropdown of Zone 1-9 | `scenarios.primary_objective_zone` |
+> [!NOTE]
+> Replaces old single-field `primary_objective_*` columns. Objectives now stored in `scenario_objectives` table.
+
+**Objectives panel** lists all objectives grouped by `objective_id`. Each shows: label, `PRIMARY`/`SECONDARY` badge, and all its conditions.
+
+| Action | UI Type | Detail |
+|--------|---------|--------|
+| Add Objective | Button | Creates new `objective_id`, prompts for label + `is_primary` toggle |
+| Add Condition | Button (per objective) | Choice of `NAMED_CARD` or `KILL_QUOTA` (see below) |
+| Delete Condition | Button | Removes single condition row |
+| Delete Objective | Button | Removes all conditions for that `objective_id` |
+| Preview | Toggle | Shows HUD + AAR mockup of objectives |
+| Import from Scenario | Button | Copies objectives from existing scenario (new IDs, appends) |
+
+**Condition forms:**
+
+| Type | Fields | DB Mapping |
+|------|--------|------------|
+| `NAMED_CARD` | Target card name (autocomplete from `target_cards.name`), optional weapon_required | `scenario_objectives.target_card_name`, `.weapon_required` |
+| `KILL_QUOTA` | Target sub_category dropdown (AFV, TANK, etc.), required_count number, optional weapon_required | `scenario_objectives.target_sub_category`, `.required_count`, `.weapon_required` |
+
+**Rules:**
+- Only one objective can be `is_primary=1` per scenario — toggling a new one auto-unsets the previous
+- Compound objectives: multiple conditions under same `objective_id` — ALL must be met
+- NAMED_CARD conditions must reference a card name that exists in `target_cards`
 
 ### Step 4: Environment & Zoning
 *Break the mission into geographical operations.*
@@ -106,15 +126,33 @@ The output of this survey populates the following tables:
 
 ## 3. Validation & Generation Logic
 
-Before saving, the survey must run a validation pass:
-1. **Objective Check**: Does the target card selected as the primary objective actually exist in the quantities specified in the Target Deck build (Step 5)?
-2. **Range Validation**: Do the acquisition ranges (Step 6) leave any gaps or overlaps? Does it cover 0-100%?
-3. **Empty Decks**: A scenario cannot have 0 target cards. It will be rejected.
+When the designer clicks **PUBLISH**, the editor pre-validates all required fields and shows a **clean AlertDialog** with a bulleted list of issues. Draft saves skip validation.
+
+Validation checks:
+1. **Title** is required
+2. **Short description** is required
+3. **Overview text** is required
+4. **Mission briefing** is required
+5. Must select at least **1 drone**
+6. Must have at least **5 target cards**
+7. Must have at least **5 threat cards**
+8. Must have at least **5 combat cards**
 
 If valid:
 - Generate a unique `scenario_id`.
-- Execute a batched SQLite transaction `INSERT` across all 7 relevant scenario tables.
-- Return user to Main Menu with a success toast.
+- Execute a batched SQLite transaction `INSERT`/`UPDATE` across all 7 relevant scenario tables.
+- Return user to Scenario List with a success toast.
+
+---
+
+## 4. Export, Import & Publish
+
+| Action | Format | Behavior |
+|--------|--------|----------|
+| **Export** ⬇ | `.txt` (human-readable, `KEY: VALUE` format) | Downloads via browser to Downloads folder. All fields included with `#` remarks and working examples. Available on all 9 wizard steps + list page. |
+| **Import** | `.txt` (same format) | Opens file picker, reads bytes on web, creates new Draft scenario. Validates card/drone IDs against DB. |
+| **Publish** | Writes to `ob3.db` | Validates all required fields, then inserts/updates across 7 DB tables. App must be rebuilt to bundle updated DB. |
+| **Save Draft** | Writes to `ob3.db` | Saves without validation — allows incomplete work-in-progress. |
 
 ---
 *End of Specification*

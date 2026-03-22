@@ -639,16 +639,16 @@ The scenario editor will present a step-by-step form:
 
 ---
 
-## 13. Assumptions (Pending Confirmation)
+## 13. Assumptions — Confirmed by Designer
 
-| # | Assumption | Basis |
-|---|-----------|-------|
-| A1 | Solitaire Quick Game uses the full card pool (all 111 targets, all 36 threats, all 18 combat) | §5.1 implies this but doesn't state explicitly |
-| A2 | In Solitaire mode, the default Target/Threat Acquisition Tables are used (not scenario overrides) | §5.1 vs §5.3 |
-| A3 | Fuel consumption from the `(+)` loadout marker is per cycle, not per box | §2.5: "+2 Fuel extra to normal fuel usage in game cycle" |
-| A4 | ~~Drone VP value needs a column~~ | ✅ Confirmed: all drones cost **5 VP**. No DB column needed — hardcoded constant. |
+| # | Assumption | Status |
+|---|-----------|--------|
+| A1 | Solitaire Quick Game uses the full card pool (all 111 targets, all 36 threats, all 18 combat) | ✅ Confirmed |
+| A2 | In Solitaire mode, the default Target/Threat Acquisition Tables are used. **Deck composition: 1 card of each target sub-category + 1 card of each threat sub-category + 1 of each combat card from the full deck.** | ✅ Confirmed |
+| A3 | Fuel consumption from the `(+)` loadout marker is per cycle, not per box | ✅ Confirmed |
+| A4 | Drone VP cost stored in DB `vp_cost` column (currently **5 VP** for all drones — will change later) | ✅ Confirmed — DB column added |
 | A5 | ~~Altitude cost unclear~~ | ✅ Confirmed: multiple levels allowed. **Going UP = 2F per level. Going DOWN = 1F per level.** |
-| A6 | DRM cannot exceed 6 or be less than 1 for D6 rolls, but 2D10 DRM has no such cap | §3 states DR rules for D6 only |
+| A6 | D6 = single 6-sided die (result 1–6, DRM clamped 1–6). 2D10 = two 10-sided dice (1st = tens, 2nd = ones → 00–99, DRM uncapped). | ✅ Confirmed |
 
 ---
 

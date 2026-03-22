@@ -153,7 +153,7 @@ The palette draws from military HUD/FLIR aesthetics — dark backgrounds, phosph
 ### 2.1 🔋 Fuel Color Bar (CRITICAL COMPONENT)
 
 > [!IMPORTANT]
-> Per design directive: **Fuel is shown as a color bar, NOT numbers.** The bar smoothly transitions through green → yellow → red as fuel depletes.
+> Per PRD §6.1: **Fuel is shown as a color bar, NOT numbers.** The bar smoothly transitions through green → blue → orange → red as fuel depletes.
 
 #### Specification
 
@@ -178,10 +178,10 @@ The palette draws from military HUD/FLIR aesthetics — dark backgrounds, phosph
 
 | Fuel % | Bar Color | Glow | Label Color |
 |--------|-----------|------|-------------|
-| 100–61% | `#00E676` (status-ok) | `shadow-glow-green` | `text-secondary` |
-| 60–31% | `#FFD600` (status-caution) | `shadow-glow-amber` | `accent-warm` |
-| 30–16% | `#FF9100` (status-warning) | `shadow-glow-amber` (brighter) | `accent-warm` |
-| 15–1% | `#FF1744` (status-critical) | `shadow-glow-red` | `accent-danger` |
+| 100–76% | `#00E676` (status-ok) | `shadow-glow-green` | `text-secondary` |
+| 75–41% | `#40C4FF` (accent-secondary) | `shadow-glow-blue` | `accent-secondary` |
+| 40–11% | `#FF9100` (status-warning) | `shadow-glow-amber` | `accent-warm` |
+| 10–1% | `#FF1744` (status-critical) | `shadow-glow-red` | `accent-danger` |
 | 0% | `#B71C1C` (status-destroyed) | Pulsing `shadow-glow-red` | `accent-danger` (blink) |
 
 #### Behavior

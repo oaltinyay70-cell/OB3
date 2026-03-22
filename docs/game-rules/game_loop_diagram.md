@@ -22,7 +22,7 @@ flowchart TD
     COMMS_CHECK --> |"3-5: Degraded\n-1 Attack DRM"| B1
     COMMS_CHECK --> |"≥6: Uncontrollable"| DESTROYED
 
-    B1 --> |"Optional: Change height (free action)\nNo card draws at B1"| B2
+    B1 --> |"Optional: Change altitude\nDraw COMBAT CARD (mandatory)\n(effects last this cycle only)"| B2
 
     B2 --> |"-1F fuel cost"| B2_CARDS["Draw TARGET CARD\nDraw THREAT CARD"]
     B2_CARDS --> B2_DETECT["Roll 2D10 → Target Acq Table\nRoll 2D10 → Threat Det Table"]
@@ -39,9 +39,9 @@ flowchart TD
     DECISION1 --> |"❌ No — Discard both"| B1
     DECISION1 --> |"✅ Yes — Engage"| B3
 
-    B3 --> |"Optional: Change height\nOptional: Draw COMBAT CARD\n(effects last this cycle only)"| B4
+    B3 --> |"Optional: Change altitude\nNo combat card drawn\n(positioning only)"| B4
 
-    B4 --> SELECT["Select Height + Mode + Weapon\n• Stand-Off / Close-In / FO-Laze"]
+    B4 --> SELECT["Select Mode + Weapon\n• Stand-Off / Close-In / FO-Laze\n• Weapon must support current altitude"]
     SELECT --> ATTACK_ROLL["Roll 1D6 + DRM modifiers"]
     ATTACK_ROLL --> ATTACK_CRT{"Consult ATTACK CRT"}
     ATTACK_CRT --> |"HIT"| TARGET_HIT["✅ Target Destroyed\nVP banked immediately"]
@@ -94,12 +94,11 @@ flowchart TD
 
 | Point | Location | Player Chooses |
 |-------|----------|----------------|
-| **Height change** | Any time (free action) | Spend nothing to change altitude level |
+| **Height change** | B1, B3 | Adjust altitude (costs fuel: 2F up, 1F down) |
 | **Engage or retreat** | B2 | Risk assessment: is target VP worth the threat? |
-| **Combat card** | B3 | Optional: draw a combat card for cycle modifiers |
+| **Altitude for attack** | B3 | Adjust before entering weapons phase — affects weapon availability |
 | **Attack mode** | B4 | Stand-Off / Close-In / FO-Laze |
-| **Weapon selection** | B4 | Which loadout to spend |
-| **Attack height** | B4 | Affects hit%, evasion%, damage multiplier, fuel |
+| **Weapon selection** | B4 | Which weapon to fire (must support current altitude) |
 | **Primary complete** | B2 (once) | RTB now or continue for more kills? |
 | **Continue or RTB** | End-of-Loop | Keep looping or bank your score |
 

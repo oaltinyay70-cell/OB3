@@ -51,7 +51,7 @@
 | Solitaire Quick Game mode | Campaign mode (territory) |
 | Scenario Game mode (load from DB) | 2+ Player competitive mode |
 | Scenario Editor (survey-form) | Campaign map rendering |
-| Full B0→B5 game loop | |
+| Full B0→B5 game loop | AI text generation for scenario editor fields (mission briefing, objectives) |
 | All 28 drones with loadout config | |
 | All card types: 37 combat, 111 target, 36 threat | |
 | 4 altitude levels (VLOW, LOW, MEDIUM, HIGH) | |
@@ -167,7 +167,7 @@ B0 (In Transit) → B1 (Search) → B2 (Target/Threat) → B3 (Positioning) → 
 | # | Action | Type | Details |
 |---|--------|------|---------|
 | 1 | Change altitude | OPTIONAL | 2F per level UP, 1F per level DOWN |
-| 2 | Draw combat card | REQUIRED | Execute instructions immediately |
+| 2 | Draw combat card | REQUIRED | Execute instructions immediately. **This is the only time and place a combat card is mandatorily drawn from its deck.** Drawn EXACTLY ONCE per cycle. Returning to B1 from a B2 Retreat does not reset this. |
 
 - If combat deck empty → reshuffle discard pile, place face-up
 - After completing → move to B2
@@ -232,12 +232,14 @@ B0 (In Transit) → B1 (Search) → B2 (Target/Threat) → B3 (Positioning) → 
 | # | Action | Type | Details |
 |---|--------|------|---------|
 | 1 | Change altitude | OPTIONAL | 2F per level UP, 1F per level DOWN |
-| 2 | Draw combat card | REQUIRED | Execute instructions immediately |
 
 ### 4.5 B4 — Drone Attack
 
 **Procedure:**
 1. **Select attack mode**: Stand-Off, Close-In, or FO/Laze
+   - **Stand-Off**: available at **MEDIUM and HIGH** altitude only
+   - **Close-In**: available at **VLOW and LOW** altitude only
+   - **FO/Laze**: available at **any** altitude
    - AA missiles → Stand-Off only, MEDIUM or HIGH altitude only
    - Torpedoes/Sonobuoys → Close-In only
    - Anti-shipping missiles → Stand-Off only
@@ -247,7 +249,7 @@ B0 (In Transit) → B1 (Search) → B2 (Target/Threat) → B3 (Positioning) → 
 4. **Roll 1D6** + sum all DRM:
    - Weapon DRM (per-target-type from `weapons` table `drm_*` columns)
    - Combat card DRM (if active)
-   - Target card DRM (from `instruction` field, e.g. "+1L Column Shift")
+   - Target card DRM (from `instruction` field, e.g. "+1L Column Shift") — **Target Card DRM is effective only for attacking that specific target**
    - Sensor damage penalty: −1 per 4 sensor damage points
    - Scenario-specific DRM (if any)
 5. **Consult Drone Attack CRT**: intersection of (mode × altitude × final DRM column)
@@ -266,7 +268,7 @@ If target was SAM AND attack **missed**:
 ### 4.6 B5 — Evasive Action
 
 **Procedure:**
-1. Roll 1D6 + DRM: threat card modifiers, combat card, scenario
+1. Roll 1D6 + DRM: threat card modifiers (**effective only for counterfire in the current cycle unless otherwise stated**), combat card, scenario
 2. Apply column shifts: −1 LEFT per 2 points of VIS/RCS
 3. Clamp DRM column to [1, 6]
 4. Consult Counterfire & Evasion CRT
@@ -284,6 +286,130 @@ If target was SAM AND attack **missed**:
 2. Fuel exhausted? → Forced RTB → Post-scenario briefing
 3. Player RTB? → Post-scenario briefing
 4. All clear → Deduct end-of-cycle fuel, clear cycle-scoped combat card effects, increment cycle → B0
+
+---
+
+### 4.8 Weapon Fire Altitude & DRM Matrix
+
+> [!IMPORTANT]
+> **Designer-editable reference matrix.** Each weapon's fire altitude restrictions and per-target-type DRM values are shown below. Edit values directly in this table. Changes here must be reflected in the `weapons` table in `ob3.db`.
+
+#### 4.8.1 Attack Mode Altitude Rules
+
+| Attack Mode | Allowed Altitudes | Restricted Altitudes |
+|-------------|-------------------|----------------------|
+| **Stand-Off** | MEDIUM, HIGH | VLOW ❌, LOW ❌ |
+| **Close-In** | VLOW, LOW | MEDIUM ❌, HIGH ❌ |
+| **FO/Laze** | VLOW, LOW, MEDIUM, HIGH | (none) |
+
+#### 4.8.2 Weapon Fire Altitude & Mode Restrictions
+
+> **`fire_range` field = Attack Mode indicator** (NOT physical distance).
+> - Contains **`close`** → weapon can fire in **Close-In** mode
+> - Contains **`medium`** or **`far`** → weapon can fire in **Stand-Off** mode
+> - **`close-medium`** → weapon can fire in **both** Close-In and Stand-Off
+> - A weapon cannot be used in a mode its `fire_range` does not support
+> - Weapons greyed out in the UI if incompatible with current mode or altitude
+
+| ID | Weapon | Type | Fire Altitude | fire_range (DB) | Allowed Modes |
+|----|--------|------|---------------|-----------------|---------------|
+| 1 | MAM-L | ATGM | LOW, MEDIUM | medium range | Stand-Off |
+| 2 | MAM-C | ATGM | LOW | medium | Stand-Off |
+| 3 | SOM | Cruise | MEDIUM, HIGH | far | Stand-Off |
+| 4 | UMTAS | ATGM | LOW | medium | Stand-Off |
+| 5 | BA-7 | ATGM | LOW | medium | Stand-Off |
+| 6 | FT-9 | Bomb | MEDIUM | medium | Stand-Off |
+| 7 | AR-1 | ATGM | LOW | medium | Stand-Off |
+| 8 | FT-12 | Bomb | MEDIUM, HIGH | far | Stand-Off |
+| 9 | AR-2 | ATGM | LOW | close-medium | **Both** |
+| 10 | AGM-114 Hellfire | ATGM | LOW | medium | Stand-Off |
+| 11 | GBU-12 Paveway II | PGB | MEDIUM | medium | Stand-Off |
+| 12 | GBU-38 JDAM | PGB | HIGH | far | Stand-Off |
+| 13 | Brimstone | ATGM | LOW | medium | Stand-Off |
+| 14 | GBU-31 JDAM | PGB | HIGH | far | Stand-Off |
+| 15 | Spike | ATGM | LOW | medium | Stand-Off |
+| 16 | SPICE-250 | PGB | MEDIUM, HIGH | far | Stand-Off |
+| 17 | KAB-20 | Bomb | LOW | close-medium | **Both** |
+| 18 | KAB-250 | Bomb | MEDIUM | medium | Stand-Off |
+| 19 | KAB-500 | Bomb | MEDIUM, HIGH | far | Stand-Off |
+| 20 | Almas | ATGM | LOW | medium | Stand-Off |
+| 21 | Qaem-5 | ATGM | LOW | medium | Stand-Off |
+| 22 | Qaem-9 | PGB | MEDIUM | medium | Stand-Off |
+| 23 | Sadid-345 | ATGM | LOW | medium | Stand-Off |
+| 24 | Barq | ATGM | LOW | medium | Stand-Off |
+| 25 | H-2 | Bomb | MEDIUM, HIGH | far | Stand-Off |
+| 26 | AASM Hammer | PGB | MEDIUM, HIGH | far | Stand-Off |
+| 27 | Paveway IV | PGB | MEDIUM | medium | Stand-Off |
+| 28 | SAAW | PGB | MEDIUM, HIGH | far | Stand-Off |
+| 29 | FO/LAZE KIT | Kit | LOW, MEDIUM, HIGH | medium | *(FO/Laze mode only)* |
+| 30 | HJ-10 | ATGM | LOW, MEDIUM | medium | Stand-Off |
+| 31 | FT-7 | Bomb | LOW, MEDIUM, HIGH | close-medium | **Both** |
+| 32 | FT-10 | Bomb | MEDIUM, HIGH | close-medium | **Both** |
+
+#### 4.8.3 Weapon DRM by Target Type
+
+> Per-weapon DRM modifier applied when attacking a specific target type at B4. **0 = no modifier.** Positive = bonus, Negative = penalty. Edit values here.
+
+| ID | Weapon | TRUCK | PERS | AFV | SAM | TANK | ARTY | HQ/BKR | VIP | AIR |
+|----|--------|:-----:|:----:|:---:|:---:|:----:|:----:|:------:|:---:|:---:|
+| 1 | MAM-L | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 2 | MAM-C | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 3 | SOM | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 4 | UMTAS | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 5 | BA-7 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 6 | FT-9 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 7 | AR-1 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 8 | FT-12 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 9 | AR-2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 10 | AGM-114 Hellfire | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 11 | GBU-12 Paveway II | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 12 | GBU-38 JDAM | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 13 | Brimstone | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 14 | GBU-31 JDAM | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 15 | Spike | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 16 | SPICE-250 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 17 | KAB-20 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 18 | KAB-250 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 19 | KAB-500 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 20 | Almas | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 21 | Qaem-5 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 22 | Qaem-9 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 23 | Sadid-345 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 24 | Barq | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 25 | H-2 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 26 | AASM Hammer | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 27 | Paveway IV | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 28 | SAAW | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 29 | FO/LAZE KIT | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 30 | HJ-10 | 0 | 0 | **-1** | 0 | **-1** | 0 | 0 | 0 | 0 |
+| 31 | FT-7 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 | 0 |
+| 32 | FT-10 | 0 | 0 | 0 | 0 | 0 | **+1** | 0 | 0 | 0 |
+
+> [!NOTE]
+> Currently only weapons **#30 HJ-10** and **#32 FT-10** have non-zero DRM values in the database. All others default to 0 for all target types. Review and populate as needed.
+
+#### 4.8.4 Weapon Type vs Target Type Engagement Matrix
+
+> [!IMPORTANT]
+> **Designer-editable.** Defines which weapon *types* can legally engage which target *types*. ✅ = can engage, ❌ = cannot engage. A weapon whose type cannot engage the current target is **greyed out** in the B4 weapon list and blocked by the engine. Edit values directly — any change must be mirrored in the code (`game_enums.dart` → `WeaponType.canEngage()`).
+
+| Weapon Type | TRUCK | PERS | AFV | SAM | TANK | ARTY | HQ/BKR | VIP | AIR | ENGR |
+|-------------|:-----:|:----:|:---:|:---:|:----:|:----:|:------:|:---:|:---:|:----:|
+| **ATGM** | ✅ | ❌ | ✅ | ❌ | ✅ | ❌ | ❌ | ✅ | ❌ | ❌ |
+| **Guided Bomb** | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
+| **Cruise Missile** | ❌ | ❌ | ❌ | ✅ | ❌ | ❌ | ✅ | ❌ | ❌ | ❌ |
+| **Missile** | ✅ | ✅ | ✅ | ❌ | ✅ | ❌ | ❌ | ✅ | ❌ | ❌ |
+| **KIT** (FO/Laze) | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ✅ | ❌ | ✅ |
+
+> [!NOTE]
+> **AIR targets**: No weapon type can currently engage AIR targets. This is intentional — drones in this game are not equipped for air-to-air combat. Future expansions may add AA missiles.
+>
+> **Design rationale (defaults above — adjust as needed):**
+> - **ATGM**: Anti-tank guided missiles — effective vs vehicles (TRUCK, AFV, TANK, VIP convoys), not vs personnel/structures
+> - **Guided Bomb**: Most versatile — can hit anything on the ground except airborne targets
+> - **Cruise Missile**: Strategic weapon — SAM sites and HQ/Bunkers only
+> - **Missile**: General-purpose missiles — vehicles and personnel, not hardened targets
+> - **KIT (FO/Laze)**: Designator — can designate any ground target for external fire support
 
 ---
 
@@ -766,35 +892,116 @@ Each drone has up to 5 loadout option pairs (`opt1`–`opt5`), each with weapon 
 
 ## 12. Scenario System & Editor
 
-### 12.1 Scenario Data (from DB)
+### 12.1 Scenario Data — Complete DB Field Mapping
 
-| Field | DB Column | Description |
-|-------|-----------|-------------|
-| Name | `scenarios.name` | Scenario title |
-| Campaign | `scenarios.campaign_name` | Parent campaign (v1.1) |
-| Description | `scenarios.description` | Short description |
-| Narrative | `scenarios.narrative` | Story/briefing text |
-| Drone | `scenarios.drone_id` | Forced drone (FK → drones) |
-| Primary Objective | `scenarios.primary_objective` | Mission goal |
-| Primary Zone | `scenarios.primary_objective_zone` | Zone # for completion |
-| Primary Target | `scenarios.primary_objective_card_name` | Target card name |
-| Weapon Requirement | `scenarios.primary_objective_weapon_req` | e.g. THERMOBARIC |
-| Scoring Mode | `scenarios.scoring_mode` | MAXIMUM_KILL or QUICK_KILL |
-| Event Cards | `scenarios.combat_event_count` | # event combat cards |
-| No-Event Cards | `scenarios.combat_no_event_count` | # no-event combat cards |
-| Reinforcement | `scenarios.reinforcement_rule` | Campaign feature |
-| Special Rules | `scenarios.special_rules` | Free-text overrides |
+> [!IMPORTANT]
+> The `scenarios` table has **two sets of columns**: the original 15 columns (from the game schema) and ~30 columns added by the Scenario Editor via `ALTER TABLE`. Both are stored in the same `ob3.db` and both must be read by the game app.
 
-### 12.2 Per-Zone Configuration
+#### 12.1a Core Game Fields (original schema)
 
-| Table | Key Data |
-|-------|----------|
-| `scenario_zones` | zone_number, terrain description |
-| `scenario_target_deck` | target cards + quantities per zone |
-| `scenario_threat_deck` | threat cards + quantities + special rules per zone |
-| `scenario_target_ranges` | custom probability ranges per target type per zone |
-| `scenario_threat_ranges` | custom probability ranges per threat type per zone |
-| `scenario_loadouts` | available loadout options per scenario |
+| Field | DB Column | Type | Game App Usage |
+|-------|-----------|------|----------------|
+| ID | `id` | INTEGER PK | Scenario identifier |
+| Name | `name` | TEXT NOT NULL | Scenario title — shown in mission select |
+| Campaign | `campaign_name` | TEXT | Parent campaign (v1.1 feature) |
+| Description | `description` | TEXT | Short description — mission select subtitle |
+| Narrative | `narrative` | TEXT | Story/briefing text — briefing screen |
+| Drone | `drone_id` | INTEGER FK | Forced drone (NULL = player choice) |
+| Primary Objective | `primary_objective` | TEXT | Mission goal text — shown in HUD/objectives |
+| Primary Zone | `primary_objective_zone` | INTEGER | Zone # for completion |
+| Primary Target | `primary_objective_card_name` | TEXT | Legacy: specific target card name |
+| Weapon Requirement | `primary_objective_weapon_req` | TEXT | e.g. THERMOBARIC — restricts attack options |
+| Scoring Mode | `scoring_mode` | TEXT | `MAXIMUM_KILL` or `QUICK_KILL` |
+| Event Cards | `combat_event_count` | INTEGER | # event combat cards in deck (default: 8) |
+| No-Event Cards | `combat_no_event_count` | INTEGER | # no-event combat cards (default: 42) |
+| Reinforcement | `reinforcement_rule` | TEXT | Campaign-only feature |
+| Special Rules | `special_rules` | TEXT | Free-text overrides — shown in briefing |
+
+#### 12.1b Designer-Added Fields (ALTER TABLE)
+
+| Field | DB Column | Type | Default | Game App Usage |
+|-------|-----------|------|---------|----------------|
+| **Metadata** |
+| Short Description | `short_description` | TEXT | | Shown below title in mission select |
+| Overview | `overview` | TEXT | | Scenario setting context — briefing screen |
+| Mission Briefing | `mission_briefing_text` | TEXT | | Tactical briefing — shown before start |
+| Intro Text | `intro_text` | TEXT | | Opening narrative — splash/intro |
+| Location | `location` | TEXT | | Map location label |
+| Version | `version_number` | REAL | 1.00 | Displayed as `vX.XX` in editor & game |
+| Status | `state` | TEXT | `Draft` | `Draft`/`Published`/`Inactive` — only `Published` shown in game |
+| Difficulty | `difficulty_rating` | TEXT | `Medium` | Badge: Easy/Medium/Hard/Extreme |
+| Play Time | `estimated_play_time_minutes` | INTEGER | 30 | Shown in mission select |
+| Author | `author_name` | TEXT | `Oscar` | Metadata — credits |
+| Tags | `tags` | TEXT (JSON) | | Filtering in editor/game browser |
+| Thumbnail | `thumbnail_image_path` | TEXT | | Mission select card image |
+| Briefing Visual | `mission_briefing_image_path` | TEXT | | Image above mission briefing (base64 data URI or URL). Upload via file picker: JPG/PNG, max 100 KB, 16:9 recommended |
+| Designer Notes | `designer_notes` | TEXT | | Internal only — NOT shown to players |
+| Modified Date | `modified_date` | TIMESTAMP | | Last edit timestamp |
+| **Objective Conditions** |
+| *(Moved to `scenario_objectives` table — see §12.1c)* | | | | Primary and secondary objectives now stored in a dedicated junction table supporting compound conditions (NAMED_CARD + KILL_QUOTA). See §12.1c for full schema. |
+| **Briefing Display** |
+| Threat Rules | `threat_rules` | TEXT | | Briefing: threat context |
+| Target Rules | `target_rules` | TEXT | | Briefing: target context |
+| Combat Rules | `combat_rules` | TEXT | | Briefing: combat context |
+| Loadout Rules | `loadout_rules` | TEXT | | Briefing: loadout restrictions |
+| Starting Fuel | `starting_fuel` | INTEGER | | Override starting fuel (NULL = default) |
+| Starting Damage Sens | `starting_damage_sens` | INTEGER | 0 | Pre-existing sensor damage |
+| Starting Damage Comms | `starting_damage_comms` | INTEGER | 0 | Pre-existing comms damage |
+| **Gameplay Modifiers** |
+| Fuel Cost Mod | `modifier_fuel_cost` | INTEGER | 0 | Added to fuel consumption per move |
+| Attack Roll Mod | `modifier_attack_roll` | INTEGER | 0 | Added to attack dice rolls |
+| Evasion Mod | `modifier_evasion` | INTEGER | 0 | Added to evasion checks |
+| Altitude Cost Mod | `modifier_altitude_cost` | INTEGER | 0 | Added to altitude change fuel cost |
+| Target Acq. Mod | `modifier_target_acquisition` | INTEGER | 0 | Added to Target Acquisition DRM |
+| Threat Det. Mod | `modifier_threat_determination` | INTEGER | 0 | Added to Threat Determination DRM |
+
+#### 12.1c Junction Tables (scenario → related data)
+
+| Table | Key Columns | Game App Usage |
+|-------|-------------|----------------|
+| `scenario_designer_drones` | `scenario_id`, `drone_id` | Available drones for this scenario |
+| `scenario_designer_target_cards` | `scenario_id`, `target_card_id`, `quantity` | Target card deck composition |
+| `scenario_designer_threat_cards` | `scenario_id`, `threat_card_id`, `quantity` | Threat card deck composition |
+| `scenario_designer_combat_cards` | `scenario_id`, `combat_card_id`, `quantity` | Combat card deck composition |
+| `scenario_designer_excluded_loadouts` | `scenario_id`, `drone_id`, `option_index` | Blocked loadout presets per drone |
+| `scenario_designer_weapon_quantities` | `scenario_id`, `weapon_id`, `quantity` | Weapon restrictions per scenario |
+| `scenario_objectives` | See below | Compound objective conditions |
+
+#### 12.1d `scenario_objectives` Table (NEW — Sprint OBJ-1)
+
+Replaces the old flat `primary_objective_*` / `secondary_objective_*` columns. Each row is one **condition** within an objective. Multiple rows sharing the same `objective_id` form a **compound objective** (ALL conditions must be met).
+
+| Column | Type | Nullable | Description |
+|--------|------|----------|-------------|
+| `id` | INTEGER | NOT NULL | Primary key |
+| `scenario_id` | INTEGER | NOT NULL | FK → `scenarios.id` |
+| `objective_id` | INTEGER | NOT NULL | Groups conditions into one objective (e.g. objective_id=1 has 2 rows = both must be met) |
+| `is_primary` | INTEGER (0/1) | NOT NULL | 1 = primary, 0 = secondary. Exactly one `is_primary=1` objective per scenario |
+| `objective_label` | TEXT | NOT NULL | Display name shown to player (e.g. "Eliminate the Cult Leader") |
+| `condition_type` | TEXT | NOT NULL | `NAMED_CARD` or `KILL_QUOTA` |
+| `target_card_name` | TEXT | NULLABLE | Used when `condition_type=NAMED_CARD`. Must match `target_cards.name` exactly |
+| `target_sub_category` | TEXT | NULLABLE | Used when `condition_type=KILL_QUOTA`. Must match `target_cards.sub_category` |
+| `required_count` | INTEGER | NULLABLE | Used when `condition_type=KILL_QUOTA`. Number of kills of that sub_category required |
+| `weapon_required` | TEXT | NULLABLE | Optional. Kill only counts if this weapon type was used (e.g. `THERMOBARIC`) |
+| `sort_order` | INTEGER | NOT NULL | Display order within objective. Default 0 |
+
+**Example — Primary objective (NAMED_CARD):**
+
+| scenario_id | objective_id | is_primary | objective_label | condition_type | target_card_name | target_sub_category | required_count | weapon_required |
+|:-:|:-:|:-:|---|---|---|---|:-:|---|
+| 1 | 1 | 1 | Eliminate the Cult Leader | NAMED_CARD | CULT LEADER | NULL | NULL | THERMOBARIC |
+
+**Example — Compound secondary objective (destroy 2 TANKs AND 3 AFVs):**
+
+| scenario_id | objective_id | is_primary | objective_label | condition_type | target_card_name | target_sub_category | required_count | weapon_required |
+|:-:|:-:|:-:|---|---|---|---|:-:|---|
+| 1 | 2 | 0 | Suppress Enemy Armour | KILL_QUOTA | NULL | TANK | 2 | NULL |
+| 1 | 2 | 0 | Suppress Enemy Armour | KILL_QUOTA | NULL | AFV | 3 | NULL |
+
+> [!IMPORTANT]
+> **Columns REMOVED from `scenarios` table** (Sprint OBJ-1 migration):
+> `primary_objective`, `primary_objective_zone`, `primary_objective_card_name`, `primary_objective_weapon_req`
+> — all replaced by `scenario_objectives` rows.
 
 ### 12.3 Scenario Editor (Survey-Form)
 
@@ -812,11 +1019,18 @@ The Scenario Editor is a **7-step wizard form**:
 - Scoring Mode (radio: MAXIMUM_KILL / QUICK_KILL) → `scenarios.scoring_mode`
 - Special Global Rules (text area) → `scenarios.special_rules`
 
-**Step 3: Primary Objective**
-- Objective Description (required) → `scenarios.primary_objective`
-- Target Card Name (dropdown from target cards) → `scenarios.primary_objective_card_name`
-- Required Weapon Type (dropdown) → `scenarios.primary_objective_weapon_req`
-- Completion Zone (dropdown: 1–9) → `scenarios.primary_objective_zone`
+**Step 3: Objectives** *(replaces old single-field primary objective)*
+- **Objectives panel** listing all objectives grouped by `objective_id`
+- Each objective shows: label, `PRIMARY`/`SECONDARY` badge, and all its conditions
+- **Add Objective** button: creates new objective, prompts for label + `is_primary` toggle
+- Only one objective can be `is_primary` per scenario — toggling a new one auto-unsets the previous
+- **Add Condition** button (per objective): choice of `NAMED_CARD` or `KILL_QUOTA`
+  - `NAMED_CARD` form: target card name (autocomplete from `target_cards.name`), optional `weapon_required` dropdown
+  - `KILL_QUOTA` form: target `sub_category` dropdown (AFV, AIR, ARTILLERY, ENGINEER, HQ-BUNKER, PERSONNEL, SAM, TANK, TRUCK, VIP), `required_count` number input, optional `weapon_required` dropdown
+- Delete condition / Delete objective
+- **Live preview toggle**: shows how objectives appear on HUD and AAR screen
+- **Import from Scenario** button: copies objectives from an existing scenario (new IDs, appends to current)
+- Writes to `scenario_objectives` table
 
 **Step 4: Environment & Zoning**
 - Number of Zones (stepper: 1–9) → generates `scenario_zones` rows
@@ -834,11 +1048,233 @@ The Scenario Editor is a **7-step wizard form**:
 - Event card count (stepper: 0–12) → `scenarios.combat_event_count`
 - No-Event card count (stepper: 0–6) → `scenarios.combat_no_event_count`
 
-**Validation before save:**
-1. Primary objective target card must exist in Step 5 deck build
-2. Acquisition ranges must be gap-free and overlap-free (0–100%)
-3. Cannot have 0 target cards total
-4. On success: batched SQLite INSERT across 7 scenario tables
+**Validation before publish:**
+
+When the designer clicks **PUBLISH**, the editor pre-validates all required fields and shows a **clean AlertDialog** with a bulleted list of issues (not a raw error). Draft saves skip validation.
+
+Validation checks:
+1. Title is required
+2. Short description is required
+3. Overview text is required
+4. Mission briefing is required
+5. Must select at least 1 drone
+6. Must have at least 5 target cards
+7. Must have at least 5 threat cards
+8. Must have at least 5 combat cards
+9. **At least one objective must be marked `is_primary`**
+10. NAMED_CARD conditions must reference a card name that exists in `target_cards`
+11. On success: batched SQLite INSERT/UPDATE across scenario tables + `scenario_objectives`
+
+### 12.4 Scenario Versioning
+
+Each scenario has a **version counter** stored in `scenarios.version`:
+
+| Rule | Detail |
+|------|--------|
+| New scenario | Starts at `1.00` |
+| Each save/change | Increments by `+0.01` (e.g. 1.00 → 1.01 → 1.02) |
+| Display | Shown as `vX.XX` in the editor and scenario browser |
+
+### 12.5 Export (Text File)
+
+**Export** downloads the scenario as a **human-readable `.txt` file** (NOT a raw DB dump). The file includes **ALL fields** (filled or empty) with `#` comments explaining each field and working examples.
+
+> [!IMPORTANT]
+> Export does NOT touch `ob3.db`. It produces a standalone `.txt` file that can be shared, archived, edited in any text editor, or imported back into the editor.
+
+**Export availability:** The ⬇ export button appears in the AppBar on **all 9 wizard steps**, plus the scenario list page.
+
+**Export format:** `.txt` (plain text, `KEY: VALUE` per line, `#` comments with examples)
+
+**File naming:** `{scenario_name}_v{version}.txt` (e.g. `operation_desert_storm_v1.03.txt`)
+
+**Download method:** Browser download (file appears in the user's Downloads folder). To change the download location, configure Chrome Settings → Downloads → "Ask where to save each file."
+
+**Format structure (8 sections):**
+
+```
+# ═══════════════════════════════════════════════════════════════
+# OB3 DRONE COMMANDER — SCENARIO FILE (v1)
+# ═══════════════════════════════════════════════════════════════
+# Each line is KEY: VALUE. Lines starting with # are comments.
+# Multi-line fields use "| " syntax (indent with 2 spaces).
+# Fields marked [REQUIRED] must be filled for publishing.
+# Fields marked [OPTIONAL] can be left blank.
+# Fields marked [AUTO] are managed by the editor.
+
+# ── SECTION 1: BASIC INFORMATION ──────────────────────────────
+# TITLE [REQUIRED] [TEXT, max ~60 chars]
+# Example:
+#   TITLE: Operation Desert Storm
+TITLE: Island of Avuyaranty
+
+# VERSION [AUTO] [DECIMAL]
+VERSION: 1.03
+
+# STATUS [AUTO] [TEXT: Draft | Published | Inactive]
+STATUS: Draft
+
+# SHORT_DESCRIPTION [REQUIRED] [TEXT, max ~120 chars]
+SHORT_DESCRIPTION: Coastal strike mission against enemy armor
+
+# DIFFICULTY [OPTIONAL] [TEXT: Easy | Medium | Hard | Expert]
+DIFFICULTY: Hard
+
+PLAY_TIME_MINUTES: 45
+AUTHOR: Oscar
+TAGS: Desert, Night Ops, Armored Targets
+
+# ── SECTION 2: MISSION NARRATIVE ─────────────────────────────
+# OVERVIEW [REQUIRED] [TEXT, multi-line]
+OVERVIEW: |
+  An enemy armored column has been spotted...
+
+# MISSION_BRIEFING_IMAGE [OPTIONAL] [base64 or URL]
+MISSION_BRIEFING_IMAGE: https://example.com/map.jpg
+
+# MISSION_BRIEFING [REQUIRED] [TEXT, multi-line]
+MISSION_BRIEFING: |
+  Commander, intercept the enemy column...
+
+DESIGNER_NOTES: |
+  Balanced for intermediate players.
+
+# ── SECTION 3: OBJECTIVES ────────────────────────────────────
+# Each OBJECTIVE block groups conditions under one objective_id.
+# Multiple conditions per objective = compound (ALL must be met).
+# Exactly one objective must be PRIMARY.
+
+# OBJECTIVE [REQUIRED at least one]
+# Fields: label, is_primary (true/false), conditions[]
+# Condition types: NAMED_CARD (target_card_name, weapon_required?)
+#                  KILL_QUOTA (target_sub_category, required_count, weapon_required?)
+#
+# Example — simple primary:
+#   OBJECTIVE: Eliminate the Cult Leader
+#   IS_PRIMARY: true
+#   CONDITION: NAMED_CARD | CULT LEADER | THERMOBARIC
+#
+# Example — compound secondary:
+#   OBJECTIVE: Suppress Enemy Armour
+#   IS_PRIMARY: false
+#   CONDITION: KILL_QUOTA | TANK | 2
+#   CONDITION: KILL_QUOTA | AFV | 3
+
+OBJECTIVE: Eliminate the Cult Leader
+IS_PRIMARY: true
+CONDITION: NAMED_CARD | CULT LEADER | THERMOBARIC
+
+OBJECTIVE: Suppress Enemy Armour
+IS_PRIMARY: false
+CONDITION: KILL_QUOTA | TANK | 2
+CONDITION: KILL_QUOTA | AFV | 3
+
+# ── SECTION 5: DRONES ────────────────────────────────────────
+DRONES: ALL                              # or: 1, 3, 5
+
+# ── SECTION 6: LOADOUT RESTRICTIONS ──────────────────────────
+EXCLUDED_LOADOUTS: 1:3, 2:2             # drone_id:option_index
+
+# ── SECTION 7: CARD DECKS ────────────────────────────────────
+TARGET_CARDS: 12:3, 7:2, 15:1           # card_id:quantity
+THREAT_CARDS: T01:2, T05:3, T12:1       # card_number:quantity
+COMBAT_CARDS: 1:4, 5:2, 3:3             # card_id:quantity
+
+# ── SECTION 8: GAMEPLAY MODIFIERS ────────────────────────────
+MODIFIER_FUEL_COST: -1
+MODIFIER_ATTACK_ROLL: 2
+MODIFIER_EVASION: 0
+MODIFIER_ALTITUDE_COST: 0
+MODIFIER_TARGET_ACQUISITION: 1
+MODIFIER_THREAT_DETERMINATION: 0
+```
+
+### 12.6 Publish (to Game DB)
+
+**Publish** writes the scenario directly into the game's `ob3.db` database (batched INSERT/UPDATE across scenario tables + `scenario_objectives`). After publishing:
+
+1. The scenario is playable in the game app
+2. The app must be **rebuilt** to bundle the updated `ob3.db`
+3. Version counter is NOT reset — it continues incrementing
+
+> [!CAUTION]
+> Publishing overwrites any existing scenario with the same ID in `ob3.db`. There is no undo — export a backup first.
+
+### 12.7 Import
+
+The editor can **import** a `.txt` scenario file (same format as export) and reconstruct the full scenario from it. Import creates a new scenario (new ID) with `STATUS=DRAFT` and `VERSION=1.00`.
+
+Import reads the file bytes on web via `PlatformFile.bytes` (no `dart:io` dependency). All IDs are validated against the database — invalid card/drone IDs are reported as warnings but don't block import.
+
+### 12.8 Objective Evaluation Mechanism (Sprint OBJ-1)
+
+The objective evaluation system runs **after every target card is destroyed at B4**. It checks all conditions for all objectives and updates completion status in runtime memory.
+
+#### 12.8a Evaluation Flow
+
+```
+B4: Player destroys target card
+  → append { card_name, sub_category, weapon_used } to destroyedCardsWithWeapon
+  → ObjectiveEvaluator.evaluate(destroyedCardsWithWeapon, scenarioObjectives)
+  → For each objective_id:
+      → For each condition row:
+          NAMED_CARD: card_name in destroyedPile? (+ weapon check if weapon_required set)
+          KILL_QUOTA: count(sub_category matches) >= required_count? (+ weapon check)
+      → If ALL conditions met → objective_id = COMPLETE
+  → If COMPLETE objective has is_primary=1 → trigger mission success → AAR screen
+  → Secondary completions: notification only, no mission end
+```
+
+#### 12.8b ObjectiveEvaluator
+
+**Pure function** — no DB access, no side effects, fully unit-testable.
+
+```
+evaluate(destroyedCardsWithWeapon, scenarioObjectives) → objectiveStatus
+
+Input:
+  - destroyedCardsWithWeapon: [{ card_name, sub_category, weapon_used }]
+  - scenarioObjectives: all scenario_objectives rows for this scenario
+
+Output:
+  - objectiveStatus: Map<objective_id, { complete, label, is_primary, conditions[] }>
+```
+
+**Performance requirement:** < 5ms for max 20 objectives, 200 destroyed cards.
+
+#### 12.8c Runtime Objective State
+
+Maintained in-memory, never written to DB:
+- `objectiveStatus`: Map<objective_id, { complete: bool, conditions: Map<condition_id, bool> }>
+- `destroyedCardsWithWeapon`: Array of { card_name, sub_category, weapon_used }
+- On mission start: load all `scenario_objectives` rows into memory
+- On every kill: append to `destroyedCardsWithWeapon`, call `evaluate()`, update `objectiveStatus`
+- AAR reads from `objectiveStatus` at mission end — no re-evaluation needed
+
+#### 12.8d Weapon Requirement Enforcement at B4
+
+When a player selects a target card at B4:
+1. Check if any active objective targets that card AND has `weapon_required` set
+2. If yes → filter attack options to show only matching weapon class
+3. If player does not have the required weapon → show warning: "Objective requires [weapon type]. You do not have this weapon."
+4. Player **can** dismiss and attack with a different weapon, but the kill will **NOT** count toward the objective
+5. Non-objective kills (VP) always counted regardless of weapon used
+
+### 12.9 AAR Screen — Objective Results Display (Sprint OBJ-1)
+
+The After Action Report (Post-Scenario Briefing) screen must display objective results:
+
+| Section | Content |
+|---------|---------|
+| **Primary Objective** | Shown first, labelled `PRIMARY`. Status: `ACHIEVED` (green) or `FAILED` (red) |
+| **Secondary Objectives** | Listed below primary, each labelled `SECONDARY`, with `ACHIEVED` or `FAILED` |
+| **Condition Details** | Per condition within each objective: |
+| — NAMED_CARD | Card name + `ELIMINATED` / `NOT ELIMINATED` |
+| — KILL_QUOTA | sub_category + kills achieved / kills required (e.g. `TANK: 2 / 3`) |
+| **Mission Result** | `SUCCESS` or `FAILED` — determined **solely** by primary objective status |
+
+> [!IMPORTANT]
+> Secondary objective failures do NOT change overall mission result. AAR data sourced from `objectiveStatus` runtime map — no DB reads at AAR time.
 
 ---
 
@@ -850,10 +1286,10 @@ The Scenario Editor is a **7-step wizard form**:
 |----|--------|-------------|
 | S00 | Splash / Boot | App cold start |
 | S01 | Main Menu | After splash, after game-end |
-| S02 | Drone Selection | Quick Game or Scenario flow |
-| S03 | Loadout Configuration | After drone selected |
-| S04 | Mission Briefing | After loadout confirmed |
-| S05 | Game Board | After mission launch |
+| S02 | Mission Briefing | After scenario selected (ACCEPT → drone selection) |
+| S03 | Drone Selection | After briefing accepted, or Quick Game |
+| S04 | Loadout Configuration | After drone selected |
+| S05 | Game Board | After loadout confirmed |
 | S06 | Post-Scenario Briefing | After game ends |
 | S07 | Scenario Browser | Main Menu → Scenarios |
 | S08 | Scenario Editor | Main Menu → Editor |
@@ -864,16 +1300,18 @@ The Scenario Editor is a **7-step wizard form**:
 ### 13.2 Navigation Rules
 
 1. No deep-linking within the game loop — once in S05, navigation is state-driven
-2. Back navigation: S02→S01, S03→S02, S04→S03 — but NOT from S05
-3. Settings accessible from Main Menu only (not mid-game in v1.0)
-4. Replay from Post-Scenario re-enters S04 with same drone/loadout
+2. Back navigation: S03→S02→S01, S04→S03 — but NOT from S05
+3. Quick Game: S01→S03→S04→S05 (skips briefing)
+4. Scenario: S01→S07→S02 (ACCEPT)→S03→S04→S05
+5. Settings accessible from Main Menu only (not mid-game in v1.0)
+6. Replay from Post-Scenario re-enters S04 with same drone/loadout
 
 ### 13.3 Navigation Flow
 
 ```
 Splash → Call Sign (first launch) → Main Menu
-                                       ├── Quick Game → Drone Select → Loadout → Briefing → Game
-                                       ├── Scenario → Scenario Browser → Drone Select → …
+                                       ├── Quick Game → Drone Select → Loadout → Launch → Game
+                                       ├── Scenario → Browser → Briefing (ACCEPT) → Drone Select → Loadout → Launch → Game
                                        ├── Campaign → (disabled, toast "Coming in v1.1")
                                        ├── Editor → Scenario Editor Wizard
                                        ├── Settings
@@ -957,6 +1395,18 @@ final router = GoRouter(
 - "Launch Mission" → S05
 
 ### S05 — Game Board (Primary Game Screen)
+
+> [!IMPORTANT]
+> **Phase Display Names:** The mobile app UI displays military phase names instead of B0–B5. Docs and code continue to use B0–B5 internally.
+
+| Internal | App Display | Description |
+|:--------:|:-----------|:------------|
+| B0 | **INGRESS** | Approach to target area |
+| B1 | **RECON** | Reconnaissance / sensor sweep |
+| B2 | **CONTACT** | Enemy detected |
+| B3 | **IP** | Initial Point — attack run begins |
+| B4 | **WEAPONS HOT** | Weapons release authorized |
+| B5 | **EGRESS** | Departing target area / evasion |
 
 **Layout zones:**
 
