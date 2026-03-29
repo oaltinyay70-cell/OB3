@@ -18,6 +18,7 @@ import 'features/game/game_board_screen.dart';
 import 'features/loadout/loadout_config_screen.dart';
 
 import 'features/post_scenario/post_scenario_briefing_screen.dart';
+import 'features/scenario_selection/scenario_selection_screen.dart';
 import 'features/splash/splash_screen.dart';
 import 'models/drone.dart';
 import 'models/game_enums.dart';
@@ -69,6 +70,7 @@ enum _AppScreen {
   missionBriefing,
   gameBoard,
   postScenario,
+  scenarioSelection,
 }
 
 class _AppShell extends StatefulWidget {
@@ -124,31 +126,10 @@ class _AppShellState extends State<_AppShell> {
 
   /// Load available scenarios from DB and launch the first one.
   /// TODO: Replace with full ScenarioBrowserScreen when built.
-  void _loadAndPlayScenario() async {
-    try {
-      final db = DatabaseService.instance;
-      final repo = ScenarioRepository(db);
-      final scenarios = await repo.listScenarios();
-      if (scenarios.isEmpty) {
-        if (mounted) {
-          ScaffoldMessenger.of(context).showSnackBar(
-            const SnackBar(content: Text('No scenarios found in database')),
-          );
-        }
-        return;
-      }
-      // Load full scenario data for the first one
-      final scenario = await repo.getById(scenarios.first['id'] as int);
-      if (scenario != null && mounted) {
-        _onPlayScenario(scenario);
-      }
-    } catch (e) {
-      if (mounted) {
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to load scenario: $e')),
-        );
-      }
-    }
+  void _loadAndPlayScenario() {
+    setState(() {
+      _currentScreen = _AppScreen.scenarioSelection;
+    });
   }
 
   /// Scenario flow: show briefing FIRST, then drone selection on accept.
@@ -303,6 +284,11 @@ class _AppShellState extends State<_AppShell> {
           droneName: _selectedDrone!.name,
           onReturnToMenu: _onReturnToMenu,
           onReplay: _onReplay,
+        ),
+      _AppScreen.scenarioSelection => ScenarioSelectionScreen(
+          key: const ValueKey('scenario_selection'),
+          onScenarioSelected: _onPlayScenario,
+          onBack: _onReturnToMenu,
         ),
     };
   }

@@ -64,7 +64,11 @@ class DesignerScenarioData {
   String authorName;
   String designerNotes;
   String? thumbnailImagePath;
-  String? missionBriefingImagePath;  // Visual displayed above mission briefing
+  String? missionBriefingImagePath;
+  String? threatIntel;                   // Tactical context: "AA capability confirmed"
+  String? targetIntel;                   // Target context: "Hardened shelters"
+  int startFuelModifier;                 // Offset from standard fuel: -10 = low fuel start
+  int startDamageModifier;               // Offset from standard health: 1 = start damaged
 
   // -- Step 2: Drones --
   Set<int> selectedDroneIds;
@@ -126,6 +130,11 @@ class DesignerScenarioData {
     this.authorName = 'Oscar',
     this.designerNotes = '',
     this.thumbnailImagePath,
+    this.missionBriefingImagePath,
+    this.threatIntel = '',
+    this.targetIntel = '',
+    this.startFuelModifier = 0,
+    this.startDamageModifier = 0,
     Set<int>? selectedDroneIds,
     Map<int, int>? targetCards,
     Map<String, int>? threatCards,
@@ -194,6 +203,10 @@ class DesignerScenarioData {
     sb.writeln('PLAY_TIME_MINUTES=$estimatedPlayTimeMinutes  # Estimated play time');
     sb.writeln('AUTHOR=$authorName                       # Author name');
     sb.writeln('DESIGNER_NOTES=${designerNotes.replaceAll('\n', '\\n')}  # Designer notes');
+    sb.writeln('THREAT_INTEL=${threatIntel?.replaceAll('\n', '\\n') ?? ''}');
+    sb.writeln('TARGET_INTEL=${targetIntel?.replaceAll('\n', '\\n') ?? ''}');
+    sb.writeln('START_FUEL_MOD=$startFuelModifier');
+    sb.writeln('START_DAMAGE_MOD=$startDamageModifier');
     sb.writeln('');
 
     sb.writeln('# --- Drone & Rules ---');
@@ -298,6 +311,10 @@ class DesignerScenarioData {
       estimatedPlayTimeMinutes: intOr('PLAY_TIME_MINUTES') ?? 30,
       authorName: str('AUTHOR').isNotEmpty ? str('AUTHOR') : 'Oscar',
       designerNotes: str('DESIGNER_NOTES'),
+      threatIntel: str('THREAT_INTEL'),
+      targetIntel: str('TARGET_INTEL'),
+      startFuelModifier: intOr('START_FUEL_MOD') ?? 0,
+      startDamageModifier: intOr('START_DAMAGE_MOD') ?? 0,
       selectedDroneIds: _parseIntSet(str('SELECTED_DRONES')),
       targetCards: _parseIntMap(str('TARGET_CARDS')),
       threatCards: _parseStringMap(str('THREAT_CARDS')),
@@ -794,6 +811,11 @@ class ScenarioDesignerService {
       modifierAltitudeCost: s['modifier_altitude_cost'] as int? ?? 0,
       modifierTargetAcquisition: s['modifier_target_acquisition'] as int? ?? 0,
       modifierThreatDetermination: s['modifier_threat_determination'] as int? ?? 0,
+      missionBriefingImagePath: s['mission_briefing_image_path'] as String?,
+      threatIntel: s['threat_intel'] as String? ?? '',
+      targetIntel: s['target_intel'] as String? ?? '',
+      startFuelModifier: s['start_fuel_modifier'] as int? ?? 0,
+      startDamageModifier: s['start_damage_modifier'] as int? ?? 0,
     );
   }
 
@@ -903,7 +925,9 @@ class ScenarioDesignerService {
           secondary_objective_card_name = ?, secondary_objective_vp_threshold = ?,
           secondary_objective_vp_bonus = ?,
           primary_objective_target_type = ?, primary_objective_target_count = ?,
-          secondary_objective_target_type = ?, secondary_objective_target_count = ?
+          secondary_objective_target_type = ?, secondary_objective_target_count = ?,
+          mission_briefing_image_path = ?, threat_intel = ?, target_intel = ?,
+          start_fuel_modifier = ?, start_damage_modifier = ?
         WHERE id = ?
       ''', [
         data.title.trim(), data.shortDescription.trim(), data.overviewText.trim(),
@@ -925,6 +949,11 @@ class ScenarioDesignerService {
         data.primaryObjectiveTargetCount,
         data.secondaryObjectiveTargetType?.trim().isNotEmpty == true ? data.secondaryObjectiveTargetType!.trim() : null,
         data.secondaryObjectiveTargetCount,
+        data.missionBriefingImagePath,
+        data.threatIntel?.trim(),
+        data.targetIntel?.trim(),
+        data.startFuelModifier,
+        data.startDamageModifier,
         scenarioId,
       ]);
     } else {
@@ -945,8 +974,10 @@ class ScenarioDesignerService {
           secondary_objective_card_name, secondary_objective_vp_threshold,
           secondary_objective_vp_bonus,
           primary_objective_target_type, primary_objective_target_count,
-          secondary_objective_target_type, secondary_objective_target_count
-        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'MAXIMUM_KILL', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+          secondary_objective_target_type, secondary_objective_target_count,
+          mission_briefing_image_path, threat_intel, target_intel,
+          start_fuel_modifier, start_damage_modifier
+        ) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, 'MAXIMUM_KILL', ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
       ''', [
         data.title.trim(), data.shortDescription.trim(), data.overviewText.trim(),
         data.missionBriefing.trim(), data.primaryObjective.trim(),
@@ -967,6 +998,11 @@ class ScenarioDesignerService {
         data.primaryObjectiveTargetCount,
         data.secondaryObjectiveTargetType?.trim().isNotEmpty == true ? data.secondaryObjectiveTargetType!.trim() : null,
         data.secondaryObjectiveTargetCount,
+        data.missionBriefingImagePath,
+        data.threatIntel?.trim(),
+        data.targetIntel?.trim(),
+        data.startFuelModifier,
+        data.startDamageModifier,
       ]);
     }
 

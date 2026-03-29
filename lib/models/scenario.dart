@@ -193,6 +193,11 @@ class Scenario extends Equatable {
     this.startingFuel,
     this.startingDamageSens,
     this.startingDamageComms,
+    // Designer synced fields
+    this.threatIntel,
+    this.targetIntel,
+    this.startFuelModifier,
+    this.startDamageModifier,
     // Gameplay modifiers
     this.modifierFuelCost,
     this.modifierAttackRoll,
@@ -262,6 +267,11 @@ class Scenario extends Equatable {
   final int? startingFuel;
   final int? startingDamageSens;
   final int? startingDamageComms;
+  // Designer synced fields
+  final String? threatIntel;
+  final String? targetIntel;
+  final int? startFuelModifier;
+  final int? startDamageModifier;
 
   // --- Gameplay modifiers ---
   final int? modifierFuelCost;

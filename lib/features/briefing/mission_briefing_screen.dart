@@ -384,32 +384,29 @@ class MissionBriefingScreen extends StatelessWidget {
                     if (scenario.primaryObjective != null)
                       const SizedBox(height: 12),
 
-                    // --- 5. INTEL / RULES SECTIONS (designer: threatRules, targetRules, combatRules) ---
-                    if ((scenario.threatRules != null && scenario.threatRules!.isNotEmpty) ||
-                        (scenario.targetRules != null && scenario.targetRules!.isNotEmpty) ||
-                        (scenario.combatRules != null && scenario.combatRules!.isNotEmpty)) ...[
+                    // --- 5. INTEL / RULES SECTIONS ---
+                    if ((scenario.threatIntel != null && scenario.threatIntel!.isNotEmpty) ||
+                        (scenario.targetIntel != null && scenario.targetIntel!.isNotEmpty)) ...[
                       _SectionCard(
                         children: [
                           const _SectionLabel('INTEL & OPERATIONAL RULES'),
                           const SizedBox(height: 10),
-                          if (scenario.threatRules != null && scenario.threatRules!.isNotEmpty) ...[
-                            _IntelRow(label: 'THREAT INTEL', text: scenario.threatRules!, icon: Icons.warning_amber_rounded),
+                          if (scenario.threatIntel != null && scenario.threatIntel!.isNotEmpty) ...[
+                            _IntelRow(label: 'THREAT INTEL', text: scenario.threatIntel!, icon: Icons.warning_amber_rounded),
                             const SizedBox(height: 12),
                           ],
-                          if (scenario.targetRules != null && scenario.targetRules!.isNotEmpty) ...[
-                            _IntelRow(label: 'TARGET INTEL', text: scenario.targetRules!, icon: Icons.gps_fixed),
-                            const SizedBox(height: 12),
-                          ],
-                          if (scenario.combatRules != null && scenario.combatRules!.isNotEmpty) ...[
-                            _IntelRow(label: 'COMBAT EVENTS', text: scenario.combatRules!, icon: Icons.event_note),
+                          if (scenario.targetIntel != null && scenario.targetIntel!.isNotEmpty) ...[
+                            _IntelRow(label: 'TARGET INTEL', text: scenario.targetIntel!, icon: Icons.gps_fixed),
                           ],
                         ],
                       ),
                       const SizedBox(height: 12),
                     ],
 
-                    // --- 6. STARTING CONDITIONS (designer: starting_fuel, starting_damage_*) ---
-                    if (scenario.startingFuel != null ||
+                    // --- 6. STARTING CONDITIONS (legacy + designer fields) ---
+                    if ((scenario.startingFuel != null) ||
+                        (scenario.startFuelModifier ?? 0) != 0 ||
+                        (scenario.startDamageModifier ?? 0) != 0 ||
                         (scenario.startingDamageSens ?? 0) > 0 ||
                         (scenario.startingDamageComms ?? 0) > 0) ...[
                       _SectionCard(
@@ -422,7 +419,15 @@ class MissionBriefingScreen extends StatelessWidget {
                                 Expanded(
                                   child: _ConditionStat(
                                     label: 'FUEL',
-                                    value: '${scenario.startingFuel}F',
+                                    value: '${scenario.startingFuel}',
+                                    icon: Icons.local_gas_station,
+                                  ),
+                                ),
+                              if ((scenario.startFuelModifier ?? 0) != 0)
+                                Expanded(
+                                  child: _ConditionStat(
+                                    label: 'FUEL MOD',
+                                    value: '${scenario.startFuelModifier! > 0 ? "+" : ""}${scenario.startFuelModifier}',
                                     icon: Icons.local_gas_station,
                                   ),
                                 ),
@@ -441,6 +446,15 @@ class MissionBriefingScreen extends StatelessWidget {
                                     label: 'COM DMG',
                                     value: '${scenario.startingDamageComms}',
                                     icon: Icons.cell_tower,
+                                    isWarning: true,
+                                  ),
+                                ),
+                              if ((scenario.startDamageModifier ?? 0) != 0)
+                                Expanded(
+                                  child: _ConditionStat(
+                                    label: 'DMG MOD',
+                                    value: '${scenario.startDamageModifier! > 0 ? "+" : ""}${scenario.startDamageModifier}',
+                                    icon: Icons.warning_amber,
                                     isWarning: true,
                                   ),
                                 ),

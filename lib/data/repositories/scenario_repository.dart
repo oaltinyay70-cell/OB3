@@ -174,11 +174,15 @@ class ScenarioRepository {
       tags: s['tags'] as String?,
       thumbnailImagePath: s['thumbnail_image_path'] as String?,
       missionBriefingImagePath: s['mission_briefing_image_path'] as String?,
-      // Briefing display fields
+      // Briefing display fields — read new columns with fallback to legacy columns
+      loadoutRules: s['loadout_rules'] as String?,
       threatRules: s['threat_rules'] as String?,
       targetRules: s['target_rules'] as String?,
       combatRules: s['combat_rules'] as String?,
-      loadoutRules: s['loadout_rules'] as String?,
+      threatIntel: (s['threat_intel'] as String?) ?? (s['threat_rules'] as String?),
+      targetIntel: (s['target_intel'] as String?) ?? (s['target_rules'] as String?),
+      startFuelModifier: s['start_fuel_modifier'] as int?,
+      startDamageModifier: s['start_damage_modifier'] as int?,
       startingFuel: s['starting_fuel'] as int?,
       startingDamageSens: s['starting_damage_sens'] as int?,
       startingDamageComms: s['starting_damage_comms'] as int?,

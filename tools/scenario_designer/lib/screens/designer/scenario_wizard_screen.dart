@@ -579,6 +579,26 @@ class _ScenarioWizardScreenState extends State<ScenarioWizardScreen> {
         Text("COMMANDER'S INTENT", style: AppTextStyles.label),
         const SizedBox(height: 8),
         _textField('Mission Briefing *', _data.missionBriefing, (v) => _data.missionBriefing = v, maxLen: 1000, lines: 3),
+        
+        Row(
+          children: [
+            Expanded(child: _textField('Threat Intel', _data.threatIntel ?? '', (v) => _data.threatIntel = v, maxLen: 500, lines: 2)),
+            const SizedBox(width: 8),
+            Expanded(child: _textField('Target Intel', _data.targetIntel ?? '', (v) => _data.targetIntel = v, maxLen: 500, lines: 2)),
+          ],
+        ),
+
+        const SizedBox(height: 8),
+        Text("STARTING CONDITIONS", style: AppTextStyles.label.copyWith(fontSize: 10)),
+        const SizedBox(height: 8),
+        Row(
+          children: [
+            Expanded(child: _textField('Fuel Modifier', _data.startFuelModifier.toString(), (v) => _data.startFuelModifier = int.tryParse(v) ?? 0, number: true)),
+            const SizedBox(width: 8),
+            Expanded(child: _textField('Damage Modifier', _data.startDamageModifier.toString(), (v) => _data.startDamageModifier = int.tryParse(v) ?? 0, number: true)),
+          ],
+        ),
+
         _textField('Primary Objective *', _data.primaryObjective, (v) => _data.primaryObjective = v, maxLen: 500, lines: 2),
 
         // Primary condition

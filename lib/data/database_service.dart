@@ -15,9 +15,8 @@ class DatabaseService {
   static const String _dbFileName = 'ob3.db';
   static const String _assetPath = 'assets/db/$_dbFileName';
 
-  /// Increment this when shipping a new ob3.db in assets.
-  /// v11 — restored correct max_structural_integrity values (80–425) for all 28 drones.
-  static const int _dbVersion = 11;
+  /// v15 — added scenario_designer_drones table and legacy drone assignment.
+  static const int _dbVersion = 15;
 
   Database? _database;
 

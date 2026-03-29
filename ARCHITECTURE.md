@@ -201,13 +201,14 @@ erDiagram
 
 | Table | Key Fields |
 |-------|-----------|
-| `scenarios` | `name`, `campaign`, `description`, `objectives`, `scoring_mode`, card counts |
+| `scenarios` | `name`, `campaign`, `description`, `objectives`, `scoring_mode`, card counts, **Designer fields**: `threat_intel`, `target_intel`, `start_fuel_modifier`, `start_damage_modifier`, `difficulty_rating`, `estimated_play_time_minutes`, `author_name`, `tags` |
 | `scenario_zones` | `zone_number`, `star_marking`, `terrain` |
 | `scenario_loadouts` | loadout options per scenario |
 | `scenario_target_deck` | target card composition per zone |
 | `scenario_threat_deck` | threat card composition per zone |
 | `scenario_target_ranges` | target probability ranges per zone |
 | `scenario_threat_ranges` | threat probability ranges per zone |
+| `scenario_designer_drones`| Allows the scenario designer to specific a precise list of allowed platforms (`scenario_id`, `drone_id`) |
 
 ---
 

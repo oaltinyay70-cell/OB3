@@ -157,6 +157,13 @@ class DatabaseService {
       )
     ''');
     
+    // Ensure new scenario fields exist
+    try { await db.execute("ALTER TABLE scenarios ADD COLUMN mission_briefing_image_path TEXT"); } catch (_) {}
+    try { await db.execute("ALTER TABLE scenarios ADD COLUMN threat_intel TEXT"); } catch (_) {}
+    try { await db.execute("ALTER TABLE scenarios ADD COLUMN target_intel TEXT"); } catch (_) {}
+    try { await db.execute("ALTER TABLE scenarios ADD COLUMN start_fuel_modifier INTEGER DEFAULT 0"); } catch (_) {}
+    try { await db.execute("ALTER TABLE scenarios ADD COLUMN start_damage_modifier INTEGER DEFAULT 0"); } catch (_) {}
+    
     // ── Inject missing combat cards safely so user doesn't lose browser scenarios ──
     try {
       await db.execute("ALTER TABLE combat_cards ADD COLUMN attribute_effect TEXT");
