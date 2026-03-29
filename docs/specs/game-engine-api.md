@@ -329,9 +329,9 @@ FuelResult {
 
 ## Scoring
 
-### `calculateScore(destroyedTargets: List<TargetCard>) → int`
+### `calculateScore(killRecords: List<KillRecord>) → int`
 
-Sum VP from all cards in the Destroyed Target pile.
+Sum VP from all target cards captured within the kill records.
 
 - **Maximum Kill scoring**: Game ends when target deck is fully expanded
 - **Quick Kill scoring**: Game ends when primary objective is completed
