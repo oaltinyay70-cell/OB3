@@ -654,7 +654,6 @@ class _B2Content extends StatelessWidget {
               if (state.currentTarget != null)
                 Expanded(
                   child: _CardImageDisplay(
-                    imagePath: state.currentTarget!.imagePath,
                     imageBytes: state.currentTarget!.imageBytes,
                     fallbackTitle: state.currentTarget!.cardName,
                     fallbackBody: '${state.currentTarget!.targetType.dbValue}\nVP: ${state.currentTarget!.vp}',
@@ -667,7 +666,6 @@ class _B2Content extends StatelessWidget {
               if (state.currentThreat != null)
                 Expanded(
                   child: _CardImageDisplay(
-                    imagePath: state.currentThreat!.imagePath,
                     imageBytes: state.currentThreat!.imageBytes,
                     fallbackTitle: state.currentThreat!.cardName,
                     fallbackBody: state.currentThreat!.subCategory,
@@ -1171,14 +1169,12 @@ class _CardDisplay extends StatelessWidget {
 /// Card display that prefers an asset image, falling back to _CardDisplay text.
 class _CardImageDisplay extends StatelessWidget {
   const _CardImageDisplay({
-    required this.imagePath,
     required this.fallbackTitle,
     required this.fallbackBody,
     required this.fallbackBorderColor,
     this.fallbackHeaderLabel,
     this.imageBytes,
   });
-  final String imagePath;
   final String fallbackTitle;
   final String fallbackBody;
   final Color fallbackBorderColor;
@@ -1187,27 +1183,31 @@ class _CardImageDisplay extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Tier 1: Try asset image
-    return ClipRRect(
-      borderRadius: const BorderRadius.all(Radius.circular(8)),
-      child: Image.asset(
-        imagePath,
-        width: double.infinity,
-        fit: BoxFit.contain,
-        errorBuilder: (_, __, ___) {
-          // Tier 2: Try DB BLOB image
-          if (imageBytes != null && imageBytes!.isNotEmpty) {
-            return Image.memory(
-              imageBytes!,
-              width: double.infinity,
-              fit: BoxFit.contain,
-              errorBuilder: (_, __, ___) => _CardDisplay(
-                title: fallbackTitle,
-                body: fallbackBody,
-                borderColor: fallbackBorderColor,
-                headerLabel: fallbackHeaderLabel,
-              ),
-            );
+    // Tier 1: Try DB BLOB image
+    if (imageBytes != null && imageBytes!.isNotEmpty) {
+      return ClipRRect(
+        borderRadius: const BorderRadius.all(Radius.circular(8)),
+        child: Image.memory(
+          imageBytes!,
+          width: double.infinity,
+          fit: BoxFit.contain,
+          errorBuilder: (_, __, ___) => _CardDisplay(
+            title: fallbackTitle,
+            body: fallbackBody,
+            borderColor: fallbackBorderColor,
+            headerLabel: fallbackHeaderLabel,
+          ),
+        ),
+      );
+    }
+    // Tier 2: Styled text fallback
+    return _CardDisplay(
+      title: fallbackTitle,
+      body: fallbackBody,
+      borderColor: fallbackBorderColor,
+      headerLabel: fallbackHeaderLabel,
+    );
+  }
           }
           // Tier 3: Styled text fallback
           return _CardDisplay(
@@ -1331,13 +1331,11 @@ class _CombatCardVisual extends StatelessWidget {
     required this.cardName,
     required this.instruction,
     this.effectResult,
-    this.imagePath,
     this.imageBytes,
   });
   final String cardName;
   final String instruction;
   final String? effectResult;
-  final String? imagePath;
   final Uint8List? imageBytes;
 
   @override
@@ -1386,24 +1384,15 @@ class _CombatCardVisual extends StatelessWidget {
   }
 
   Widget _buildCardImage() {
-    // 1st priority: UX-designed asset image
-    if (imagePath != null) {
-      return Image.asset(
-        imagePath!,
-        width: double.infinity,
-        fit: BoxFit.contain,
-        errorBuilder: (_, __, ___) => _buildFallback(),
-      );
-    }
-    // 2nd priority: DB BLOB image
-    if (imageBytes != null) {
+    // 1st priority: DB BLOB image
+    if (imageBytes != null && imageBytes!.isNotEmpty) {
       return Image.memory(
         imageBytes!,
         width: double.infinity,
         fit: BoxFit.contain,
       );
     }
-    // 3rd: text fallback
+    // 2nd: text fallback
     return _buildFallback();
   }
 
