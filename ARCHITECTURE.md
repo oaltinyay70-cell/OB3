@@ -232,6 +232,15 @@ Drone {
 }
 ```
 
+### Kill Record
+
+```
+KillRecord {
+  target: TargetCard
+  weapon_name: String
+}
+```
+
 ### Game State
 
 ```
@@ -254,7 +263,7 @@ GameState {
   threat_deck: Stack<ThreatCard>
   combat_deck: Stack<CombatCard>
   discard_pile: List<Card>
-  destroyed_targets: List<TargetCard>  // VP source
+  kill_records: List<KillRecord>       // VP source and weapon usage tracking
 
   // Current encounter
   active_target: TargetCard?
@@ -349,6 +358,7 @@ These items are flagged from the rulebook Q&A and must be resolved before implem
 
 | Date | Change |
 |------|--------|
+| 2026-03-30 | Engine Architecture (D1): Centralized combat outcomes into `KillRecord` (replaces parallel lists) |
 | 2026-03-19 | Added `docs/specs/card-visual-spec.md` — pixel-precise card format spec (canvas, Pantone, typography) |
 | 2026-03-19 | Finalised NEW_CC combat card set (19 cards, cyan/dark tactical HUD format) |
 | 2026-03-18 | LASER C-UAS → reclassified from threat deck to target deck (TCSA019) |
