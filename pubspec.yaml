@@ -1,7 +1,7 @@
 name: drone_commander
 description: "OB3 Drone Commander — UCAV combat mobile game"
 publish_to: 'none'
-version: 1.0.0+1
+version: 0.15.0+1
 
 environment:
   sdk: ^3.11.0
