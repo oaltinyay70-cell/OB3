@@ -6,6 +6,13 @@ import '../models/weapon.dart';
 import 'drone_state.dart';
 import 'objective_evaluator.dart';
 
+/// Associates a destroyed target with the weapon used to destroy it.
+class KillRecord {
+  const KillRecord({required this.target, required this.weaponName});
+  final TargetCard target;
+  final String weaponName;
+}
+
 /// Immutable snapshot of the full game state.
 ///
 /// The GameEngine produces new GameState instances as the game progresses.
@@ -15,7 +22,7 @@ class GameState {
     required this.phase,
     required this.cycleNumber,
     required this.droneState,
-    required this.destroyedTargets,
+    required this.killRecords,
     required this.gameLog,
     this.currentTarget,
     this.currentThreat,
@@ -69,8 +76,12 @@ class GameState {
   /// Selected weapon at B4.
   final Weapon? selectedWeapon;
 
-  /// Cards destroyed by successful attacks (for VP scoring).
-  final List<TargetCard> destroyedTargets;
+  /// Records of targets destroyed and weapons used.
+  final List<KillRecord> killRecords;
+
+  /// Cards destroyed by successful attacks (for VP scoring and display).
+  List<TargetCard> get destroyedTargets =>
+      killRecords.map((k) => k.target).toList();
 
   /// Game event log for display.
   final List<String> gameLog;
@@ -104,5 +115,5 @@ class GameState {
 
   /// Total VP from destroyed targets.
   double get totalVP =>
-      destroyedTargets.fold(0.0, (sum, card) => sum + card.vp);
+      killRecords.fold(0.0, (sum, record) => sum + record.target.vp);
 }

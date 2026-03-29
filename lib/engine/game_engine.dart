@@ -1,3 +1,4 @@
+import 'package:collection/collection.dart';
 
 import '../models/combat_card.dart';
 import '../models/game_enums.dart';
@@ -95,8 +96,7 @@ class GameEngine {
   CombatCard? _currentCombatCard;
   AttackMode? _selectedAttackMode;
   Weapon? _selectedWeapon;
-  final List<TargetCard> _destroyedTargets = [];
-  final List<String> _weaponsUsedPerKill = []; // parallel to _destroyedTargets
+  final List<KillRecord> _killRecords = [];
   final List<String> _gameLog = [];
   bool _isGameOver = false;
   String? _gameOverReason;
@@ -150,7 +150,7 @@ class GameEngine {
         lastCombatEffect: _lastCombatEffect,
         selectedAttackMode: _selectedAttackMode,
         selectedWeapon: _selectedWeapon,
-        destroyedTargets: List.unmodifiable(_destroyedTargets),
+        killRecords: List.unmodifiable(_killRecords),
         gameLog: List.unmodifiable(_gameLog),
         isGameOver: _isGameOver,
         gameOverReason: _gameOverReason,
@@ -288,6 +288,10 @@ class GameEngine {
     // Auto-resolve
     final effect = CombatCardHandler.apply(card, _droneState);
     _lastCombatEffect = effect.description;
+    if (effect.type == CombatCardEffectType.altitudeChange) {
+      CombatCardHandler.applyAltitudeEffect(effect, _droneState);
+      _log('Altitude changed by card: now ${_droneState.altitude.name}');
+    }
     _log('Auto-resolved: ${effect.description}');
 
     // Track attack mode restrictions
@@ -624,13 +628,16 @@ class GameEngine {
     _ensurePhase(GamePhase.b4Attack);
 
     if (_selectedAttackMode == null) {
-      throw StateError('Must select attack mode first.');
+      _log('ERROR: executeAttack called without attack mode selected.');
+      return CrtResult.none;
     }
     if (_selectedAttackMode != AttackMode.foLaze && _selectedWeapon == null) {
-      throw StateError('Must select weapon for non-FO/Laze attacks.');
+      _log('ERROR: executeAttack called without weapon for non-FO/Laze attacks.');
+      return CrtResult.none;
     }
     if (_currentTarget == null) {
-      throw StateError('No target to attack.');
+      _log('ERROR: executeAttack called without target.');
+      return CrtResult.none;
     }
 
     // Roll D6
@@ -655,7 +662,11 @@ class GameEngine {
     // Use weapon ammo
     if (_selectedWeapon != null) {
       final slot = _droneState.loadout
-          .firstWhere((s) => s.weapon.id == _selectedWeapon!.id && s.hasAmmo);
+          .firstWhereOrNull((s) => s.weapon.id == _selectedWeapon!.id && s.hasAmmo);
+      if (slot == null) {
+        _log('ERROR: Ammo slot vanished between selection and execution.');
+        return CrtResult.none;
+      }
       slot.use();
     }
 
@@ -666,8 +677,10 @@ class GameEngine {
     // Process hit/miss
     if (result.isHit) {
       _log('B4: *** HIT! *** ${_currentTarget!.cardName} destroyed! (+${_currentTarget!.vp} VP)');
-      _destroyedTargets.add(_currentTarget!);
-      _weaponsUsedPerKill.add(_selectedWeapon?.name ?? 'FO/Laze');
+      _killRecords.add(KillRecord(
+        target: _currentTarget!,
+        weaponName: _selectedWeapon?.name ?? 'FO/Laze',
+      ));
       // Move to destroyed pile in appropriate deck
       final targetType = _currentTarget!.subCategory;
       _targetDecks[targetType]?.destroy(_currentTarget!);
@@ -858,8 +871,7 @@ class GameEngine {
       final prevMet = _primaryObjectiveStatus?.isMet ?? false;
       _primaryObjectiveStatus = ObjectiveEvaluator.evaluate(
         condition: _primaryCondition,
-        destroyedTargets: _destroyedTargets,
-        weaponsUsed: _weaponsUsedPerKill,
+        killRecords: _killRecords,
         allDecksEmpty: _allDecksEmpty,
       );
 
@@ -879,8 +891,7 @@ class GameEngine {
       final prevMet = _secondaryObjectiveStatus?.isMet ?? false;
       _secondaryObjectiveStatus = ObjectiveEvaluator.evaluate(
         condition: _secondaryCondition,
-        destroyedTargets: _destroyedTargets,
-        weaponsUsed: _weaponsUsedPerKill,
+        killRecords: _killRecords,
         allDecksEmpty: _allDecksEmpty,
       );
 
@@ -933,7 +944,7 @@ class GameEngine {
     _gameOverReason = reason;
     _phase = GamePhase.gameOver;
     _log('GAME OVER: $reason');
-    _log('Final Score: ${state.totalVP} VP from ${_destroyedTargets.length} kills.');
+    _log('Final Score: ${state.totalVP} VP from ${_killRecords.length} kills.');
     _notifyState();
   }
 }

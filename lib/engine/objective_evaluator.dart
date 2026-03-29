@@ -1,5 +1,5 @@
 import '../models/target_card.dart';
-
+import 'game_state.dart';
 /// Describes one objective condition from the scenario editor.
 ///
 /// Supports three match types:
@@ -66,17 +66,14 @@ class ObjectiveEvaluator {
   const ObjectiveEvaluator._();
 
   /// Evaluate a single objective condition against the list of destroyed
-  /// targets and (optionally) the weapons used for each kill.
+  /// targets and the weapons used for each kill.
   ///
-  /// [destroyedTargets] — all targets destroyed so far.
-  /// [weaponsUsed] — parallel list of weapon names used for each kill.
-  ///   If null, weapon requirement is ignored.
+  /// [killRecords] — all targets destroyed so far and weapons used.
   /// [allDecksEmpty] — true if all target decks have 0 remaining cards.
   ///   Only relevant for ALL_TARGETS conditions.
   static ObjectiveStatus evaluate({
     required ObjectiveCondition condition,
-    required List<TargetCard> destroyedTargets,
-    List<String>? weaponsUsed,
+    required List<KillRecord> killRecords,
     bool allDecksEmpty = false,
   }) {
     if (!condition.isActive) {
@@ -93,7 +90,7 @@ class ObjectiveEvaluator {
     if (key == 'ALL TARGETS') {
       return ObjectiveStatus(
         condition: condition,
-        currentCount: destroyedTargets.length,
+        currentCount: killRecords.length,
         isMet: allDecksEmpty,
       );
     }
@@ -102,8 +99,7 @@ class ObjectiveEvaluator {
     if (key.startsWith('ANY ')) {
       final category = key.substring(4); // "TANK", "SAM", "HQ", etc.
       final count = _countMatches(
-        destroyedTargets: destroyedTargets,
-        weaponsUsed: weaponsUsed,
+        killRecords: killRecords,
         weaponRequired: condition.weaponRequired,
         matcher: (card) => card.subCategory.toUpperCase() == category,
       );
@@ -116,8 +112,7 @@ class ObjectiveEvaluator {
 
     // ── SPECIFIC CARD NAME ──
     final count = _countMatches(
-      destroyedTargets: destroyedTargets,
-      weaponsUsed: weaponsUsed,
+      killRecords: killRecords,
       weaponRequired: condition.weaponRequired,
       matcher: (card) => card.cardName.toUpperCase() == key,
     );
@@ -131,21 +126,17 @@ class ObjectiveEvaluator {
   /// Count how many destroyed targets match [matcher], optionally filtering
   /// by weapon used.
   static int _countMatches({
-    required List<TargetCard> destroyedTargets,
-    required List<String>? weaponsUsed,
+    required List<KillRecord> killRecords,
     required String? weaponRequired,
     required bool Function(TargetCard) matcher,
   }) {
     int count = 0;
-    for (int i = 0; i < destroyedTargets.length; i++) {
-      if (!matcher(destroyedTargets[i])) continue;
+    for (final record in killRecords) {
+      if (!matcher(record.target)) continue;
 
       // Check weapon requirement if set
-      if (weaponRequired != null &&
-          weaponRequired.isNotEmpty &&
-          weaponsUsed != null &&
-          i < weaponsUsed.length) {
-        if (weaponsUsed[i].toUpperCase() != weaponRequired.toUpperCase()) {
+      if (weaponRequired != null && weaponRequired.isNotEmpty) {
+        if (record.weaponName.toUpperCase() != weaponRequired.toUpperCase()) {
           continue; // Kill doesn't count — wrong weapon
         }
       }

@@ -18,11 +18,6 @@ class ScenarioRepository {
         'name',
         'campaign_name',
         'description',
-        'short_description',
-        'difficulty_rating',
-        'estimated_play_time_minutes',
-        'state',
-        'thumbnail_image_path',
       ],
     );
   }
@@ -100,20 +95,30 @@ class ScenarioRepository {
     // 8. Load allowed drone IDs for this scenario.
     //    Check both tables: legacy `scenario_allowed_drones` and
     //    designer tool `scenario_designer_drones`.
-    var allowedDroneMaps = await db.query(
-      'scenario_allowed_drones',
-      columns: ['drone_id'],
-      where: 'scenario_id = ?',
-      whereArgs: [id],
-    );
-    // Fallback to designer drones table if legacy table is empty
-    if (allowedDroneMaps.isEmpty) {
+    var allowedDroneMaps = <Map<String, Object?>>[];
+    try {
       allowedDroneMaps = await db.query(
-        'scenario_designer_drones',
+        'scenario_allowed_drones',
         columns: ['drone_id'],
         where: 'scenario_id = ?',
         whereArgs: [id],
       );
+    } catch (e) {
+      // Table might not exist, ignore
+    }
+
+    // Fallback to designer drones table if legacy table is empty
+    if (allowedDroneMaps.isEmpty) {
+      try {
+        allowedDroneMaps = await db.query(
+          'scenario_designer_drones',
+          columns: ['drone_id'],
+          where: 'scenario_id = ?',
+          whereArgs: [id],
+        );
+      } catch (e) {
+        // Table might not exist, ignore
+      }
     }
     final allowedDroneIds =
         allowedDroneMaps.map((m) => m['drone_id'] as int).toList();
