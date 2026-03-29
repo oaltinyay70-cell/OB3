@@ -629,7 +629,6 @@ class _B1Content extends StatelessWidget {
             cardName: state.currentCombatCard!.cardName,
             instruction: state.currentCombatCard!.instructions,
             effectResult: state.lastCombatEffect,
-            imagePath: state.currentCombatCard!.imagePath,
             imageBytes: state.currentCombatCard!.imageBytes,
           ),
       ],
@@ -1206,18 +1205,6 @@ class _CardImageDisplay extends StatelessWidget {
       body: fallbackBody,
       borderColor: fallbackBorderColor,
       headerLabel: fallbackHeaderLabel,
-    );
-  }
-          }
-          // Tier 3: Styled text fallback
-          return _CardDisplay(
-            title: fallbackTitle,
-            body: fallbackBody,
-            borderColor: fallbackBorderColor,
-            headerLabel: fallbackHeaderLabel,
-          );
-        },
-      ),
     );
   }
 }

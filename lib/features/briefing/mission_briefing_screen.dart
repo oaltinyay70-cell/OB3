@@ -154,6 +154,20 @@ class MissionBriefingScreen extends StatelessWidget {
                     // --- 1. SCENARIO NAME + SUBTITLE (editor: s_name, s_subtitle) ---
                     _SectionCard(
                       children: [
+                        // Location (editor: s_location)
+                        if (scenario.location != null && scenario.location!.isNotEmpty) ...[
+                          Text(
+                            scenario.location!.toUpperCase(),
+                            style: TextStyle(
+                              fontFamily: 'IBMPlexMono',
+                              fontSize: 10,
+                              fontWeight: FontWeight.w600,
+                              color: MilstdTheme.textMuted.withValues(alpha: 0.7),
+                              letterSpacing: 2.0,
+                            ),
+                          ),
+                          const SizedBox(height: 6),
+                        ],
 
                         // Scenario Name
                         Text(
@@ -370,9 +384,92 @@ class MissionBriefingScreen extends StatelessWidget {
                     if (scenario.primaryObjective != null)
                       const SizedBox(height: 12),
 
+                    // --- 5. INTEL / RULES SECTIONS (designer: threatRules, targetRules, combatRules) ---
+                    if ((scenario.threatRules != null && scenario.threatRules!.isNotEmpty) ||
+                        (scenario.targetRules != null && scenario.targetRules!.isNotEmpty) ||
+                        (scenario.combatRules != null && scenario.combatRules!.isNotEmpty)) ...[
+                      _SectionCard(
+                        children: [
+                          const _SectionLabel('INTEL & OPERATIONAL RULES'),
+                          const SizedBox(height: 10),
+                          if (scenario.threatRules != null && scenario.threatRules!.isNotEmpty) ...[
+                            _IntelRow(label: 'THREAT INTEL', text: scenario.threatRules!, icon: Icons.warning_amber_rounded),
+                            const SizedBox(height: 12),
+                          ],
+                          if (scenario.targetRules != null && scenario.targetRules!.isNotEmpty) ...[
+                            _IntelRow(label: 'TARGET INTEL', text: scenario.targetRules!, icon: Icons.gps_fixed),
+                            const SizedBox(height: 12),
+                          ],
+                          if (scenario.combatRules != null && scenario.combatRules!.isNotEmpty) ...[
+                            _IntelRow(label: 'COMBAT EVENTS', text: scenario.combatRules!, icon: Icons.event_note),
+                          ],
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                    ],
 
+                    // --- 6. STARTING CONDITIONS (designer: starting_fuel, starting_damage_*) ---
+                    if (scenario.startingFuel != null ||
+                        (scenario.startingDamageSens ?? 0) > 0 ||
+                        (scenario.startingDamageComms ?? 0) > 0) ...[
+                      _SectionCard(
+                        children: [
+                          const _SectionLabel('STARTING CONDITIONS'),
+                          const SizedBox(height: 8),
+                          Row(
+                            children: [
+                              if (scenario.startingFuel != null)
+                                Expanded(
+                                  child: _ConditionStat(
+                                    label: 'FUEL',
+                                    value: '${scenario.startingFuel}F',
+                                    icon: Icons.local_gas_station,
+                                  ),
+                                ),
+                              if ((scenario.startingDamageSens ?? 0) > 0)
+                                Expanded(
+                                  child: _ConditionStat(
+                                    label: 'SEN DMG',
+                                    value: '${scenario.startingDamageSens}',
+                                    icon: Icons.radar,
+                                    isWarning: true,
+                                  ),
+                                ),
+                              if ((scenario.startingDamageComms ?? 0) > 0)
+                                Expanded(
+                                  child: _ConditionStat(
+                                    label: 'COM DMG',
+                                    value: '${scenario.startingDamageComms}',
+                                    icon: Icons.cell_tower,
+                                    isWarning: true,
+                                  ),
+                                ),
+                            ],
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                    ],
 
-                    // --- 8. GAMEPLAY MODIFIERS (designer: modifier_* columns) ---
+                    // --- 7. LOADOUT RULES (designer: loadoutRules) ---
+                    if (scenario.loadoutRules != null && scenario.loadoutRules!.isNotEmpty) ...[
+                      _SectionCard(
+                        children: [
+                          const _SectionLabel('LOADOUT RESTRICTIONS'),
+                          const SizedBox(height: 6),
+                          Text(
+                            scenario.loadoutRules!,
+                            style: const TextStyle(
+                              fontFamily: 'IBMPlexSans',
+                              fontSize: 13,
+                              color: MilstdTheme.textPrimary,
+                              height: 1.5,
+                            ),
+                          ),
+                        ],
+                      ),
+                      const SizedBox(height: 12),
+                    ],
                     if (scenario.hasActiveModifiers)
                       _SectionCard(
                         children: [
@@ -660,6 +757,93 @@ class _ModifierRow extends StatelessWidget {
           ),
         ],
       ),
+    );
+  }
+}
+
+class _IntelRow extends StatelessWidget {
+  const _IntelRow({required this.label, required this.text, required this.icon});
+  final String label;
+  final String text;
+  final IconData icon;
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Icon(icon, size: 16, color: MilstdTheme.accentSecondary),
+        const SizedBox(width: 10),
+        Expanded(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                label,
+                style: const TextStyle(
+                  fontFamily: 'IBMPlexMono',
+                  fontSize: 9,
+                  fontWeight: FontWeight.bold,
+                  color: MilstdTheme.accentSecondary,
+                  letterSpacing: 1.0,
+                ),
+              ),
+              const SizedBox(height: 2),
+              Text(
+                text,
+                style: const TextStyle(
+                  fontFamily: 'IBMPlexSans',
+                  fontSize: 13,
+                  color: MilstdTheme.textPrimary,
+                  height: 1.4,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+class _ConditionStat extends StatelessWidget {
+  const _ConditionStat({
+    required this.label,
+    required this.value,
+    required this.icon,
+    this.isWarning = false,
+  });
+  final String label;
+  final String value;
+  final IconData icon;
+  final bool isWarning;
+
+  @override
+  Widget build(BuildContext context) {
+    final color = isWarning ? MilstdTheme.statusWarning : MilstdTheme.accentPrimary;
+    return Column(
+      children: [
+        Icon(icon, size: 18, color: color),
+        const SizedBox(height: 4),
+        Text(
+          label,
+          style: const TextStyle(
+            fontFamily: 'IBMPlexSans',
+            fontSize: 8,
+            fontWeight: FontWeight.w600,
+            color: MilstdTheme.textMuted,
+          ),
+        ),
+        Text(
+          value,
+          style: TextStyle(
+            fontFamily: 'IBMPlexMono',
+            fontSize: 14,
+            fontWeight: FontWeight.bold,
+            color: color,
+          ),
+        ),
+      ],
     );
   }
 }

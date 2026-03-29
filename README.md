@@ -48,8 +48,6 @@ lib/
 
 ## Card Visuals
 
-All card images are stored as BLOBs in `assets/db/ob3.db`. The UI uses a 3-tier fallback: **DB BLOB → asset image → styled text**.
-
 | Type | DB Table | Count | Format |
 |------|----------|-------|--------|
 | Combat (original) | `combat_cards` | 18 | `CC001`–`CC018` |
@@ -57,7 +55,7 @@ All card images are stored as BLOBs in `assets/db/ob3.db`. The UI uses a 3-tier 
 | Target | `target_cards` | 114 | `TCXX000` (10 sub-categories) |
 | Threat | `combat_cards` | 36 | `THXXX-000` (5 sub-categories) |
 
-**Locked-in visual format:** See [`docs/specs/card-visual-spec.md`](docs/specs/card-visual-spec.md) for pixel-precise specs (canvas size, Pantone colors, typography, spacing).
+**Locked-in visual format:** All card visuals are dynamically loaded as **BLOBs from ob3.db**. Legacy `.png` silhouettes have been deleted. See [`docs/specs/card-visual-spec.md`](docs/specs/card-visual-spec.md) for details.
 
 ## Status Ribbon
 
